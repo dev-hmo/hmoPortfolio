@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { AiFillGithub, AiOutlineYoutube } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 
-function Footer() {
+function footerComponent() {
   let date = new Date();
   let year = date.getFullYear();
   return (
@@ -54,4 +54,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default footerComponent;
