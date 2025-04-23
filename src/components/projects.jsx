@@ -17,7 +17,7 @@ function Projects() {
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           {showCaseData.map((project) => (
-            <Col md={4} className="project-card" key={project.id}>
+            <Col md={6} className="project-card" key={project.id}>
               <ShowCaseCardComponent data={project} />
             </Col>
           ))}

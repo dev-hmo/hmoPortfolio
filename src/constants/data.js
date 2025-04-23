@@ -19,6 +19,7 @@ import {
 import Portfolio from "../assets/img/oldportfolio.png";
 import Pandanflim from "../assets/img/pandaflim.png";
 import Vapeshop from "../assets/img/vapeshop.png";
+import CustomerFeedbackApp from "../assets/img/customerfeedbackapp.png";
 
 export const showCaseData = [
   {
@@ -47,6 +48,15 @@ export const showCaseData = [
     image: Vapeshop,
     ghLink: "https://github.com/dev-hmo/vape-shop",
     demoLink: "https://vape-shop-delta.vercel.app/",
+  },
+  {
+    id: 4,
+    title: "Customer Feedback App",
+    description:
+      "Customer Feedback App — A responsive web application for collecting and displaying user feedback, built with React, React Router DOM, and Tailwind CSS. Powered by Firebase for backend functionality and Firestore for cloud storage. Features include real-time feedback submission, routing, and a clean, user-friendly interface.",
+    image: CustomerFeedbackApp,
+    ghLink: "https://github.com/dev-hmo/customer-feedback-app.git",
+    demoLink: "https://customer-feedback-app-gold.vercel.app/",
   },
 ];
 

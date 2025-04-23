@@ -15,10 +15,10 @@ export default function ShowCaseCardComponent({ data }) {
         <Button variant="primary" href={data.githubLink} target="_blank">
           <BsGithub /> &nbsp; GitHub
         </Button>
-        {data.liveDemoLink && (
+        {data.demoLink && (
           <Button
             variant="primary"
-            href={data.liveDemoLink}
+            href={data.demoLink}
             target="_blank"
             style={{ marginLeft: "10px" }}
           >
