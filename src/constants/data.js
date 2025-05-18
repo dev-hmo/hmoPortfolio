@@ -20,6 +20,8 @@ import Portfolio from "../assets/img/oldportfolio.png";
 import Pandanflim from "../assets/img/pandaflim.png";
 import Vapeshop from "../assets/img/vapeshop.png";
 import CustomerFeedbackApp from "../assets/img/customerfeedbackapp.png";
+import PixelForge from "../assets/img/pixelforge.png";
+import TodoListApp from "../assets/img/todolist.png";
 
 export const showCaseData = [
   {
@@ -57,6 +59,24 @@ export const showCaseData = [
     image: CustomerFeedbackApp,
     ghLink: "https://github.com/dev-hmo/customer-feedback-app.git",
     demoLink: "https://customer-feedback-app-gold.vercel.app/",
+  },
+  {
+    id: 5,
+    title: "Pixel Forge",
+    description:
+      "A modern and responsive web application built with React, React-DOM, and Material UI. Designed for a clean and engaging user experience, it showcases dynamic UI components and interactive functionality. Hosted on Vercel for fast and reliable deployment.",
+    image: PixelForge,
+    ghLink: "https://github.com/dev-hmo/pixel-forge",
+    demoLink: "https://pixel-forge-tawny.vercel.app/",
+  },
+  {
+    id: 6,
+    title: "Todo List App",
+    description:
+      "A full-stack task management application built with React.js for the frontend, Node.js for the backend, and MongoDB for data storage. Features include task creation, updating, deletion, and real-time list rendering. Designed for simplicity and productivity, and deployed on Vercel for seamless access.",
+    image: TodoListApp,
+    ghLink: "https://github.com/dev-hmo/todolist",
+    demoLink: "https://todolist-iota-lac-27.vercel.app/",
   },
 ];
 
