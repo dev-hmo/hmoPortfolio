@@ -16,23 +16,24 @@ import {
   SiVercel,
   SiPopos,
 } from "react-icons/si";
-import Portfolio from "../assets/img/oldportfolio.png";
+// import Portfolio from "../assets/img/oldportfolio.png";
 import Pandanflim from "../assets/img/pandaflim.png";
 import Vapeshop from "../assets/img/vapeshop.png";
 import CustomerFeedbackApp from "../assets/img/customerfeedbackapp.png";
 import PixelForge from "../assets/img/pixelforge.png";
 import TodoListApp from "../assets/img/todolist.png";
+import BookingMM from "../assets/img/bookingmm.png";
 
 export const showCaseData = [
-  {
-    id: 1,
-    title: "Porfolio",
-    description:
-      "Personal Portfolio Website to showcase projects, skills, and experiences — built with HTML, CSS, JavaScript, and designed using Canva. Features a clean and responsive layout to highlight work samples, contact information, and personal branding.",
-    image: Portfolio,
-    ghLink: "https://github.com/dev-hmo/personal-porfolio.git",
-    demoLink: "https://hmo-porfolio.vercel.app/",
-  },
+  // {
+  //   id: 1,
+  //   title: "Porfolio",
+  //   description:
+  //     "Personal Portfolio Website to showcase projects, skills, and experiences — built with HTML, CSS, JavaScript, and designed using Canva. Features a clean and responsive layout to highlight work samples, contact information, and personal branding.",
+  //   image: Portfolio,
+  //   ghLink: "https://github.com/dev-hmo/personal-porfolio.git",
+  //   demoLink: "https://hmo-porfolio.vercel.app/",
+  // },
   {
     id: 2,
     title: "Panda Flim",
@@ -77,6 +78,15 @@ export const showCaseData = [
     image: TodoListApp,
     ghLink: "https://github.com/dev-hmo/todolist",
     demoLink: "https://todolist-iota-lac-27.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "BookingMM",
+    description:
+      "a modern web application built with React, Tailwind CSS, and Supabase. It allows users to browse and book available rooms with ease. The platform features responsive design, dynamic room listings, and user-friendly navigation for a seamless booking experience.",
+    image: BookingMM,
+    ghLink: "https://github.com/dev-hmo/todolist",
+    demoLink: "https://bookingmm.vercel.app/",
   },
 ];
 

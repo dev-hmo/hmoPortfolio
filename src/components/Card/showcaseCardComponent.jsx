@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { BsGithub } from "react-icons/bs";
+// import { BsGithub } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
 
 export default function ShowCaseCardComponent({ data }) {
@@ -12,15 +12,15 @@ export default function ShowCaseCardComponent({ data }) {
         <Card.Text style={{ textAlign: "justify" }}>
           {data.description}
         </Card.Text>
-        <Button variant="primary" href={data.githubLink} target="_blank">
+        {/* <Button variant="primary" href={data.githubLink} target="_blank">
           <BsGithub /> &nbsp; GitHub
-        </Button>
+        </Button> */}
         {data.demoLink && (
           <Button
             variant="primary"
             href={data.demoLink}
             target="_blank"
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: "10px", width: "80%" }}
           >
             <CgWebsite /> &nbsp; Demo
           </Button>
