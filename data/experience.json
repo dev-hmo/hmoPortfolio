@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Project Coordinator",
+        "company": "RITZ",
+        "date": "Dec 2025 - Present",
+        "description": "Project Timeline Management, Project Planning, and Communication. Coordinating cross-functional teams to deliver projects on time and within scope."
+    },
+    {
+        "title": "Intern React Developer",
+        "company": "NK Software House",
+        "date": "May 2025 - Jul 2025",
+        "description": "Frontend Development and Responsive Web Design. Built modern UI components using React.js and collaborated with senior developers on production applications."
+    },
+    {
+        "title": "IT Support Specialist",
+        "company": "Infinity Success Co., Ltd",
+        "date": "Nov 2024 - Oct 2025",
+        "description": "Website testing, Data Entry, Graphic Design, and Game Payment management. Ensured smooth operations across multiple digital platforms."
+    },
+    {
+        "title": "IT Technical Support Team Lead",
+        "company": "App.com.mm",
+        "date": "May 2024 - Sep 2024",
+        "description": "Led and managed the IT support team, handled escalated technical issues, monitored support workflows, and maintained IT documentation."
+    },
+    {
+        "title": "Junior Network Administrator",
+        "company": "CGM Golden Land Co Ltd",
+        "date": "Apr 2023 - May 2024",
+        "description": "Managed network infrastructure, maintained server uptime, and ensured network security across the organization."
+    },
+    {
+        "title": "Computer Technician",
+        "company": "Tech Ace Gaming & Computer Company Ltd.",
+        "date": "Nov 2020 - May 2022",
+        "description": "Hardware troubleshooting, system maintenance, and technical support for gaming and computer systems."
+    }
+]
