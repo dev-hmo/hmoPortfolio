@@ -6,6 +6,7 @@ export default function AdminSettingsPage() {
     const [settings, setSettings] = useState<SiteSettings>({
         name: "",
         title: "",
+        location: "",
         email: "",
         githubUsername: "",
         githubUrl: "",
@@ -44,6 +45,7 @@ export default function AdminSettingsPage() {
     const fields: { key: keyof SiteSettings; label: string; type?: string }[] = [
         { key: "name", label: "Full Name" },
         { key: "title", label: "Job Title" },
+        { key: "location", label: "Location" },
         { key: "email", label: "Email Address", type: "email" },
         { key: "bio", label: "Bio" },
         { key: "githubUsername", label: "GitHub Username" },

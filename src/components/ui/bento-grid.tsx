@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./canvas-reveal-effect";
@@ -48,10 +48,19 @@ export const BentoGridItem = ({
     spareImg?: string;
 }) => {
     const [copied, setCopied] = useState(false);
+    const [email, setEmail] = useState("hlaingminoo785@gmail.com");
+
+    useEffect(() => {
+        if (id === 6) {
+            fetch("/api/settings")
+                .then(res => res.json())
+                .then(data => { if (data?.email) setEmail(data.email); })
+                .catch(() => { });
+        }
+    }, [id]);
 
     const handleCopy = () => {
-        const text = "hlaingminoo785@gmail.com";
-        navigator.clipboard.writeText(text);
+        navigator.clipboard.writeText(email);
         setCopied(true);
         setTimeout(() => {
             setCopied(false);

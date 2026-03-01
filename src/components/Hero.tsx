@@ -1,15 +1,13 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { MagicButton } from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
 import type { SiteSettings } from "@/types";
 
 export default function Hero() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [currentRole, setCurrentRole] = useState(0);
     const [settings, setSettings] = useState<SiteSettings | null>(null);
 
     useEffect(() => {
@@ -26,22 +24,6 @@ export default function Hero() {
             .then(setSettings)
             .catch(console.error);
     }, []);
-
-    const roles = settings?.title ? settings.title.split(",").map(r => r.trim()).filter(Boolean) : ["Developer"];
-
-    // Rotate roles every 3 seconds
-    const startFlipping = useCallback(() => {
-        const interval = setInterval(() => {
-            setCurrentRole((prev) => (prev + 1) % (roles.length || 1));
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [roles.length]);
-
-    useEffect(() => {
-        if (roles.length > 1) {
-            return startFlipping();
-        }
-    }, [startFlipping, roles.length]);
 
     if (!settings) return <div className="h-screen w-full dark:bg-black-100 bg-white" />; // Loading state
 
@@ -85,36 +67,7 @@ export default function Hero() {
                     />
 
                     <div className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white mt-2">
-                        <span>Hi! I&apos;m {settings.name || "Hlaing Min Oo"}, a </span>
-                        <span className="inline-block relative h-[1.4em] overflow-hidden align-bottom" style={{ minWidth: "280px" }}>
-                            <AnimatePresence mode="wait">
-                                <motion.span
-                                    key={roles[currentRole]}
-                                    className="absolute left-0 right-0 text-cyan-400 font-semibold"
-                                    initial={{
-                                        opacity: 0,
-                                        y: 30,
-                                        filter: "blur(8px)",
-                                    }}
-                                    animate={{
-                                        opacity: 1,
-                                        y: 0,
-                                        filter: "blur(0px)",
-                                    }}
-                                    exit={{
-                                        opacity: 0,
-                                        y: -30,
-                                        filter: "blur(8px)",
-                                    }}
-                                    transition={{
-                                        duration: 0.4,
-                                        ease: "easeInOut",
-                                    }}
-                                >
-                                    {roles[currentRole]}
-                                </motion.span>
-                            </AnimatePresence>
-                        </span>
+                        Hi! I&apos;m {settings.name || "Hlaing Min Oo"}, a <span className="text-cyan-400 font-semibold">{settings.title || "Developer"}</span> based in {settings.location || "Myanmar"}.
                     </div>
 
                     <a href="#projects">

@@ -73,6 +73,7 @@ export interface BlogPost {
 export interface SiteSettings {
     name: string;
     title: string;
+    location: string;
     email: string;
     githubUsername: string;
     githubUrl: string;

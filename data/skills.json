@@ -1,20 +1,31 @@
 {
     "skills": [
-        "JavaScript",
-        "React",
+        "JavaScript (ES6+)",
+        "TypeScript",
+        "React.js",
         "Next.js",
         "Node.js",
-        "Express",
+        "Express.js",
         "MongoDB",
-        "TailwindCSS",
-        "Git",
-        "Python"
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Three.js",
+        "HTML5 / CSS3",
+        "Redux Toolkit",
+        "RESTful APIs",
+        "GraphQL",
+        "Python",
+        "Docker"
     ],
     "tools": [
         "VS Code",
+        "Git & GitHub",
         "Postman",
-        "Adobe Photoshop",
+        "Figma",
         "Vercel",
-        "Git"
+        "Linux",
+        "Webpack / Vite",
+        "Jest / React Testing Library"
     ]
 }

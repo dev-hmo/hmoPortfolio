@@ -38,7 +38,7 @@ export default function AdminGridPage() {
         setEditIndex(null);
     };
 
-    const update = (index: number, field: string, value: string) => {
+    const update = (index: number, field: string, value: string | number) => {
         const updated = [...items];
         updated[index] = { ...updated[index], [field]: value };
         setItems(updated);

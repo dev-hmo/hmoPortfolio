@@ -1,33 +1,44 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Globe, { GlobeMethods } from "react-globe.gl";
 
 export function TechGlobe() {
     const globeEl = useRef<GlobeMethods | undefined>(undefined);
     const [mounted, setMounted] = useState(false);
 
+    // Configure auto-rotate once Globe instance attaches
     useEffect(() => {
+        if (!mounted) return;
+        const timer = setTimeout(() => {
+            if (globeEl.current) {
+                // @ts-ignore
+                globeEl.current.controls().autoRotate = true;
+                // @ts-ignore
+                globeEl.current.controls().autoRotateSpeed = 1.5;
+            }
+        }, 500);
+        return () => clearTimeout(timer);
+    }, [mounted]);
+
+    // Set mounted on first render
+    React.useEffect(() => {
         setMounted(true);
     }, []);
 
-    useEffect(() => {
-        if (globeEl.current) {
-            // @ts-ignore
-            globeEl.current.controls().autoRotate = true;
-            // @ts-ignore
-            globeEl.current.controls().autoRotateSpeed = 1.5;
-        }
-    }, [globeEl.current]);
-
+    // Memoize arc data so it doesn't regenerate on every render
     const N = 20;
-    const arcsData = [...Array(N).keys()].map(() => ({
-        startLat: (Math.random() - 0.5) * 180,
-        startLng: (Math.random() - 0.5) * 360,
-        endLat: (Math.random() - 0.5) * 180,
-        endLng: (Math.random() - 0.5) * 360,
-        color: ['#06b6d4', '#3b82f6', '#8b5cf6'][Math.round(Math.random() * 2)]
-    }));
+    const arcsData = useMemo(
+        () =>
+            [...Array(N).keys()].map(() => ({
+                startLat: (Math.random() - 0.5) * 180,
+                startLng: (Math.random() - 0.5) * 360,
+                endLat: (Math.random() - 0.5) * 180,
+                endLng: (Math.random() - 0.5) * 360,
+                color: ["#06b6d4", "#3b82f6", "#8b5cf6"][Math.round(Math.random() * 2)],
+            })),
+        []
+    );
 
     if (!mounted) return <div className="h-[600px] w-full bg-black"></div>;
 

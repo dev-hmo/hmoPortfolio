@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config({ path: ".env.local" });
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
     console.error("Please add your MONGODB_URI to .env.local");

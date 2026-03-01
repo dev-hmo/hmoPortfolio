@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
-import { motion } from "framer-motion";
 
 export default function Grid() {
     const [gridItems, setGridItems] = useState<any[]>([]);
@@ -25,27 +24,19 @@ export default function Grid() {
 
     return (
         <section id="about">
-            <BentoGrid>
-                {gridItems.map((item, index) => (
-                    <motion.div
-                        key={item._id || index}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+            <BentoGrid className="w-full py-20 px-4 md:px-8 max-w-7xl">
+                {gridItems.map((item, i) => (
+                    <BentoGridItem
+                        key={item._id || item.id || i}
+                        id={item.id}
+                        title={item.title}
+                        description={item.description}
                         className={item.className}
-                    >
-                        <BentoGridItem
-                            id={item.id || index + 1}
-                            title={item.title}
-                            description={item.description}
-                            className="h-full"
-                            img={item.img}
-                            imgClassName={item.imgClassName}
-                            titleClassName={item.titleClassName}
-                            spareImg={item.spareImg}
-                        />
-                    </motion.div>
+                        img={item.img}
+                        imgClassName={item.imgClassName}
+                        titleClassName={item.titleClassName}
+                        spareImg={item.spareImg}
+                    />
                 ))}
             </BentoGrid>
         </section>
