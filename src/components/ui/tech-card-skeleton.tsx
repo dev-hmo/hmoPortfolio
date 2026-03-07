@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import { animate, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { animate, motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
     SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs,
@@ -42,7 +42,31 @@ export const getTechIcon = (name: string, className?: string) => {
     return <FaServer className={className} />; // Default
 };
 
-export const TechCardSkeleton = () => {
+export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] }) => {
+    const [icons, setIcons] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (skillsList && skillsList.length > 0) {
+            setIcons([...skillsList]);
+        } else {
+            setIcons(["React", "Next.js", "TypeScript", "MongoDB", "Tailwind CSS"]);
+        }
+    }, [skillsList]);
+
+    useEffect(() => {
+        // Rotate the icons array every 1.5 seconds
+        const interval = setInterval(() => {
+            setIcons((prev) => {
+                if (prev.length <= 1) return prev;
+                const next = [...prev];
+                const first = next.shift();
+                if (first) next.push(first);
+                return next;
+            });
+        }, 1500);
+        return () => clearInterval(interval);
+    }, [icons.length]);
+
     const scale = [1, 1.1, 1];
     const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
     const sequence = [
@@ -62,22 +86,82 @@ export const TechCardSkeleton = () => {
     }, []);
 
     return (
-        <div className="p-4 overflow-hidden h-32 relative flex items-center justify-center pointer-events-none mb-4">
+        <div className="p-4 overflow-hidden h-full w-full relative flex items-center justify-center pointer-events-none mb-4">
             <div className="flex flex-row shrink-0 justify-center items-center gap-2">
                 <Container className="h-8 w-8 circle-1">
-                    <SiReact className="h-4 w-4 text-cyan-400" />
+                    <AnimatePresence mode="popLayout">
+                        {icons[0] && (
+                            <motion.div
+                                key={icons[0]}
+                                initial={{ opacity: 0, rotate: 180, scale: 0 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: -180, scale: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {getTechIcon(icons[0], "h-4 w-4")}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Container>
                 <Container className="h-12 w-12 circle-2">
-                    <SiNextdotjs className="h-6 w-6 text-white" />
+                    <AnimatePresence mode="popLayout">
+                        {icons[1] && (
+                            <motion.div
+                                key={icons[1]}
+                                initial={{ opacity: 0, rotate: 180, scale: 0 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: -180, scale: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {getTechIcon(icons[1], "h-6 w-6")}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Container>
                 <Container className="circle-3">
-                    <SiTypescript className="h-8 w-8 text-blue-500" />
+                    <AnimatePresence mode="popLayout">
+                        {icons[2] && (
+                            <motion.div
+                                key={icons[2]}
+                                initial={{ opacity: 0, rotate: 180, scale: 0 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: -180, scale: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {getTechIcon(icons[2], "h-8 w-8")}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Container>
                 <Container className="h-12 w-12 circle-4">
-                    <SiMongodb className="h-6 w-6 text-green-500" />
+                    <AnimatePresence mode="popLayout">
+                        {icons[3] && (
+                            <motion.div
+                                key={icons[3]}
+                                initial={{ opacity: 0, rotate: 180, scale: 0 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: -180, scale: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {getTechIcon(icons[3], "h-6 w-6")}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Container>
                 <Container className="h-8 w-8 circle-5">
-                    <SiTailwindcss className="h-4 w-4 text-cyan-300" />
+                    <AnimatePresence mode="popLayout">
+                        {icons[4] && (
+                            <motion.div
+                                key={icons[4]}
+                                initial={{ opacity: 0, rotate: 180, scale: 0 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: -180, scale: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {getTechIcon(icons[4], "h-4 w-4")}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </Container>
             </div>
 

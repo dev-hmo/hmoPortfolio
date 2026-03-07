@@ -150,19 +150,8 @@ export const BentoGridItem = ({
 
                     {/* Tech stack list */}
                     {id === 3 && (
-                        <div className="flex flex-col gap-4 mt-4 h-full relative z-50 overflow-hidden">
-                            <TechCardSkeleton />
-                            <div className="flex flex-wrap gap-2 overflow-y-auto pr-2 custom-scrollbar flex-1 pb-4 items-start">
-                                {skillsList.map((item, i) => (
-                                    <span
-                                        key={i}
-                                        className="flex items-center gap-2 py-1.5 px-3 text-xs lg:text-sm font-medium rounded-lg text-center bg-[#10132E] text-cyan-400 border border-white/10 hover:bg-cyan-500/10 transition-colors"
-                                    >
-                                        {getTechIcon(item, "w-4 h-4")}
-                                        {item}
-                                    </span>
-                                ))}
-                            </div>
+                        <div className="flex flex-col gap-4 mt-4 h-full w-full relative z-50 overflow-hidden items-center justify-center">
+                            <TechCardSkeleton skillsList={skillsList.length > 0 ? skillsList : undefined} />
                         </div>
                     )}
 
