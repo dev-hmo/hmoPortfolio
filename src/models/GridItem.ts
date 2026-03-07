@@ -8,11 +8,13 @@ export interface IGridItem extends Document {
     titleClassName: string;
     img: string;
     spareImg: string;
+    id: number;
     order: number;
 }
 
 const GridItemSchema: Schema = new Schema(
     {
+        id: { type: Number, required: true },
         title: { type: String, default: "" },
         description: { type: String, default: "" },
         className: { type: String, default: "" },
