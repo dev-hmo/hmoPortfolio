@@ -1,33 +1,33 @@
 {
     "skills": [
-        "JavaScript (ES6+)",
+        "Next.js 15",
+        "React 19",
+        "Three.js",
+        "React Three Fiber",
         "TypeScript",
-        "React.js",
-        "Next.js",
+        "JavaScript (ES6+)",
         "Node.js",
         "Express.js",
         "MongoDB",
-        "PostgreSQL",
+        "Mongoose",
         "Tailwind CSS",
+        "Aceternity UI",
         "Framer Motion",
-        "Three.js",
-        "HTML5 / CSS3",
-        "Redux Toolkit",
+        "JWT Authentication",
         "RESTful APIs",
-        "GraphQL",
-        "Python",
-        "Docker",
         "Cloud Architecture",
-        "System Optimization"
+        "System Optimization",
+        "Responsive Web Design"
     ],
     "tools": [
-        "VS Code",
+        "Vercel",
+        "MongoDB Atlas",
         "Git & GitHub",
+        "VS Code",
         "Postman",
         "Figma",
-        "Vercel",
         "Linux",
-        "Webpack / Vite",
-        "Jest / React Testing Library"
+        "npm / npx",
+        "Lucide React"
     ]
 }
