@@ -1,24 +1,12 @@
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
-
 dotenv.config({ path: ".env.local" });
-
-const MONGODB_URI = process.env.MONGODB_URI;
-
-async function test() {
-    console.log("Connecting to:", MONGODB_URI?.replace(/:([^@]+)@/, ":****@"));
-    try {
-        await mongoose.connect(MONGODB_URI!, {
-            serverSelectionTimeoutMS: 5000,
-        });
-        console.log("✅ Successfully connected to MongoDB!");
-        const collections = await mongoose.connection.db?.listCollections().toArray();
-        console.log("Collections:", collections?.map(c => c.name));
-        process.exit(0);
-    } catch (err) {
-        console.error("❌ Connection failed:", err);
-        process.exit(1);
-    }
+async function run() {
+  await mongoose.connect(process.env.MONGODB_URI as string);
+  const db = mongoose.connection.db;
+  if (!db) { console.log("no db"); return; }
+  const data = await db.collection("griditems").find({}).toArray();
+  console.log("DB griditems id fields:", data.map((d: any) => d.id));
+  process.exit();
 }
-
-test();
+run();
