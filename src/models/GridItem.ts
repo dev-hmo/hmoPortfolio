@@ -13,6 +13,7 @@ export interface IGridItem extends Document {
 
 const GridItemSchema: Schema = new Schema(
     {
+        id: { type: Number, default: 0 },
         title: { type: String, default: "" },
         description: { type: String, default: "" },
         className: { type: String, default: "" },

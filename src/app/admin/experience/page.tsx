@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX, FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
 import type { ExperienceItem } from "@/types";
 
 export default function AdminExperiencePage() {
@@ -9,26 +11,44 @@ export default function AdminExperiencePage() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
 
     const fetchData = async () => {
-        const res = await fetch("/api/experience");
-        setItems(await res.json());
-        setLoading(false);
+        try {
+            const res = await fetch("/api/experience");
+            const data = await res.json();
+            setItems(Array.isArray(data) ? data : []);
+        } catch (error) {
+            console.error("Failed to fetch experience", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => { fetchData(); }, []);
 
     const handleSave = async () => {
         setSaving(true);
-        await fetch("/api/experience", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(items),
-        });
-        setSaving(false);
-        setEditIndex(null);
+        try {
+            await fetch("/api/experience", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(items),
+            });
+            setEditIndex(null);
+            await fetchData();
+        } catch (error) {
+            alert("Failed to save experience");
+        } finally {
+            setSaving(false);
+        }
     };
 
     const handleAdd = () => {
-        setItems([...items, { title: "", company: "", date: "", description: "" }]);
+        const newItem: ExperienceItem = {
+            title: "",
+            company: "",
+            date: "",
+            description: "",
+        };
+        setItems([...items, newItem]);
         setEditIndex(items.length);
     };
 
@@ -45,115 +65,197 @@ export default function AdminExperiencePage() {
     };
 
     if (loading) {
-        return <div className="space-y-3">{[1, 2, 3].map((i) => <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />)}</div>;
+        return (
+            <div className="p-8 space-y-4">
+                <div className="h-8 w-48 bg-white/5 animate-pulse rounded" />
+                <div className="space-y-4">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-32 rounded-2xl bg-white/5 animate-pulse" />
+                    ))}
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="space-y-6 max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-6 rounded-2xl border border-white/10">
+        <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0a0c1a] p-6 rounded-2xl border border-white/5 shadow-xl">
                 <div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                        Experience <span className="bg-cyan-500/20 text-cyan-400 text-xs px-2.5 py-1 rounded-full">{items.length} Total</span>
-                    </h2>
-                    <p className="text-sm text-neutral-400 mt-1">Manage your work history and professional experience.</p>
+                    <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                        Career Path
+                        <span className="text-xs font-normal text-neutral-500 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
+                            {items.length} Roles
+                        </span>
+                    </h1>
+                    <p className="text-neutral-400 text-sm mt-1">Manage your professional work history and achievements.</p>
                 </div>
                 <div className="flex gap-3">
-                    <button onClick={handleAdd} className="px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all shadow-sm flex items-center gap-2">
-                        <span>+</span> Add Experience
+                    <button
+                        onClick={handleAdd}
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 text-neutral-300 text-sm font-semibold hover:text-white hover:bg-white/10 border border-white/5 transition-all"
+                    >
+                        <FiPlus className="w-4 h-4" /> Add Role
                     </button>
-                    <button onClick={handleSave} disabled={saving} className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-medium hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20 disabled:opacity-50 flex items-center gap-2">
-                        {saving ? "Saving..." : "Save Changes"}
+                    <button
+                        onClick={handleSave}
+                        disabled={saving}
+                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-sm font-bold shadow-lg shadow-emerald-900/20 hover:from-emerald-500 hover:to-teal-500 transition-all disabled:opacity-50"
+                    >
+                        <FiSave className="w-4 h-4" /> {saving ? "Saving..." : "Commit History"}
                     </button>
                 </div>
             </div>
 
-            {/* Data Table */}
-            <div className="bg-[#0c0e2b] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[800px]">
-                        <thead>
-                            <tr className="bg-white/[0.02] border-b border-white/10">
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[40%]">Role & Company</th>
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[40%]">Details</th>
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[20%] text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-white/10">
-                            {items.map((item, index) => (
-                                <tr key={index} className="group hover:bg-white/[0.02] transition-colors">
-                                    {editIndex === index ? (
-                                        <td colSpan={3} className="px-6 py-6">
-                                            <div className="bg-black/50 p-6 rounded-xl border border-cyan-500/30 space-y-4 shadow-inner">
-                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                    <div>
-                                                        <label className="text-xs text-cyan-400 mb-1 block">Job Title</label>
-                                                        <input type="text" value={item.title} onChange={(e) => update(index, "title", e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50" />
-                                                    </div>
-                                                    <div>
-                                                        <label className="text-xs text-cyan-400 mb-1 block">Company</label>
-                                                        <input type="text" value={item.company} onChange={(e) => update(index, "company", e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50" />
-                                                    </div>
-                                                    <div>
-                                                        <label className="text-xs text-cyan-400 mb-1 block">Date Range</label>
-                                                        <input type="text" value={item.date} onChange={(e) => update(index, "date", e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <label className="text-xs text-cyan-400 mb-1 block">Description</label>
-                                                    <textarea value={item.description} onChange={(e) => update(index, "description", e.target.value)} rows={2} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50 resize-y" />
-                                                </div>
-                                                <div className="flex justify-end pt-2">
-                                                    <button onClick={() => setEditIndex(null)} className="px-6 py-2 bg-cyan-500 text-black text-sm font-semibold rounded-lg hover:bg-cyan-400 transition-colors">
-                                                        Finish Editing
-                                                    </button>
+            <div className="space-y-4 relative">
+                {/* Timeline Line */}
+                <div className="absolute left-[29px] top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 via-white/5 to-transparent hidden md:block" />
+
+                <AnimatePresence mode="popLayout">
+                    {items.map((item, index) => (
+                        <motion.div
+                            layout
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            key={index}
+                            className={cn(
+                                "group relative flex flex-col md:flex-row gap-6 p-6 rounded-2xl border transition-all duration-300 bg-[#0a0c1a]",
+                                editIndex === index
+                                    ? "border-emerald-500/50 shadow-2xl z-10 bg-[#11142b]"
+                                    : "border-white/5 hover:border-white/20"
+                            )}
+                        >
+                            {/* Static View Dot */}
+                            <div className="absolute left-[25px] top-[30px] w-2 h-2 rounded-full bg-emerald-500 border border-black hidden md:block z-10 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+
+                            <div className="flex-1 space-y-4">
+                                {editIndex === index ? (
+                                    <div className="space-y-6">
+                                        <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                                <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Editing Experience</span>
+                                            </div>
+                                            <button onClick={() => setEditIndex(null)} className="p-2 hover:bg-white/5 rounded-full text-neutral-400 transition-colors">
+                                                <FiX className="w-5 h-5" />
+                                            </button>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Job Title / Role</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.title}
+                                                    onChange={(e) => update(index, "title", e.target.value)}
+                                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all"
+                                                    placeholder="Senior Developer"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Company Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.company}
+                                                    onChange={(e) => update(index, "company", e.target.value)}
+                                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all"
+                                                    placeholder="Tech Corp Inc."
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Date Range</label>
+                                                <div className="relative">
+                                                    <input
+                                                        type="text"
+                                                        value={item.date}
+                                                        onChange={(e) => update(index, "date", e.target.value)}
+                                                        className="w-full bg-black/40 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-neutral-300 text-xs focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all"
+                                                        placeholder="Jan 2022 - Present"
+                                                    />
+                                                    <FiCalendar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-600" />
                                                 </div>
                                             </div>
-                                        </td>
-                                    ) : (
-                                        <>
-                                            <td className="px-6 py-4 align-top">
-                                                <div className="flex items-start gap-3">
-                                                    <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 shrink-0 flex items-center justify-center text-lg">
-                                                        💼
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="text-white font-medium text-sm leading-tight">{item.title || "Untitled Role"}</h3>
-                                                        <p className="text-cyan-400 text-xs mt-1 font-medium">{item.company || "Unknown Company"}</p>
-                                                        <p className="text-neutral-500 text-[11px] mt-0.5 uppercase tracking-wider">{item.date || "Date not set"}</p>
-                                                    </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Role Description & Achievements</label>
+                                            <textarea
+                                                value={item.description}
+                                                onChange={(e) => update(index, "description", e.target.value)}
+                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all min-h-[120px] resize-none"
+                                                placeholder="Briefly describe your responsibilities and key impact..."
+                                            />
+                                        </div>
+                                        
+                                        <div className="flex justify-end pt-2">
+                                            <button 
+                                                onClick={() => setEditIndex(null)}
+                                                className="px-8 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-900/40"
+                                            >
+                                                Keep Changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pl-0 md:pl-10">
+                                        <div className="space-y-2">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20 shrink-0">
+                                                    <FiBriefcase className="w-4 h-4" />
                                                 </div>
-                                            </td>
-                                            <td className="px-6 py-4 align-top">
-                                                <p className="text-neutral-400 text-xs leading-relaxed max-w-md line-clamp-3">
-                                                    {item.description || "No description provided."}
-                                                </p>
-                                            </td>
-                                            <td className="px-6 py-4 align-middle text-right">
-                                                <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <button onClick={() => setEditIndex(index)} className="px-3 py-1.5 rounded-md text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors">
-                                                        Edit
-                                                    </button>
-                                                    <button onClick={() => handleDelete(index)} className="px-3 py-1.5 rounded-md text-xs font-semibold bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </>
-                                    )}
-                                </tr>
-                            ))}
-                            {items.length === 0 && (
-                                <tr>
-                                    <td colSpan={3} className="px-6 py-12 text-center text-neutral-500 text-sm">
-                                        No experience records found. Click "Add Experience" to get started.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                                                <h3 className="text-white font-bold text-lg leading-tight">{item.title || "Untitled Role"}</h3>
+                                            </div>
+                                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 ml-0 md:ml-11">
+                                                <span className="text-emerald-400 text-sm font-semibold">{item.company || "New Company"}</span>
+                                                <span className="text-neutral-500 text-xs flex items-center gap-1">
+                                                    <FiCalendar className="w-3 h-3" /> {item.date || "Date Range TBD"}
+                                                </span>
+                                            </div>
+                                            <p className="text-neutral-400 text-sm leading-relaxed mt-4 ml-0 md:ml-11 line-clamp-2 italic">
+                                                "{item.description || "Describe your role and impact at this organization."}"
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center gap-2 shrink-0 self-end md:self-start pt-1">
+                                            <button
+                                                onClick={() => setEditIndex(index)}
+                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/20 transition-all"
+                                                title="Edit Entry"
+                                            >
+                                                <FiEdit2 className="w-4 h-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(index)}
+                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all"
+                                                title="Delete Entry"
+                                            >
+                                                <FiTrash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
+
+            {items.length === 0 && (
+                <div className="py-24 text-center rounded-3xl border-2 border-dashed border-white/5 bg-white/[0.01]">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <FiPlus className="w-8 h-8 text-neutral-600" />
+                    </div>
+                    <p className="text-neutral-500 font-medium">No experience history found.</p>
+                    <button onClick={handleAdd} className="mt-4 text-emerald-400 hover:text-emerald-300 text-sm font-bold">Add your first role</button>
+                </div>
+            )}
         </div>
     );
 }
+
+function cn(...inputs: any[]) {
+    return inputs.filter(Boolean).join(" ");
+}
+

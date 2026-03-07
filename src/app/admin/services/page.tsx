@@ -1,29 +1,45 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX, FiLayers, FiCheck, FiInfo } from "react-icons/fi";
 
 export default function AdminServicesPage() {
     const [items, setItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [saved, setSaved] = useState(false);
     const [editIndex, setEditIndex] = useState<number | null>(null);
 
     const fetchData = async () => {
-        const res = await fetch("/api/services");
-        setItems(await res.json());
-        setLoading(false);
+        try {
+            const res = await fetch("/api/services");
+            const data = await res.json();
+            setItems(Array.isArray(data) ? data : []);
+        } catch (error) {
+            console.error("Failed to fetch services", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => { fetchData(); }, []);
 
     const handleSave = async () => {
         setSaving(true);
-        await fetch("/api/services", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(items),
-        });
-        setSaving(false);
-        setEditIndex(null);
+        try {
+            await fetch("/api/services", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(items),
+            });
+            setSaved(true);
+            setTimeout(() => setSaved(false), 3000);
+            setEditIndex(null);
+        } catch (error) {
+            alert("Failed to save services");
+        } finally {
+            setSaving(false);
+        }
     };
 
     const handleAdd = () => {
@@ -44,102 +60,182 @@ export default function AdminServicesPage() {
     };
 
     if (loading) {
-        return <div className="space-y-3">{[1, 2, 3].map((i) => <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />)}</div>;
+        return (
+            <div className="p-8 space-y-4 max-w-5xl mx-auto">
+                <div className="h-8 w-48 bg-white/5 animate-pulse rounded" />
+                <div className="space-y-4">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-32 rounded-2xl bg-white/5 animate-pulse" />
+                    ))}
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="space-y-6 max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-6 rounded-2xl border border-white/10">
+        <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#0a0c1a] p-6 rounded-2xl border border-white/5 shadow-xl">
                 <div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                        Services / Approach <span className="bg-cyan-500/20 text-cyan-400 text-xs px-2.5 py-1 rounded-full">{items.length} Total</span>
-                    </h2>
-                    <p className="text-sm text-neutral-400 mt-1">Manage the phases or approaches you offer to clients.</p>
+                    <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                        Service Workflow
+                        <span className="text-xs font-normal text-neutral-500 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
+                            {items.length} Phases
+                        </span>
+                    </h1>
+                    <p className="text-neutral-400 text-sm mt-1">Define the strategic approach and phases of your service delivery.</p>
                 </div>
                 <div className="flex gap-3">
-                    <button onClick={handleAdd} className="px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all shadow-sm flex items-center gap-2">
-                        <span>+</span> Add Step
+                    <button
+                        onClick={handleAdd}
+                        className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 text-neutral-300 text-sm font-semibold hover:text-white hover:bg-white/10 border border-white/5 transition-all"
+                    >
+                        <FiPlus className="w-4 h-4" /> Add Phase
                     </button>
-                    <button onClick={handleSave} disabled={saving} className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-medium hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/20 disabled:opacity-50 flex items-center gap-2">
-                        {saving ? "Saving..." : "Save Changes"}
+                    <button
+                        onClick={handleSave}
+                        disabled={saving}
+                        className={cn(
+                            "flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg min-w-[140px] justify-center",
+                            saved 
+                                ? "bg-emerald-500 text-white shadow-emerald-900/20" 
+                                : "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-indigo-900/20 hover:from-indigo-500 hover:to-violet-500 disabled:opacity-50"
+                        )}
+                    >
+                        {saving ? (
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        ) : saved ? (
+                            <><FiCheck className="w-4 h-4" /> Published</>
+                        ) : (
+                            <><FiSave className="w-4 h-4" /> Save Workflow</>
+                        )}
                     </button>
                 </div>
             </div>
 
-            {/* Data Table */}
-            <div className="bg-[#0c0e2b] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse min-w-[800px]">
-                        <thead>
-                            <tr className="bg-white/[0.02] border-b border-white/10">
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[15%]">Phase</th>
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[65%]">Details</th>
-                                <th className="px-6 py-4 text-xs font-semibold tracking-wider text-neutral-400 uppercase w-[20%] text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-white/10">
-                            {items.map((item, index) => (
-                                <tr key={index} className="group hover:bg-white/[0.02] transition-colors">
-                                    {editIndex === index ? (
-                                        <td colSpan={3} className="px-6 py-6">
-                                            <div className="bg-black/50 p-6 rounded-xl border border-cyan-500/30 space-y-4 shadow-inner">
-                                                <div>
-                                                    <label className="text-xs text-cyan-400 mb-1 block">Title</label>
-                                                    <input type="text" value={item.title} onChange={(e) => update(index, "title", e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50" />
-                                                </div>
-                                                <div>
-                                                    <label className="text-xs text-cyan-400 mb-1 block">Description</label>
-                                                    <textarea value={item.description} onChange={(e) => update(index, "description", e.target.value)} rows={3} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:ring-2 focus:ring-cyan-500/50 resize-y" />
-                                                </div>
-                                                <div className="flex justify-end pt-2">
-                                                    <button onClick={() => setEditIndex(null)} className="px-6 py-2 bg-cyan-500 text-black text-sm font-semibold rounded-lg hover:bg-cyan-400 transition-colors">
-                                                        Finish Editing
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    ) : (
-                                        <>
-                                            <td className="px-6 py-4 align-top">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 shrink-0 flex items-center justify-center font-bold">
-                                                        {index + 1}
-                                                    </div>
-                                                    <span className="text-xs text-neutral-500 uppercase font-semibold">Step {index + 1}</span>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 align-top">
-                                                <h3 className="text-white font-medium text-sm leading-tight mb-1">{item.title || "Untitled Step"}</h3>
-                                                <p className="text-neutral-400 text-xs leading-relaxed max-w-2xl">
-                                                    {item.description || "No description provided."}
-                                                </p>
-                                            </td>
-                                            <td className="px-6 py-4 align-middle text-right">
-                                                <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <button onClick={() => setEditIndex(index)} className="px-3 py-1.5 rounded-md text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition-colors">
-                                                        Edit
-                                                    </button>
-                                                    <button onClick={() => handleDelete(index)} className="px-3 py-1.5 rounded-md text-xs font-semibold bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </>
-                                    )}
-                                </tr>
-                            ))}
-                            {items.length === 0 && (
-                                <tr>
-                                    <td colSpan={3} className="px-6 py-12 text-center text-neutral-500 text-sm">
-                                        No services found. Click "Add Step" to get started.
-                                    </td>
-                                </tr>
+            <div className="space-y-4">
+                <AnimatePresence mode="popLayout">
+                    {items.map((item, index) => (
+                        <motion.div
+                            layout
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            key={index}
+                            className={cn(
+                                "group relative overflow-hidden rounded-2xl border transition-all duration-300 bg-[#0a0c1a]",
+                                editIndex === index
+                                    ? "border-indigo-500/50 shadow-2xl z-10 bg-[#11142b]"
+                                    : "border-white/5 hover:border-white/20"
                             )}
-                        </tbody>
-                    </table>
+                        >
+                            <div className="p-6">
+                                {editIndex === index ? (
+                                    <div className="space-y-6">
+                                        <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+                                                <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Editing Phase {index + 1}</span>
+                                            </div>
+                                            <button onClick={() => setEditIndex(null)} className="p-2 hover:bg-white/5 rounded-full text-neutral-400 transition-colors">
+                                                <FiX className="w-5 h-5" />
+                                            </button>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Phase Title</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.title}
+                                                    onChange={(e) => update(index, "title", e.target.value)}
+                                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:ring-2 focus:ring-indigo-500/50 outline-none transition-all"
+                                                    placeholder="Phase 1: Planning"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider ml-1">Phase Description</label>
+                                                <textarea
+                                                    value={item.description}
+                                                    onChange={(e) => update(index, "description", e.target.value)}
+                                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:ring-2 focus:ring-indigo-500/50 outline-none transition-all min-h-[100px] resize-none"
+                                                    placeholder="Detail the activities and outcomes for this phase..."
+                                                />
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="flex justify-end pt-2">
+                                            <button 
+                                                onClick={() => setEditIndex(null)}
+                                                className="px-8 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-900/40"
+                                            >
+                                                Confirm Changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                                        <div className="flex gap-5">
+                                            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center border border-indigo-500/20 shrink-0 font-bold text-xl">
+                                                {index + 1}
+                                            </div>
+                                            <div className="space-y-1">
+                                                <h3 className="text-white font-bold text-lg leading-tight">{item.title || "New Phase"}</h3>
+                                                <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl line-clamp-2">
+                                                    {item.description || "Define the scope and objectives for this service phase."}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 shrink-0 self-end md:self-start pt-1">
+                                            <button
+                                                onClick={() => setEditIndex(index)}
+                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-indigo-400 hover:bg-indigo-500/10 border border-transparent hover:border-indigo-500/20 transition-all"
+                                                title="Edit Phase"
+                                            >
+                                                <FiEdit2 className="w-4 h-4" />
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(index)}
+                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all"
+                                                title="Delete Phase"
+                                            >
+                                                <FiTrash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </div>
+
+            {items.length === 0 && (
+                <div className="py-24 text-center rounded-3xl border-2 border-dashed border-white/5 bg-white/[0.01]">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <FiLayers className="w-8 h-8 text-neutral-600" />
+                    </div>
+                    <p className="text-neutral-500 font-medium">No service phases defined yet.</p>
+                    <button onClick={handleAdd} className="mt-4 text-indigo-400 hover:text-indigo-300 text-sm font-bold">Add your first phase</button>
+                </div>
+            )}
+
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start gap-4">
+                <div className="p-3 bg-indigo-500/10 rounded-xl">
+                    <FiInfo className="text-indigo-400 w-5 h-5" />
+                </div>
+                <div>
+                    <h4 className="text-white font-bold text-sm">Visual Presentation</h4>
+                    <p className="text-neutral-500 text-xs mt-1 leading-relaxed">
+                        Phases are displayed as animated steps in the "Approach" section. 
+                        Keep titles concise and descriptions impactful for maximum readability.
+                    </p>
                 </div>
             </div>
         </div>
     );
 }
+
+function cn(...inputs: any[]) {
+    return inputs.filter(Boolean).join(" ");
+}
+
