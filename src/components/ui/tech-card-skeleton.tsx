@@ -14,32 +14,34 @@ import { VscVscode } from "react-icons/vsc";
 
 export const getTechIcon = (name: string, className?: string) => {
     const lower = name.toLowerCase();
-    if (lower.includes("react") && lower.includes("three")) return <TbBrandThreejs className={className} />;
-    if (lower.includes("react")) return <SiReact className={className} />;
-    if (lower.includes("next")) return <SiNextdotjs className={className} />;
-    if (lower.includes("typescript")) return <SiTypescript className={className} />;
-    if (lower.includes("javascript") || lower.includes("es6")) return <SiJavascript className={className} />;
-    if (lower.includes("node")) return <SiNodedotjs className={className} />;
-    if (lower.includes("express")) return <SiExpress className={className} />;
-    if (lower.includes("mongo") && lower.includes("atlas")) return <FaCloud className={className} />;
-    if (lower.includes("mongo")) return <SiMongodb className={className} />;
-    if (lower.includes("mongoose")) return <SiMongoose className={className} />;
-    if (lower.includes("tailwind")) return <SiTailwindcss className={className} />;
-    if (lower.includes("framer")) return <SiFramer className={className} />;
-    if (lower.includes("jwt") || lower.includes("authentication")) return <FaLock className={className} />;
-    if (lower.includes("api")) return <TbApi className={className} />;
-    if (lower.includes("cloud")) return <FaCloud className={className} />;
-    if (lower.includes("system")) return <FaServer className={className} />;
-    if (lower.includes("responsive") || lower.includes("design")) return <FaDesktop className={className} />;
-    if (lower.includes("three")) return <TbBrandThreejs className={className} />;
-    if (lower.includes("vercel")) return <SiVercel className={className} />;
-    if (lower.includes("git")) return <SiGithub className={className} />;
-    if (lower.includes("vs code") || lower.includes("visual")) return <VscVscode className={className} />;
-    if (lower.includes("postman")) return <SiPostman className={className} />;
-    if (lower.includes("figma")) return <SiFigma className={className} />;
-    if (lower.includes("linux")) return <SiLinux className={className} />;
-    if (lower.includes("npm") || lower.includes("npx")) return <SiNpm className={className} />;
-    return <FaServer className={className} />; // Default
+    // Use the provided className for sizing/margins, but inject specific brand colors via style
+    if (lower.includes("react") && lower.includes("three")) return <TbBrandThreejs className={className} style={{ color: "#000000" }} />;
+    if (lower.includes("react")) return <SiReact className={className} style={{ color: "#61DAFB" }} />;
+    if (lower.includes("next")) return <SiNextdotjs className={className} style={{ color: "#ffffff" }} />;
+    if (lower.includes("typescript")) return <SiTypescript className={className} style={{ color: "#3178C6" }} />;
+    if (lower.includes("javascript") || lower.includes("es6")) return <SiJavascript className={className} style={{ color: "#F7DF1E" }} />;
+    if (lower.includes("node")) return <SiNodedotjs className={className} style={{ color: "#339933" }} />;
+    if (lower.includes("express")) return <SiExpress className={className} style={{ color: "#ffffff" }} />;
+    if (lower.includes("mongo") && lower.includes("atlas")) return <FaCloud className={className} style={{ color: "#47A248" }} />;
+    if (lower.includes("mongo")) return <SiMongodb className={className} style={{ color: "#47A248" }} />;
+    if (lower.includes("mongoose")) return <SiMongoose className={className} style={{ color: "#880000" }} />;
+    if (lower.includes("tailwind")) return <SiTailwindcss className={className} style={{ color: "#06B6D4" }} />;
+    if (lower.includes("framer")) return <SiFramer className={className} style={{ color: "#0055FF" }} />;
+    if (lower.includes("jwt") || lower.includes("authentication")) return <FaLock className={className} style={{ color: "#FF0000" }} />;
+    if (lower.includes("api")) return <TbApi className={className} style={{ color: "#00E676" }} />;
+    if (lower.includes("cloud")) return <FaCloud className={className} style={{ color: "#00B4AB" }} />;
+    if (lower.includes("system")) return <FaServer className={className} style={{ color: "#888888" }} />;
+    if (lower.includes("responsive") || lower.includes("design")) return <FaDesktop className={className} style={{ color: "#4285F4" }} />;
+    if (lower.includes("three")) return <TbBrandThreejs className={className} style={{ color: "#000000" }} />;
+    if (lower.includes("vercel")) return <SiVercel className={className} style={{ color: "#ffffff" }} />;
+    if (lower.includes("git") && !lower.includes("github")) return <SiGit className={className} style={{ color: "#F05032" }} />;
+    if (lower.includes("github")) return <SiGithub className={className} style={{ color: "#ffffff" }} />;
+    if (lower.includes("vs code") || lower.includes("visual")) return <VscVscode className={className} style={{ color: "#007ACC" }} />;
+    if (lower.includes("postman")) return <SiPostman className={className} style={{ color: "#FF6C37" }} />;
+    if (lower.includes("figma")) return <SiFigma className={className} style={{ color: "#F24E1E" }} />;
+    if (lower.includes("linux")) return <SiLinux className={className} style={{ color: "#FCC624" }} />;
+    if (lower.includes("npm") || lower.includes("npx")) return <SiNpm className={className} style={{ color: "#CB3837" }} />;
+    return <FaServer className={className} style={{ color: "#a1a1aa" }} />; // Default gray
 };
 
 export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] }) => {
@@ -84,7 +86,7 @@ export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] })
 const TechPill = ({ item }: { item: string }) => {
     return (
         <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#10132E]/80 border border-cyan-500/20 shadow-[0px_0px_8px_0px_rgba(248,248,248,0.1)_inset,0px_4px_12px_rgba(0,0,0,0.5)] backdrop-blur-sm relative z-20">
-            {getTechIcon(item, "h-4 w-4 sm:h-5 sm:w-5 text-cyan-400")}
+            {getTechIcon(item, "h-4 w-4 sm:h-5 sm:w-5")}
             <span className="text-xs sm:text-sm font-medium text-white whitespace-nowrap">
                 {item}
             </span>
