@@ -47,6 +47,8 @@ export const BentoGridItem = ({
     titleClassName?: string;
     spareImg?: string;
 }) => {
+    const [copied, setCopied] = useState(false);
+    const [email, setEmail] = useState("hlaingminoo785@gmail.com");
     const [leftLists, setLeftLists] = useState(["JavaScript", "MongoDB", "Node.js"]);
     const [rightLists, setRightLists] = useState(["React.js", "Express", "TailwindCSS"]);
 
