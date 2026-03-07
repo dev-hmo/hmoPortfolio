@@ -21,6 +21,7 @@ const config: Config = {
     "md:col-span-1", "md:col-span-2", "md:col-span-3", "md:col-span-4", "md:col-span-5", "md:col-span-6",
     "md:row-span-1", "md:row-span-2", "md:row-span-3", "md:row-span-4",
     "lg:min-h-[60vh]", "lg:min-h-[50vh]",
+    "lg:grid-cols-5", "lg:grid-cols-6",
   ],
   theme: {
     extend: {
