@@ -43,131 +43,51 @@ export const getTechIcon = (name: string, className?: string) => {
 };
 
 export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] }) => {
-    const [icons, setIcons] = useState<string[]>([]);
+    // Determine the items to show
+    const items = skillsList && skillsList.length > 0
+        ? skillsList
+        : ["React 19", "Next.js 15", "TypeScript", "MongoDB", "Tailwind CSS", "Figma", "Node.js", "Express.js"];
 
-    useEffect(() => {
-        if (skillsList && skillsList.length > 0) {
-            setIcons([...skillsList]);
-        } else {
-            setIcons(["React 19", "Next.js 15", "TypeScript", "MongoDB", "Tailwind CSS"]);
-        }
-    }, [skillsList]);
-
-    useEffect(() => {
-        // Rotate the icons array every 1 second
-        const interval = setInterval(() => {
-            setIcons((prev) => {
-                if (prev.length <= 1) return prev;
-                const next = [...prev];
-                const first = next.shift();
-                if (first) next.push(first);
-                return next;
-            });
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [icons.length]);
-
-    const scale = [1, 1.1, 1];
-    const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
-    const sequence = [
-        [".tech-circle-1", { scale, transform }, { duration: 0.8 }],
-        [".tech-circle-2", { scale, transform }, { duration: 0.8 }],
-        [".tech-circle-3", { scale, transform }, { duration: 0.8 }],
-    ];
-
-    useEffect(() => {
-        // @ts-ignore
-        animate(sequence as any, {
-            repeat: Infinity,
-            repeatDelay: 1,
-        } as any);
-    }, []);
-
-    const renderIconContent = (index: number, iconClass: string, containerClass: string) => {
-        const item = icons[index];
-        if (!item) return null;
-        return (
-            <AnimatePresence mode="popLayout">
-                <motion.div
-                    key={item}
-                    initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
-                    animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotateY: -90, scale: 0.8 }}
-                    transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-                    className="flex flex-col items-center gap-2"
-                >
-                    <Container className={cn("shrink-0", containerClass)}>
-                        {getTechIcon(item, iconClass)}
-                    </Container>
-                    <div className="h-4 flex items-start justify-center overflow-visible">
-                        <span className="text-[10px] sm:text-xs font-medium text-white/80 whitespace-nowrap text-center mt-1">
-                            {item}
-                        </span>
-                    </div>
-                </motion.div>
-            </AnimatePresence>
-        );
-    };
+    // Split items into 3 rows for a dense, visually impressive wall
+    const row1 = items.slice(0, Math.ceil(items.length / 3));
+    const row2 = items.slice(Math.ceil(items.length / 3), Math.ceil((items.length / 3) * 2));
+    const row3 = items.slice(Math.ceil((items.length / 3) * 2));
 
     return (
-        <div className="p-4 overflow-hidden h-full w-full relative flex items-center justify-center pointer-events-none mb-4">
-            <div className="flex flex-row shrink-0 justify-center items-end gap-3 sm:gap-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] w-full pb-8">
-                <div className="flex flex-col items-center">
-                    {renderIconContent(0, "h-5 w-5 text-white", "h-12 w-12 tech-circle-1 opacity-60 scale-90 sm:scale-100")}
-                </div>
-                <div className="flex flex-col items-center z-10">
-                    {renderIconContent(1, "h-6 w-6 text-cyan-400", "h-16 w-16 tech-circle-2 bg-[#10132E] border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)] opacity-100 scale-100 sm:scale-110")}
-                </div>
-                <div className="flex flex-col items-center">
-                    {renderIconContent(2, "h-5 w-5 text-white", "h-12 w-12 tech-circle-3 opacity-60 scale-90 sm:scale-100")}
-                </div>
+        <div className="h-full w-full relative flex flex-col items-center justify-center pointer-events-none mb-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] gap-4 py-4">
+            {/* Row 1 - Left to Right */}
+            <div className="flex w-max shrink-0 gap-4 animate-scroll hover:[animation-play-state:paused]" style={{ "--animation-duration": "30s", "--animation-direction": "forwards" } as any}>
+                {[...row1, ...row1, ...row1].map((item, idx) => (
+                    <TechPill key={`r1-${idx}`} item={item} />
+                ))}
             </div>
 
-            <div className="h-40 w-px absolute top-10 m-auto z-40 bg-gradient-to-b from-transparent via-cyan-500 to-transparent animate-move hidden md:block">
-                <div className="w-10 h-32 top-1/2 -translate-y-1/2 absolute -left-10">
-                    <Sparkles />
-                </div>
+            {/* Row 2 - Right to Left, Faster */}
+            <div className="flex w-max shrink-0 gap-4 animate-scroll hover:[animation-play-state:paused]" style={{ "--animation-duration": "25s", "--animation-direction": "reverse" } as any}>
+                {[...row2, ...row2, ...row2].map((item, idx) => (
+                    <TechPill key={`r2-${idx}`} item={item} />
+                ))}
             </div>
+
+            {/* Row 3 - Left to Right, Slower */}
+            <div className="flex w-max shrink-0 gap-4 animate-scroll hover:[animation-play-state:paused]" style={{ "--animation-duration": "35s", "--animation-direction": "forwards" } as any}>
+                {[...row3, ...row3, ...row3].map((item, idx) => (
+                    <TechPill key={`r3-${idx}`} item={item} />
+                ))}
+            </div>
+            
+            <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_0%,transparent_70%)]" />
         </div>
     );
 };
 
-const Sparkles = () => {
-    const randomMove = () => Math.random() * 2 - 1;
-    const randomOpacity = () => Math.random();
-    const random = () => Math.random();
+const TechPill = ({ item }: { item: string }) => {
     return (
-        <div className="absolute inset-0">
-            {[...Array(12)].map((_, i) => (
-                <motion.span
-                    key={`star-${i}`}
-                    animate={{
-                        top: `calc(${random() * 100}% + ${randomMove()}px)`,
-                        left: `calc(${random() * 100}% + ${randomMove()}px)`,
-                        opacity: randomOpacity(),
-                        scale: [1, 1.2, 0],
-                    }}
-                    transition={{
-                        duration: random() * 2 + 4,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                    style={{
-                        position: "absolute",
-                        width: `2px`,
-                        height: `2px`,
-                        borderRadius: "50%",
-                        zIndex: 1,
-                    }}
-                    className="inline-block bg-white"
-                />
-            ))}
+        <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#10132E]/80 border border-cyan-500/20 shadow-[0px_0px_8px_0px_rgba(248,248,248,0.1)_inset,0px_4px_12px_rgba(0,0,0,0.5)] backdrop-blur-sm relative z-20">
+            {getTechIcon(item, "h-4 w-4 sm:h-5 sm:w-5 text-cyan-400")}
+            <span className="text-xs sm:text-sm font-medium text-white whitespace-nowrap">
+                {item}
+            </span>
         </div>
     );
 };
-
-const Container = ({ className, children }: { className?: string; children: React.ReactNode }) => (
-    <div className={cn("rounded-full flex items-center justify-center bg-[rgba(248,248,248,0.01)] shadow-[0px_0px_8px_0px_rgba(248,248,248,0.25)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)] overflow-hidden", className)}>
-        {children}
-    </div>
-);
