@@ -22,6 +22,7 @@ const config: Config = {
         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         shimmer: "shimmer 2s linear infinite",
+        move: "move 5s linear infinite",
       },
       keyframes: {
         spotlight: {
@@ -31,6 +32,10 @@ const config: Config = {
         shimmer: {
           from: { backgroundPosition: "0 0" },
           to: { backgroundPosition: "-200% 0" },
+        },
+        move: {
+          "0%": { transform: "translateY(-200px)" },
+          "100%": { transform: "translateY(200px)" },
         },
       },
       colors: {
