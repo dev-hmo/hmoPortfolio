@@ -73,8 +73,6 @@ export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] })
         [".tech-circle-1", { scale, transform }, { duration: 0.8 }],
         [".tech-circle-2", { scale, transform }, { duration: 0.8 }],
         [".tech-circle-3", { scale, transform }, { duration: 0.8 }],
-        [".tech-circle-4", { scale, transform }, { duration: 0.8 }],
-        [".tech-circle-5", { scale, transform }, { duration: 0.8 }],
     ];
 
     useEffect(() => {
@@ -113,21 +111,15 @@ export const TechCardSkeleton = ({ skillsList = [] }: { skillsList?: string[] })
 
     return (
         <div className="p-4 overflow-hidden h-full w-full relative flex items-center justify-center pointer-events-none mb-4">
-            <div className="flex flex-row shrink-0 justify-center items-end gap-4 sm:gap-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] w-full pb-8">
-                <div className="hidden lg:flex flex-col items-center">
-                    {renderIconContent(0, "h-4 w-4 text-white", "h-8 w-8 tech-circle-1 opacity-30")}
-                </div>
-                <div className="hidden sm:flex flex-col items-center">
-                    {renderIconContent(1, "h-5 w-5 text-white", "h-12 w-12 tech-circle-2 opacity-60")}
+            <div className="flex flex-row shrink-0 justify-center items-end gap-3 sm:gap-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] w-full pb-8">
+                <div className="flex flex-col items-center">
+                    {renderIconContent(0, "h-5 w-5 text-white", "h-12 w-12 tech-circle-1 opacity-60 scale-90 sm:scale-100")}
                 </div>
                 <div className="flex flex-col items-center z-10">
-                    {renderIconContent(2, "h-6 w-6 text-cyan-400", "h-16 w-16 tech-circle-3 bg-[#10132E] border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)] opacity-100")}
+                    {renderIconContent(1, "h-6 w-6 text-cyan-400", "h-16 w-16 tech-circle-2 bg-[#10132E] border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)] opacity-100 scale-100 sm:scale-110")}
                 </div>
-                <div className="hidden sm:flex flex-col items-center">
-                    {renderIconContent(3, "h-5 w-5 text-white", "h-12 w-12 tech-circle-4 opacity-60")}
-                </div>
-                <div className="hidden lg:flex flex-col items-center">
-                    {renderIconContent(4, "h-4 w-4 text-white", "h-8 w-8 tech-circle-5 opacity-30")}
+                <div className="flex flex-col items-center">
+                    {renderIconContent(2, "h-5 w-5 text-white", "h-12 w-12 tech-circle-3 opacity-60 scale-90 sm:scale-100")}
                 </div>
             </div>
 
