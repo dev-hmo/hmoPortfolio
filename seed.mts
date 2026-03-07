@@ -18,7 +18,7 @@ const ExperienceSchema = new mongoose.Schema({}, { strict: false });
 const ProjectSchema = new mongoose.Schema({}, { strict: false });
 const SettingsSchema = new mongoose.Schema({}, { strict: false });
 const SkillsSchema = new mongoose.Schema({ name: String, category: String }, { strict: false });
-const GridSchema = new mongoose.Schema({ id: Number }, { strict: false });
+const GridSchema = new mongoose.Schema({}, { strict: false });
 const ServiceSchema = new mongoose.Schema({}, { strict: false });
 const TestimonialSchema = new mongoose.Schema({}, { strict: false });
 

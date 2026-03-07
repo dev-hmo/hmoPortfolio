@@ -28,7 +28,6 @@ export async function PUT(request: Request) {
         await GridItem.deleteMany({});
 
         const mapped = items.map((p: any, i: number) => ({
-            id: p.id,
             title: p.title,
             description: p.description,
             className: p.className,

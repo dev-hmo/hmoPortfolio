@@ -49,8 +49,7 @@ export const BentoGridItem = ({
 }) => {
     const [copied, setCopied] = useState(false);
     const [email, setEmail] = useState("hlaingminoo785@gmail.com");
-    const [leftLists, setLeftLists] = useState(["JavaScript", "MongoDB", "Node.js"]);
-    const [rightLists, setRightLists] = useState(["React.js", "Express", "TailwindCSS"]);
+    const [skillsList, setSkillsList] = useState<string[]>(["React 19", "Next.js 15", "TypeScript"]);
 
     useEffect(() => {
         if (id === 6) {
@@ -63,10 +62,11 @@ export const BentoGridItem = ({
             fetch("/api/skills")
                 .then(res => res.json())
                 .then(data => {
-                    if (data?.skills && data.skills.length > 0) {
-                        const all = data.skills.slice(0, 6); // Take first 6 for clean grid
-                        setLeftLists(all.slice(0, 3));
-                        setRightLists(all.slice(3, 6));
+                    const allSkills = [];
+                    if (data?.skills) allSkills.push(...data.skills);
+                    if (data?.tools) allSkills.push(...data.tools);
+                    if (allSkills.length > 0) {
+                        setSkillsList(allSkills);
                     }
                 })
                 .catch(() => { });
@@ -149,31 +149,15 @@ export const BentoGridItem = ({
 
                     {/* Tech stack list */}
                     {id === 3 && (
-                        <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2 -top-3">
-                            <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                                {leftLists.map((item, i) => (
-                                    <span
-                                        key={i}
-                                        className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                                    >
-                                        {item}
-                                    </span>
-                                ))}
-                                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-                            </div>
-                            <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-                                {rightLists.map((item, i) => (
-                                    <span
-                                        key={i}
-                                        className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                                    >
-                                        {item}
-                                    </span>
-                                ))}
-                            </div>
+                        <div className="mt-4 flex flex-wrap gap-2 z-50 relative h-full overflow-y-auto pr-2 custom-scrollbar">
+                            {skillsList.map((item, i) => (
+                                <span
+                                    key={i}
+                                    className="py-1.5 px-3 text-xs lg:text-sm font-medium rounded-lg text-center bg-[#10132E] text-cyan-400 border border-white/10 hover:bg-cyan-500/10 transition-colors"
+                                >
+                                    {item}
+                                </span>
+                            ))}
                         </div>
                     )}
 
