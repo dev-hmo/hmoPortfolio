@@ -4,9 +4,14 @@ import connectToDatabase from "@/lib/db";
 import Testimonial from "@/models/Testimonial";
 
 export async function GET() {
-    await connectToDatabase();
-    const items = await Testimonial.find({}).sort({ order: 1 });
-    return NextResponse.json(items);
+    try {
+        await connectToDatabase();
+        const items = await Testimonial.find({}).sort({ order: 1 });
+        return NextResponse.json(items);
+    } catch (error) {
+        console.error("Testimonials GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
 }
 
 export async function PUT(request: Request) {

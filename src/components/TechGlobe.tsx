@@ -40,10 +40,10 @@ export function TechGlobe() {
         []
     );
 
-    if (!mounted) return <div className="h-[600px] w-full bg-black"></div>;
+    if (!mounted) return <div className="h-[600px] w-[100vw] left-[calc(-50vw+50%)] relative bg-black"></div>;
 
     return (
-        <div className="flex flex-col items-center justify-center py-20 bg-black relative border-t border-neutral-900 w-full overflow-hidden">
+        <div className="flex flex-col items-center justify-center py-20 bg-black relative border-t border-neutral-900 w-[100vw] left-[calc(-50vw+50%)] overflow-hidden">
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white z-20 text-center">
                 Global <span className="text-cyan-500">Reach</span>
             </h2>

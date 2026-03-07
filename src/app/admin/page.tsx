@@ -11,6 +11,9 @@ interface DashboardStats {
     draftPosts: number;
     totalProjects: number;
     totalExperience: number;
+    totalServices: number;
+    totalTestimonials: number;
+    totalSkills: number;
 }
 
 export default function AdminDashboard() {
@@ -20,6 +23,9 @@ export default function AdminDashboard() {
         draftPosts: 0,
         totalProjects: 0,
         totalExperience: 0,
+        totalServices: 0,
+        totalTestimonials: 0,
+        totalSkills: 0,
     });
     const [settings, setSettings] = useState<SiteSettings | null>(null);
     const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
@@ -31,13 +37,19 @@ export default function AdminDashboard() {
             fetch("/api/projects").then((r) => r.json()),
             fetch("/api/experience").then((r) => r.json()),
             fetch("/api/settings").then((r) => r.json()),
-        ]).then(([posts, projects, experience, siteSettings]) => {
+            fetch("/api/services").then((r) => r.json()),
+            fetch("/api/testimonials").then((r) => r.json()),
+            fetch("/api/skills").then((r) => r.json()),
+        ]).then(([posts, projects, experience, siteSettings, services, testimonials, skillsData]) => {
             setStats({
                 totalPosts: posts.length,
                 publishedPosts: posts.filter((p: BlogPost) => p.published).length,
                 draftPosts: posts.filter((p: BlogPost) => !p.published).length,
                 totalProjects: projects.length,
                 totalExperience: experience.length,
+                totalServices: services.length,
+                totalTestimonials: testimonials.length,
+                totalSkills: (skillsData.skills?.length || 0) + (skillsData.tools?.length || 0),
             });
             setRecentPosts(posts.slice(0, 3));
             setSettings(siteSettings);
@@ -46,16 +58,20 @@ export default function AdminDashboard() {
     }, []);
 
     const statCards = [
-        { label: "Total Articles", value: stats.totalPosts, prefix: "📝", trend: "+12% this month", active: true },
-        { label: "Published", value: stats.publishedPosts, prefix: "✅", trend: "Live", active: true },
+        { label: "Total Articles", value: stats.totalPosts, prefix: "📝", trend: `${stats.publishedPosts} Published · ${stats.draftPosts} Drafts`, active: stats.totalPosts > 0 },
         { label: "Active Projects", value: stats.totalProjects, prefix: "🚀", trend: "High Engagement", active: true },
-        { label: "Experiences", value: stats.totalExperience, prefix: "💼", trend: "Growing", active: false },
+        { label: "Experiences", value: stats.totalExperience, prefix: "💼", trend: "Growing", active: true },
+        { label: "Services", value: stats.totalServices, prefix: "⚡", trend: "Offered", active: true },
+        { label: "Testimonials", value: stats.totalTestimonials, prefix: "💬", trend: "Client Reviews", active: true },
+        { label: "Skills & Tools", value: stats.totalSkills, prefix: "🔧", trend: "Technologies", active: true },
     ];
 
     const quickActions = [
         { title: "New Blog Post", desc: "Write an article", icon: "✍️", href: "/admin/blog" },
         { title: "Add Project", desc: "Showcase new work", icon: "✨", href: "/admin/projects" },
         { title: "Edit Grid", desc: "Customize bento grid", icon: "🍱", href: "/admin/grid" },
+        { title: "Manage Skills", desc: "Update tech stack", icon: "🔧", href: "/admin/skills" },
+        { title: "Testimonials", desc: "Manage client reviews", icon: "💬", href: "/admin/testimonials" },
         { title: "Site Settings", desc: "Configuration", icon: "⚙️", href: "/admin/settings" },
     ];
 
@@ -94,7 +110,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Enterprise Stat Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                 {statCards.map((card, i) => (
                     <motion.div
                         key={card.label}

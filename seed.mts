@@ -41,9 +41,10 @@ const gridItemsSeed = [
 ];
 
 const servicesSeed = [
-    { title: "Planning & Strategy", desc: "We'll collaborate to map out your website's goals, target audience, and key functionalities. We'll discuss things like site structure, navigation, and content requirements." },
-    { title: "Development & Progress Update", desc: "Once the blueprint is approved, I cue my lofi playlist and dive into coding. From initial sketches to polished code, I keep you updated every step of the way." },
-    { title: "Development & Launch", desc: "This is where the magic happens! Based on the approved design, I'll translate everything into functional code, building your website from the ground up." }
+    { title: "Planning & Strategy", description: "We'll collaborate to map out your website's goals, target audience, and key functionalities. We'll discuss things like site structure, navigation, and content requirements.", icon: "Code" },
+    { title: "Development & Progress Update", description: "Once the blueprint is approved, I cue my lofi playlist and dive into coding. From initial sketches to polished code, I keep you updated every step of the way.", icon: "LayoutTemplate" },
+    { title: "Development & Launch", description: "This is where the magic happens! Based on the approved design, I'll translate everything into functional code, building your website from the ground up.", icon: "Zap" },
+    { title: "Backend & Database", description: "Robust APIs and database architecture to power your application with scalable, secure, and efficient data management.", icon: "Database" }
 ];
 
 const testimonialsSeed = [

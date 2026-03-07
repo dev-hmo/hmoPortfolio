@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 export default function Projects() {
     const [showCaseData, setShowCaseData] = useState<Project[]>([]);
@@ -47,90 +48,72 @@ export default function Projects() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
     const { title, description, image, ghLink, demoLink } = project;
-    // Tilt logic
-    const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const card = e.currentTarget;
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        setTilt({ x: rotateX, y: rotateY });
-    };
-
-    const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: index * 0.12 }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            animate={{ rotateX: tilt.x, rotateY: tilt.y }}
-            className="group relative overflow-hidden rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] hover:-translate-y-1 perspective-1000"
-            style={{
-                background: "rgb(4,7,29)",
-                backgroundImage:
-                    "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                transformStyle: "preserve-3d",
-            }}
-        >
-            {/* Image */}
-            <div className="relative w-full h-[30vh] overflow-hidden">
-                <div className="absolute inset-0 bg-[#13162d]">
+        <CardContainer className="inter-var group relative overflow-hidden rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] hover:-translate-y-1">
+            <CardBody className="bg-[#04071d] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border"
+                style={{
+                    backgroundImage: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+                }}
+            >
+                {/* Image */}
+                <CardItem translateZ="50" className="relative w-full h-[30vh] overflow-hidden rounded-xl mt-4">
+                    <div className="absolute inset-0 bg-[#13162d]">
+                        <img
+                            src="/bg.png"
+                            alt="bg"
+                            className="object-cover w-full h-full opacity-50"
+                        />
+                    </div>
                     <img
-                        src="/bg.png"
-                        alt="bg"
-                        className="object-cover w-full h-full opacity-50"
+                        src={image}
+                        alt={title}
+                        className="relative z-10 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                </div>
-                <img
-                    src={image}
-                    alt={title}
-                    className="relative z-10 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Overlay gradient on hover */}
-                <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#04071d] via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-            </div>
+                    {/* Overlay gradient on hover */}
+                    <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#04071d] via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                </CardItem>
 
-            {/* Content */}
-            <div className="p-6 lg:p-8">
-                <h2 className="font-bold text-xl lg:text-2xl text-white mb-2 line-clamp-1">
-                    {title}
-                </h2>
-                <p className="text-sm lg:text-base text-[#bec1dd] font-light line-clamp-2 mb-6">
-                    {description}
-                </p>
+                {/* Content */}
+                <div className="mt-8">
 
-                <div className="flex items-center justify-between">
-                    <a
-                        href={ghLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm lg:text-base text-cyan-500 font-medium hover:underline"
-                        onClick={(e) => e.stopPropagation()}
+                    <CardItem
+                        translateZ="50"
+                        className="font-bold text-xl lg:text-2xl text-white mb-2 line-clamp-1"
                     >
-                        Source Code
-                    </a>
-                    <a
-                        href={demoLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-2 text-sm lg:text-base text-purple font-medium hover:underline"
-                        onClick={(e) => e.stopPropagation()}
+                        {title}
+                    </CardItem>
+                    <CardItem
+                        as="p"
+                        translateZ="60"
+                        className="text-sm lg:text-base text-[#bec1dd] font-light line-clamp-2 mb-6"
                     >
-                        Check Live Site
-                        <FaLocationArrow className="text-xs" color="#CBACF9" />
-                    </a>
+                        {description}
+                    </CardItem>
+
+                    <div className="flex items-center justify-between">
+                        <CardItem
+                            translateZ={20}
+                            as="a"
+                            href={ghLink}
+                            target="_blank"
+                            className="text-sm lg:text-base text-cyan-500 font-medium hover:underline"
+                        >
+                            Source Code
+                        </CardItem>
+                        <CardItem
+                            translateZ={20}
+                            as="a"
+                            href={demoLink}
+                            target="_blank"
+                            className="flex items-center gap-2 text-sm lg:text-base text-purple font-medium hover:underline"
+                        >
+                            Check Live Site
+                            <FaLocationArrow className="text-xs" color="#CBACF9" />
+                        </CardItem>
+                    </div>
                 </div>
-            </div>
-        </motion.div>
+            </CardBody>
+        </CardContainer>
     );
 }

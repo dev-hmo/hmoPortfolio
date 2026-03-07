@@ -4,9 +4,14 @@ import connectToDatabase from "@/lib/db";
 import GridItem from "@/models/GridItem";
 
 export async function GET() {
-    await connectToDatabase();
-    const items = await GridItem.find({}).sort({ order: 1 });
-    return NextResponse.json(items);
+    try {
+        await connectToDatabase();
+        const items = await GridItem.find({}).sort({ order: 1 });
+        return NextResponse.json(items);
+    } catch (error) {
+        console.error("Grid GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
 }
 
 export async function PUT(request: Request) {

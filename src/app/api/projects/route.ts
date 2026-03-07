@@ -4,10 +4,14 @@ import connectToDatabase from "@/lib/db";
 import Project from "@/models/Project";
 
 export async function GET() {
-    await connectToDatabase();
-    // Return projects sorted by order
-    const projects = await Project.find({}).sort({ order: 1 });
-    return NextResponse.json(projects);
+    try {
+        await connectToDatabase();
+        const projects = await Project.find({}).sort({ order: 1 });
+        return NextResponse.json(projects);
+    } catch (error) {
+        console.error("Projects GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
 }
 
 export async function PUT(request: Request) {

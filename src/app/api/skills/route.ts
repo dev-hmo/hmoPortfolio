@@ -4,12 +4,17 @@ import connectToDatabase from "@/lib/db";
 import Skill from "@/models/Skill";
 
 export async function GET() {
-    await connectToDatabase();
-    const doc = await Skill.findOne({});
-    if (!doc) {
-        return NextResponse.json({ skills: [], tools: [] });
+    try {
+        await connectToDatabase();
+        const doc = await Skill.findOne({});
+        if (!doc) {
+            return NextResponse.json({ skills: [], tools: [] });
+        }
+        return NextResponse.json({ skills: doc.skills, tools: doc.tools });
+    } catch (error) {
+        console.error("Skills GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
-    return NextResponse.json({ skills: doc.skills, tools: doc.tools });
 }
 
 export async function PUT(request: Request) {

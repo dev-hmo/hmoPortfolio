@@ -4,12 +4,17 @@ import connectToDatabase from "@/lib/db";
 import Setting from "@/models/Setting";
 
 export async function GET() {
-    await connectToDatabase();
-    const doc = await Setting.findOne({});
-    if (!doc) {
-        return NextResponse.json({});
+    try {
+        await connectToDatabase();
+        const doc = await Setting.findOne({});
+        if (!doc) {
+            return NextResponse.json({});
+        }
+        return NextResponse.json(doc);
+    } catch (error) {
+        console.error("Settings GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
-    return NextResponse.json(doc);
 }
 
 export async function PUT(request: Request) {

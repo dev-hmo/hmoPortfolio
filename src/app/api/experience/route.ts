@@ -4,9 +4,14 @@ import connectToDatabase from "@/lib/db";
 import Experience from "@/models/Experience";
 
 export async function GET() {
-    await connectToDatabase();
-    const items = await Experience.find({}).sort({ order: 1 });
-    return NextResponse.json(items);
+    try {
+        await connectToDatabase();
+        const items = await Experience.find({}).sort({ order: 1 });
+        return NextResponse.json(items);
+    } catch (error) {
+        console.error("Experience GET error:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
 }
 
 export async function PUT(request: Request) {

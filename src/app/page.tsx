@@ -12,6 +12,7 @@ import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/lib/data";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollEffectWrapper } from "@/components/ui/ScrollEffectWrapper";
 
 export default function Home() {
   return (
@@ -21,14 +22,38 @@ export default function Home() {
       <div className="max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
-        <Grid />
-        <Experience />
-        <Approach />
-        <Projects />
-        <GithubActivity />
-        <TechGlobeWrapper />
-        <Services />
-        <Endorsements />
+
+        <ScrollEffectWrapper>
+          <Grid />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <Experience />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <Approach />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <Projects />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <GithubActivity />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <TechGlobeWrapper />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <Services />
+        </ScrollEffectWrapper>
+
+        <ScrollEffectWrapper>
+          <Endorsements />
+        </ScrollEffectWrapper>
 
         <Footer />
       </div>

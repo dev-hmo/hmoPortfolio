@@ -1,13 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HoverEffectCard } from "./ui/hover-card";
 import { Code, Database, LayoutTemplate, Zap } from "lucide-react";
-import { motion } from "framer-motion";
 import type { ServiceItem } from "@/types";
+import { animate, stagger } from "animejs";
+import { useInView } from "framer-motion";
 
 export default function Services() {
     const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { once: true, margin: "-50px" });
 
     useEffect(() => {
         fetch("/api/services")
@@ -16,26 +19,30 @@ export default function Services() {
             .catch(console.error);
     }, []);
 
+    useEffect(() => {
+        if (isInView && servicesData.length > 0) {
+            animate(".service-card", {
+                translateY: [100, 0],
+                opacity: [0, 1],
+                scale: [0.9, 1],
+                delay: stagger(150),
+                ease: "outElastic(1, .8)",
+                duration: 1200,
+            });
+        }
+    }, [isInView, servicesData]);
+
     return (
-        <section id="services" className="py-20 w-full">
-            <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="heading text-center text-3xl md:text-5xl font-bold mb-16 text-neutral-200"
-            >
+        <section id="services" className="py-20 w-full" ref={containerRef}>
+            <h1 className="heading text-center text-3xl md:text-5xl font-bold mb-16 text-neutral-200">
                 My <span className="text-cyan-500">Expertise</span>
-            </motion.h1>
+            </h1>
 
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 {servicesData.map((item, i) => (
-                    <motion.div
+                    <div
                         key={i}
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.4, delay: i * 0.1 }}
+                        className="service-card opacity-0"
                     >
                         <HoverEffectCard
                             className="flex flex-col h-full bg-[#04071d] border-white/10"
@@ -56,7 +63,7 @@ export default function Services() {
                                 {item.description}
                             </p>
                         </HoverEffectCard>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
         </section>

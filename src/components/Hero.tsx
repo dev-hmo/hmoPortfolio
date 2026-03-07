@@ -5,6 +5,8 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { MagicButton } from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
 import type { SiteSettings } from "@/types";
+import { FloatingShapes } from "./ui/FloatingShapes";
+import { TypewriterEffectSmooth } from "./ui/TypewriterEffect";
 
 export default function Hero() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -27,10 +29,21 @@ export default function Hero() {
 
     if (!settings) return <div className="h-screen w-full dark:bg-black-100 bg-white" />; // Loading state
 
+    const typewriterWords = [
+        { text: "Hi!" },
+        { text: "I'm" },
+        { text: `${settings.name || "Hlaing Min Oo"},` },
+        { text: "a" },
+        { text: settings.title || "Developer", className: "text-cyan-400 font-semibold" },
+        { text: "based" },
+        { text: "in" },
+        { text: `${settings.location || "Myanmar"}.` },
+    ];
+
     return (
-        <div className="pb-20 pt-36 overflow-hidden">
+        <div className="pb-20 pt-36 relative min-h-screen w-[100vw] left-[calc(-50vw+50%)] overflow-hidden bg-black-100">
             {/* Spotlights */}
-            <div className="pointer-events-none">
+            <div className="pointer-events-none absolute inset-0 z-10">
                 <Spotlight
                     className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
                     fill="white"
@@ -54,23 +67,26 @@ export default function Hero() {
             </div>
 
             {/* Grid Pattern Background */}
-            <div className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2] absolute top-0 left-0 flex items-center justify-center">
+            <div className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2] absolute top-0 left-0 flex items-center justify-center z-0">
                 {/* Radial gradient for the container to give a faded look */}
                 <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
             </div>
 
-            <div className="flex justify-center relative my-20 z-10">
+            {/* 3D Floating Shapes Background */}
+            <FloatingShapes />
+
+            <div className="flex justify-center relative my-20 z-20">
                 <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center text-center">
                     <TextGenerateEffect
                         words="Transforming Concepts into Seamless User Experiences"
                         className="text-center text-[40px] md:text-5xl lg:text-6xl"
                     />
 
-                    <div className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white mt-2">
-                        Hi! I&apos;m {settings.name || "Hlaing Min Oo"}, a <span className="text-cyan-400 font-semibold">{settings.title || "Developer"}</span> based in {settings.location || "Myanmar"}.
+                    <div className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white mt-2 flex justify-center">
+                        <TypewriterEffectSmooth words={typewriterWords} />
                     </div>
 
-                    <a href="#projects">
+                    <a href="#projects" className="mt-4">
                         <MagicButton
                             title="Show my work"
                             icon={<FaLocationArrow />}
