@@ -89,13 +89,12 @@ async function seed() {
         await Project.insertMany(projData);
         await Settings.create(settingsData);
 
-        // Wrap skills strings into objects
-        const skillsObj = [
-            ...(skillsData.skills || []).map(s => ({ name: s, category: 'Skill' })),
-            ...(skillsData.tools || []).map(t => ({ name: t, category: 'Tool' }))
-        ];
-        if (skillsObj.length > 0) {
-            await Skill.insertMany(skillsObj);
+        // Create a single skills document with arrays
+        if (skillsData.skills?.length > 0 || skillsData.tools?.length > 0) {
+            await Skill.create({
+                skills: skillsData.skills || [],
+                tools: skillsData.tools || []
+            });
         }
 
         await GridItem.insertMany(gridItemsSeed);

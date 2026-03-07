@@ -47,14 +47,26 @@ export const BentoGridItem = ({
     titleClassName?: string;
     spareImg?: string;
 }) => {
-    const [copied, setCopied] = useState(false);
-    const [email, setEmail] = useState("hlaingminoo785@gmail.com");
+    const [leftLists, setLeftLists] = useState(["JavaScript", "MongoDB", "Node.js"]);
+    const [rightLists, setRightLists] = useState(["React.js", "Express", "TailwindCSS"]);
 
     useEffect(() => {
         if (id === 6) {
             fetch("/api/settings")
                 .then(res => res.json())
                 .then(data => { if (data?.email) setEmail(data.email); })
+                .catch(() => { });
+        }
+        if (id === 3) {
+            fetch("/api/skills")
+                .then(res => res.json())
+                .then(data => {
+                    if (data?.skills && data.skills.length > 0) {
+                        const all = data.skills.slice(0, 6); // Take first 6 for clean grid
+                        setLeftLists(all.slice(0, 3));
+                        setRightLists(all.slice(3, 6));
+                    }
+                })
                 .catch(() => { });
         }
     }, [id]);
@@ -66,9 +78,6 @@ export const BentoGridItem = ({
             setCopied(false);
         }, 2000);
     };
-
-    const leftLists = ["JavaScript", "MongoDB", "Node.js"];
-    const rightLists = ["React.js", "Express", "TailwindCSS"];
 
     return (
         <div
