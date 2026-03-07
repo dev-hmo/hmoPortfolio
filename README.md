@@ -20,20 +20,20 @@
 
 ## 💎 Core Pillars
 
-### � Immersive 3D Experience
-*   **Cosmic Background**: A floating galactic particle field built with `@react-three/fiber` that reacts subtly to scroll and movement.
-*   **Perspective Interaction**: Project cards that physically tilt and "pop" along the Z-axis using Aceternity UI's 3D container.
-*   **Folding Navigation**: Page sections that rotate and scale in 3D space as they enter the viewport, creating a "folding" physical feel.
+### 🌌 Immersive 3D Experience
+*   **Galactic Background**: A floating particle field built with `@react-three/fiber` that reacts to scroll and motion.
+*   **Aceternity Typewriter**: High-performance staggered character animation for a premium feel in the Hero section.
+*   **3D Perspective Interaction**: Container components that physically tilt and "pop" along the Z-axis.
 
 ### ⚡ Performance & Motion
-*   **AnimeJS v4 Engine**: High-performance staggered spring animations for section entries, replacing standard CSS transitions for a "premium" tactile feel.
-*   **Instant Load Sequence**: A custom `<Atom />` loading sequence that ensures the initial assets (3D models, heavy SVGs) are perfectly ready before revealing the page.
-*   **Bento Layout**: A systematic, high-density grid layout that adapts flawlessly from massive 4K monitors down to mobile devices.
+*   **AnimeJS v4 Engine**: Tactical staggered spring animations for section entries.
+*   **Instant Load Sequence**: A sophisticated `<Atom />` loader ensuring all heavy 3D assets are ready before reveal.
+*   **Bento Layout**: A responsive, high-density grid system that scales from 4K to mobile.
 
 ### 🛠 Enterprise Admin Dashboard
-*   **Unified Command Center**: A full-fledged dashboard to manage every byte of data — from blog posts to technical skills.
-*   **Live Metrics**: Instant visibility into content counts and system status.
--   **Security**: Military-grade Content Security Policy (CSP) and bcrypt-protected local authentication.
+*   **Unified Command Center**: A full-fledged dashboard to manage blog posts, projects, experiences, and more.
+*   **Aesthetic Alignment**: Deep glassmorphism and galactic styling that mirrors the main site.
+*   **Flexible Metadata**: A new list-based UI to manage multiple job titles with an "Add More" flow.
 
 ---
 
@@ -63,7 +63,7 @@ npm install
 ```
 
 ### 3. Environment Config
-Create a `.env.local` and populate it:
+Create a `.env.local` and populate it using `.env.example`:
 ```env
 MONGODB_URI=your_mongodb_uri
 ADMIN_PASSWORD=your_admin_password
@@ -83,12 +83,12 @@ npm run dev
 
 ---
 
-## � Deployment (Vercel)
+## 🚀 Deployment (Vercel)
 
 The app is optimized for **Vercel**. 
 1. Push your code to GitHub.
 2. Link the project in Vercel.
-3. Add your `.env` variables in Vercel's Dashboard.
+3. Add your `.env` variables (referencing `.env.example`) in Vercel's Dashboard.
 4. Deployment will auto-build using the optimized Turbopack engine.
 
 ---
@@ -102,5 +102,5 @@ The app is optimized for **Vercel**.
 ---
 
 <p align="center">
-  <i>Developed with precision and passion by Hlaing Min Oo.</i>
+  <i>Developed with precision and passion.</i>
 </p>

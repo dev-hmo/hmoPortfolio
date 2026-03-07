@@ -18,10 +18,17 @@ export default function AdminBlogPage() {
     const [saving, setSaving] = useState(false);
 
     const fetchPosts = async () => {
-        const res = await fetch("/api/blog");
-        const data = await res.json();
-        setPosts(data);
-        setLoading(false);
+        try {
+            const res = await fetch("/api/blog");
+            if (!res.ok) throw new Error("Failed to fetch");
+            const data = await res.json();
+            setPosts(Array.isArray(data) ? data : []);
+        } catch (err) {
+            console.error(err);
+            setPosts([]);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -69,7 +76,7 @@ export default function AdminBlogPage() {
     return (
         <div className="space-y-6 max-w-7xl mx-auto">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.02] p-6 rounded-2xl border border-white/10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/[0.03] backdrop-blur-xl p-6 rounded-2xl border border-white/10">
                 <div>
                     <h2 className="text-2xl font-bold text-white flex items-center gap-3">
                         Blog Posts <span className="bg-cyan-500/20 text-cyan-400 text-xs px-2.5 py-1 rounded-full">{posts.length} Total</span>
@@ -160,7 +167,7 @@ export default function AdminBlogPage() {
             )}
 
             {/* Data Table */}
-            <div className="bg-[#0c0e2b] rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+            <div className="bg-white/[0.03] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse min-w-[800px]">
                         <thead>

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { FloatingShapes } from "@/components/ui/FloatingShapes";
 
 export default function AdminLoginPage() {
     const [password, setPassword] = useState("");
@@ -35,14 +36,17 @@ export default function AdminLoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black-100 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-black-100 flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Background */}
+            <FloatingShapes />
+
             <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.5 }}
                 className="w-full max-w-md"
             >
-                <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 shadow-2xl backdrop-blur-sm">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 shadow-2xl backdrop-blur-xl relative z-10">
                     <div className="text-center mb-8">
                         <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mx-auto mb-4">
                             <svg

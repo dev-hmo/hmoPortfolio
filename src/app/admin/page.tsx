@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { BlogPost } from "@/types";
 import type { SiteSettings } from "@/types";
+import { MagicButton } from "@/components/ui/MagicButton";
+import { FaFileAlt } from "react-icons/fa";
 
 interface DashboardStats {
     totalPosts: number;
@@ -32,26 +34,31 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const safeFetch = (url: string) =>
+            fetch(url)
+                .then((r) => r.ok ? r.json() : [])
+                .catch(() => []);
+
         Promise.all([
-            fetch("/api/blog").then((r) => r.json()),
-            fetch("/api/projects").then((r) => r.json()),
-            fetch("/api/experience").then((r) => r.json()),
-            fetch("/api/settings").then((r) => r.json()),
-            fetch("/api/services").then((r) => r.json()),
-            fetch("/api/testimonials").then((r) => r.json()),
-            fetch("/api/skills").then((r) => r.json()),
+            safeFetch("/api/blog"),
+            safeFetch("/api/projects"),
+            safeFetch("/api/experience"),
+            safeFetch("/api/settings"),
+            safeFetch("/api/services"),
+            safeFetch("/api/testimonials"),
+            safeFetch("/api/skills"),
         ]).then(([posts, projects, experience, siteSettings, services, testimonials, skillsData]) => {
             setStats({
-                totalPosts: posts.length,
-                publishedPosts: posts.filter((p: BlogPost) => p.published).length,
-                draftPosts: posts.filter((p: BlogPost) => !p.published).length,
-                totalProjects: projects.length,
-                totalExperience: experience.length,
-                totalServices: services.length,
-                totalTestimonials: testimonials.length,
-                totalSkills: (skillsData.skills?.length || 0) + (skillsData.tools?.length || 0),
+                totalPosts: posts.length || 0,
+                publishedPosts: (posts || []).filter((p: any) => p.published).length,
+                draftPosts: (posts || []).filter((p: any) => !p.published).length,
+                totalProjects: projects.length || 0,
+                totalExperience: experience.length || 0,
+                totalServices: services.length || 0,
+                totalTestimonials: testimonials.length || 0,
+                totalSkills: ((skillsData?.skills?.length || 0) + (skillsData?.tools?.length || 0)) || 0,
             });
-            setRecentPosts(posts.slice(0, 3));
+            setRecentPosts((posts || []).slice(0, 3));
             setSettings(siteSettings);
             setLoading(false);
         });
@@ -91,7 +98,7 @@ export default function AdminDashboard() {
             {/* Enterprise Header Section */}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                    <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+                    <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-cyan-400">
                         Overview
                     </h2>
                     <p className="text-neutral-400 mt-1 flex items-center gap-2 text-sm">
@@ -103,9 +110,11 @@ export default function AdminDashboard() {
                     <span className="text-sm text-neutral-400 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
                         {settings?.name || 'Administrator'}
                     </span>
-                    <button className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-lg text-sm font-medium transition-all shadow-lg shadow-cyan-500/20">
-                        Generate Report
-                    </button>
+                    <MagicButton
+                        title="Generate Report"
+                        icon={<FaFileAlt />}
+                        otherClasses="!mt-0 h-10 md:w-44"
+                    />
                 </motion.div>
             </div>
 
@@ -117,7 +126,7 @@ export default function AdminDashboard() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e2b] p-6 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/30 transition-all group"
+                        className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 hover:shadow-2xl hover:shadow-cyan-500/10 hover:border-cyan-500/30 transition-all group"
                     >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-bl-full -mr-8 -mt-8 opacity-50 group-hover:opacity-100 transition-opacity" />
                         <div className="flex items-center justify-between mb-4 relative z-10">
@@ -144,7 +153,7 @@ export default function AdminDashboard() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="lg:col-span-2 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden flex flex-col"
+                    className="lg:col-span-2 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden flex flex-col"
                 >
                     <div className="p-6 border-b border-white/10 bg-white/[0.01]">
                         <h3 className="text-lg font-bold text-white">Recent Publications</h3>
@@ -188,7 +197,7 @@ export default function AdminDashboard() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden"
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl overflow-hidden"
                 >
                     <div className="p-6 border-b border-white/10 bg-white/[0.01]">
                         <h3 className="text-lg font-bold text-white">Quick Actions</h3>

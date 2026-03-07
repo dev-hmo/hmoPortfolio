@@ -15,4 +15,4 @@ const ServiceSchema: Schema = new Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.Service || mongoose.model<IService>('Service', ServiceSchema);
+export default mongoose.models.Service || mongoose.model<IService>('Service', ServiceSchema, 'serviceitems');

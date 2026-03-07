@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FloatingShapes } from "@/components/ui/FloatingShapes";
+import { Loader } from "@/components/ui/Loader";
 
 const adminLinks = [
     { name: "Dashboard", href: "/admin", icon: "📊" },
@@ -56,11 +58,7 @@ export default function AdminLayout({
     };
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-black-100 flex items-center justify-center">
-                <div className="w-8 h-8 rounded-full border-2 border-cyan-500 border-t-transparent animate-spin" />
-            </div>
-        );
+        return <Loader />;
     }
 
     if (isLoginPage) {
@@ -70,9 +68,12 @@ export default function AdminLayout({
     if (!isAuthenticated) return null;
 
     return (
-        <div className="min-h-screen bg-black-100 flex">
+        <div className="min-h-screen bg-black-100 flex relative overflow-hidden">
+            {/* Background */}
+            <FloatingShapes />
+
             {/* Desktop Sidebar */}
-            <aside className="hidden lg:flex w-64 flex-col bg-[#04071d] border-r border-white/10 shrink-0">
+            <aside className="hidden lg:flex w-64 flex-col bg-white/[0.02] backdrop-blur-md border-r border-white/10 shrink-0 z-30">
                 <div className="p-6">
                     <h1 className="text-xl font-bold text-white">HMO Admin</h1>
                     <p className="text-xs text-neutral-500 mt-1">Portfolio Manager</p>
@@ -115,7 +116,7 @@ export default function AdminLayout({
             </aside>
 
             {/* Mobile Header & Sidebar Overlays */}
-            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#04071d] border-b border-white/10 p-4 flex items-center justify-between">
+            <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#04071d]/80 backdrop-blur-lg border-b border-white/10 p-4 flex items-center justify-between">
                 <h1 className="text-lg font-bold text-white">HMO Admin</h1>
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -135,7 +136,7 @@ export default function AdminLayout({
 
             {/* Mobile Sidebar Menu */}
             <aside
-                className={`lg:hidden fixed top-[69px] bottom-0 w-64 bg-[#04071d] border-r border-white/10 z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+                className={`lg:hidden fixed top-[69px] bottom-0 w-64 bg-[#04071d]/90 backdrop-blur-xl border-r border-white/10 z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
                 style={{ left: 0 }}
             >
@@ -171,7 +172,7 @@ export default function AdminLayout({
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 p-6 lg:p-10 lg:pt-10 pt-24 overflow-y-auto">
+            <main className="flex-1 p-6 lg:p-10 lg:pt-10 pt-24 overflow-y-auto relative z-20">
                 <div className="max-w-6xl mx-auto">
                     {children}
                 </div>

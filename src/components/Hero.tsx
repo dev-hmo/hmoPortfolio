@@ -6,7 +6,7 @@ import { MagicButton } from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
 import type { SiteSettings } from "@/types";
 import { FloatingShapes } from "./ui/FloatingShapes";
-import { TypewriterEffectSmooth } from "./ui/TypewriterEffect";
+import { TypewriterRotation } from "./ui/TypewriterRotation";
 
 export default function Hero() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -29,16 +29,9 @@ export default function Hero() {
 
     if (!settings) return <div className="h-screen w-full dark:bg-black-100 bg-white" />; // Loading state
 
-    const typewriterWords = [
-        { text: "Hi!" },
-        { text: "I'm" },
-        { text: `${settings.name || "Hlaing Min Oo"},` },
-        { text: "a" },
-        { text: settings.title || "Developer", className: "text-cyan-400 font-semibold" },
-        { text: "based" },
-        { text: "in" },
-        { text: `${settings.location || "Myanmar"}.` },
-    ];
+    const titles = settings.title
+        ? settings.title.split(",").map(t => t.trim())
+        : ["Full-Stack Developer", "Project Coordinator"];
 
     return (
         <div className="pb-20 pt-36 relative min-h-screen w-[100vw] left-[calc(-50vw+50%)] overflow-hidden bg-black-100">
@@ -76,19 +69,29 @@ export default function Hero() {
             <FloatingShapes />
 
             <div className="flex justify-center relative my-20 z-20">
-                <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center text-center">
-                    <TextGenerateEffect
-                        words="Transforming Concepts into Seamless User Experiences"
-                        className="text-center text-[40px] md:text-5xl lg:text-6xl"
-                    />
+                <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[70vw] flex flex-col items-center justify-center text-center">
+                    <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80 mb-4 bg-white/5 py-2 px-4 rounded-full border border-white/10 backdrop-blur-sm">
+                        Available for new projects
+                    </p>
 
-                    <div className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl text-white mt-2 flex justify-center">
-                        <TypewriterEffectSmooth words={typewriterWords} />
+                    <h2 className="text-white text-lg md:text-xl lg:text-2xl font-light mb-2">
+                        Hi, I&apos;m <span className="text-cyan-400 font-bold">{settings.name || "Hlaing Min Oo"}</span>
+                    </h2>
+
+                    <div className="text-center text-[40px] md:text-6xl lg:text-7xl font-bold text-white leading-tight min-h-[120px] md:min-h-[160px] flex items-center justify-center">
+                        <TypewriterRotation
+                            words={titles}
+                            className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-blue-400"
+                        />
                     </div>
 
-                    <a href="#projects" className="mt-4">
+                    <p className="text-center md:tracking-wider mb-8 mt-4 text-sm md:text-lg lg:text-xl text-blue-100/70 max-w-[40rem] mx-auto italic">
+                        {settings.bio || "Building modern, scalable web applications with a focus on user experience and technical excellence."}
+                    </p>
+
+                    <a href="#projects">
                         <MagicButton
-                            title="Show my work"
+                            title="Explore My Work"
                             icon={<FaLocationArrow />}
                             position="right"
                         />

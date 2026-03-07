@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import type { SiteSettings } from "@/types";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 export default function AdminSettingsPage() {
     const [settings, setSettings] = useState<SiteSettings>({
@@ -17,21 +18,46 @@ export default function AdminSettingsPage() {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [titleList, setTitleList] = useState<string[]>([""]);
 
     useEffect(() => {
         fetch("/api/settings")
             .then((r) => r.json())
-            .then(setSettings)
+            .then((data) => {
+                setSettings(data);
+                if (data.title) {
+                    setTitleList(data.title.split(",").map((t: string) => t.trim()));
+                }
+            })
             .finally(() => setLoading(false));
     }, []);
+
+    const handleAddTitle = () => {
+        setTitleList([...titleList, ""]);
+    };
+
+    const handleRemoveTitle = (index: number) => {
+        const newList = titleList.filter((_, i) => i !== index);
+        setTitleList(newList.length > 0 ? newList : [""]);
+    };
+
+    const handleTitleChange = (index: number, value: string) => {
+        const newList = [...titleList];
+        newList[index] = value;
+        setTitleList(newList);
+    };
 
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
         setSaving(true);
+        const finalSettings = {
+            ...settings,
+            title: titleList.filter(t => t.trim()).join(", ")
+        };
         await fetch("/api/settings", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(settings),
+            body: JSON.stringify(finalSettings),
         });
         setSaving(false);
         setSaved(true);
@@ -65,7 +91,7 @@ export default function AdminSettingsPage() {
                 )}
             </div>
 
-            <form onSubmit={handleSave} className="space-y-4">
+            <form onSubmit={handleSave} className="space-y-4 bg-white/[0.03] backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-xl">
                 {fields.map(({ key, label, type }) => (
                     <div key={key}>
                         <label className="block text-xs text-neutral-400 mb-1.5 font-medium">
@@ -78,6 +104,34 @@ export default function AdminSettingsPage() {
                                 rows={3}
                                 className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50 resize-y"
                             />
+                        ) : key === "title" ? (
+                            <div className="space-y-2">
+                                {titleList.map((title, index) => (
+                                    <div key={index} className="flex gap-2">
+                                        <input
+                                            type="text"
+                                            value={title}
+                                            onChange={(e) => handleTitleChange(index, e.target.value)}
+                                            placeholder={`Title #${index + 1}`}
+                                            className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/50"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRemoveTitle(index)}
+                                            className="p-2.5 text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg h-9 w-9 flex items-center justify-center hover:bg-red-500/20 transition-colors"
+                                        >
+                                            <FaTrash size={14} />
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={handleAddTitle}
+                                    className="flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors font-medium mt-1"
+                                >
+                                    <FaPlus size={10} /> Add More Title
+                                </button>
+                            </div>
                         ) : (
                             <input
                                 type={type || "text"}
