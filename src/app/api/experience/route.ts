@@ -4,10 +4,36 @@ import { getSession } from "@/lib/auth";
 import connectToDatabase from "@/lib/db";
 import Experience from "@/models/Experience";
 
+function parseDateForSort(dateStr: string): number {
+    if (!dateStr) return 0;
+    const parts = dateStr.split("-").map((s) => s.trim().toLowerCase());
+    
+    const endStr = parts.length > 1 ? parts[1] : parts[0];
+    let endScore = 0;
+    
+    if (endStr.includes("present") || endStr.includes("current") || endStr.includes("now")) {
+        endScore = 9e15; // Max score for ongoing roles
+    } else {
+        const parsedEnd = Date.parse(endStr);
+        endScore = isNaN(parsedEnd) ? 0 : parsedEnd;
+    }
+    
+    const startStr = parts[0];
+    const parsedStart = Date.parse(startStr);
+    const startScore = isNaN(parsedStart) ? 0 : parsedStart;
+
+    return endScore + startScore / 2; // Tie-breaker for same end dates
+}
+
 export async function GET() {
     try {
         await connectToDatabase();
-        const items = await Experience.find({}).sort({ order: 1 });
+        const items = await Experience.find({}).lean();
+        
+        items.sort((a, b) => {
+            return parseDateForSort(b.date) - parseDateForSort(a.date);
+        });
+
         return NextResponse.json(items);
     } catch (error) {
         console.error("Experience GET error:", error);

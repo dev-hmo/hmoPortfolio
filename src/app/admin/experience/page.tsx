@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX, FiBriefcase, FiCalendar, FiMapPin, FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { FiEdit2, FiTrash2, FiPlus, FiSave, FiX, FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
 import type { ExperienceItem } from "@/types";
 
 export default function AdminExperiencePage() {
@@ -70,32 +70,6 @@ export default function AdminExperiencePage() {
         const updated = [...items];
         updated[index] = { ...updated[index], [field]: value };
         setItems(updated);
-    };
-
-    const moveUp = (index: number) => {
-        if (index === 0) return;
-        const updated = [...items];
-        const temp = updated[index];
-        updated[index] = updated[index - 1];
-        updated[index - 1] = temp;
-        setItems(updated);
-        
-        // Keep tracking the edited item correctly
-        if (editIndex === index) setEditIndex(index - 1);
-        else if (editIndex === index - 1) setEditIndex(index);
-    };
-
-    const moveDown = (index: number) => {
-        if (index === items.length - 1) return;
-        const updated = [...items];
-        const temp = updated[index];
-        updated[index] = updated[index + 1];
-        updated[index + 1] = temp;
-        setItems(updated);
-        
-        // Keep tracking the edited item correctly
-        if (editIndex === index) setEditIndex(index + 1);
-        else if (editIndex === index + 1) setEditIndex(index);
     };
 
     if (loading) {
@@ -253,22 +227,6 @@ export default function AdminExperiencePage() {
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-2 shrink-0 self-end md:self-start pt-1">
-                                            <button
-                                                onClick={() => moveUp(index)}
-                                                disabled={index === 0}
-                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/20 transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-transparent"
-                                                title="Move Up"
-                                            >
-                                                <FiArrowUp className="w-4 h-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => moveDown(index)}
-                                                disabled={index === items.length - 1}
-                                                className="p-2.5 rounded-xl text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/20 transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-neutral-400 disabled:hover:border-transparent"
-                                                title="Move Down"
-                                            >
-                                                <FiArrowDown className="w-4 h-4" />
-                                            </button>
                                             <button
                                                 onClick={() => setEditIndex(index)}
                                                 className="p-2.5 rounded-xl text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/20 transition-all"
