@@ -1,4 +1,5 @@
 "use client";
+import settings from "../../data/settings.json";
 import { useState, useEffect } from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";

@@ -1,5 +1,6 @@
 "use client";
 
+import workExperience from "../../data/experience.json";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { ExperienceItem } from "@/types";

@@ -2,6 +2,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
+import settingsData from "../../../data/settings.json";
+import skillsData from "../../../data/skills.json";
 import { IoCopyOutline } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./canvas-reveal-effect";

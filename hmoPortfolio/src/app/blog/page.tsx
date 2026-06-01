@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import type { BlogPost } from "@/types";
+import blogData from "../../../data/blog.json";
 
 export default function BlogPage() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -11,24 +12,21 @@ export default function BlogPage() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchPosts();
-    }, [search, selectedTag]);
-
-    const fetchPosts = async () => {
-        setLoading(true);
-        const params = new URLSearchParams();
-        if (search) params.set("search", search);
-        if (selectedTag) params.set("tag", selectedTag);
-
-        const res = await fetch(`/api/blog?${params.toString()}`);
-        const data = await res.json();
-        setPosts(data.posts || []);
+        let filtered = blogData;
+        if (search) {
+            const s = search.toLowerCase();
+            filtered = filtered.filter((p: any) => p.title.toLowerCase().includes(s) || p.excerpt.toLowerCase().includes(s));
+        }
+        if (selectedTag) {
+            filtered = filtered.filter((p: any) => p.tags.includes(selectedTag));
+        }
+        setPosts(filtered);
         setLoading(false);
-    };
+    }, [search, selectedTag]);
 
     // Get all unique tags
     const allTags = Array.from(
-        new Set(posts.flatMap((p) => p.tags))
+        new Set(blogData.flatMap((p: any) => p.tags))
     ).sort();
 
     return (
@@ -90,7 +88,7 @@ export default function BlogPage() {
                             >
                                 All
                             </button>
-                            {allTags.map((tag) => (
+                            {allTags.map((tag: any) => (
                                 <button
                                     key={tag}
                                     onClick={() =>

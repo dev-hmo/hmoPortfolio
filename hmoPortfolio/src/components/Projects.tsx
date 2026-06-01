@@ -1,4 +1,5 @@
 "use client";
+import showCaseData from "../../data/projects.json";
 import { useState, useEffect } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "framer-motion";

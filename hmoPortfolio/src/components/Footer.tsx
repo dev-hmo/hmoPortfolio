@@ -1,4 +1,5 @@
 "use client";
+import settings from "../../data/settings.json";
 import { useState, useEffect } from "react";
 import { FaLocationArrow, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MagicButton } from "./ui/MagicButton";

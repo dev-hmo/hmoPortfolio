@@ -1,5 +1,6 @@
 "use client";
 
+import gridItems from "../../data/grid.json";
 import { useState, useEffect } from "react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 

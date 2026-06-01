@@ -3,6 +3,7 @@ import { useState, useEffect, use } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import type { BlogPost } from "@/types";
+import blogData from "../../../../data/blog.json";
 
 export default function BlogPostPage({
     params,
