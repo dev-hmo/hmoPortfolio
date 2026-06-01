@@ -1,5 +1,5 @@
 "use client";
-import settings from "../../data/settings.json";
+import settingsData from "../../data/settings.json";
 import { useState, useEffect } from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
@@ -9,9 +9,10 @@ import type { SiteSettings } from "@/types";
 import { FloatingShapes } from "./ui/FloatingShapes";
 import { TypewriterRotation } from "./ui/TypewriterRotation";
 
+const settings = settingsData as unknown as SiteSettings;
+
 export default function Hero() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [settings, setSettings] = useState<SiteSettings | null>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -20,15 +21,6 @@ export default function Hero() {
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
-
-    useEffect(() => {
-        fetch("/api/settings")
-            .then(res => res.json())
-            .then(setSettings)
-            .catch(console.error);
-    }, []);
-
-    if (!settings) return <div className="h-screen w-full dark:bg-black-100 bg-white" />; // Loading state
 
     const titles = settings.title
         ? settings.title.split(",").map(t => t.trim())

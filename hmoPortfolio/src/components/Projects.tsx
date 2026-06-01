@@ -1,21 +1,13 @@
 "use client";
-import showCaseData from "../../data/projects.json";
-import { useState, useEffect } from "react";
+import projectsData from "../../data/projects.json";
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
+const showCaseData = projectsData as unknown as Project[];
+
 export default function Projects() {
-    const [showCaseData, setShowCaseData] = useState<Project[]>([]);
-
-    useEffect(() => {
-        fetch("/api/projects")
-            .then(res => res.json())
-            .then(setShowCaseData)
-            .catch(console.error);
-    }, []);
-
     return (
         <div className="py-20" id="projects">
             <motion.h1

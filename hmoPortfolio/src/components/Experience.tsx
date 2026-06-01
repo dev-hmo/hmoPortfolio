@@ -1,25 +1,17 @@
 "use client";
 
-import workExperience from "../../data/experience.json";
-import { useState, useEffect } from "react";
+import experienceData from "../../data/experience.json";
 import { motion } from "framer-motion";
 import type { ExperienceItem } from "@/types";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
+const workExperience = experienceData as unknown as ExperienceItem[];
+
 export default function Experience() {
-    const [experienceData, setExperienceData] = useState<ExperienceItem[]>([]);
-
-    useEffect(() => {
-        fetch("/api/experience")
-            .then(res => res.json())
-            .then(setExperienceData)
-            .catch(console.error);
-    }, []);
-
     return (
         <div className="py-20 w-full" id="experience">
             <h1 className="heading text-center text-3xl md:text-5xl font-bold mb-4 text-neutral-200">
-                My <span className="text-cyan-500">Experience & Education</span>
+                My <span className="text-cyan-500">Experience &amp; Education</span>
             </h1>
             <p className="text-center text-neutral-400 mb-16 text-sm md:text-base max-w-xl mx-auto">
                 A timeline of my professional and academic journey
@@ -29,7 +21,7 @@ export default function Experience() {
                 {/* Vertical line */}
                 <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-500/50 via-cyan-500/20 to-transparent md:-translate-x-[1px]" />
 
-                {experienceData.map((item, index) => {
+                {workExperience.map((item, index) => {
                     const isLeft = index % 2 === 0;
                     return (
                         <motion.div

@@ -1,16 +1,23 @@
 /* eslint-disable */
 "use client";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import settingsData from "../../../data/settings.json";
-import skillsData from "../../../data/skills.json";
+import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./canvas-reveal-effect";
+import settingsData from "../../../data/settings.json";
+import skillsData from "../../../data/skills.json";
 
 // We don't have Lottie installed yet, but we will use MagicButton directly
 import { MagicButton } from "./MagicButton";
 import { TechCardSkeleton, getTechIcon } from "./tech-card-skeleton";
+
+// Pre-compute skills list from static data
+const allSkillsList: string[] = [];
+if (skillsData?.skills) allSkillsList.push(...skillsData.skills);
+if (skillsData?.tools) allSkillsList.push(...skillsData.tools);
+const computedSkillsList = allSkillsList.length > 0 ? allSkillsList : ["React 19", "Next.js 15", "TypeScript"];
+const computedEmail = (settingsData as any)?.email || "hlaingminoo785@gmail.com";
 
 export const BentoGrid = ({
     className,
@@ -52,33 +59,9 @@ export const BentoGridItem = ({
     spareImg?: string;
 }) => {
     const [copied, setCopied] = useState(false);
-    const [email, setEmail] = useState("hlaingminoo785@gmail.com");
-    const [skillsList, setSkillsList] = useState<string[]>(["React 19", "Next.js 15", "TypeScript"]);
-
-    useEffect(() => {
-        if (id === 6) {
-            fetch("/api/settings")
-                .then(res => res.json())
-                .then(data => { if (data?.email) setEmail(data.email); })
-                .catch(() => { });
-        }
-        if (id === 3) {
-            fetch("/api/skills")
-                .then(res => res.json())
-                .then(data => {
-                    const allSkills = [];
-                    if (data?.skills) allSkills.push(...data.skills);
-                    if (data?.tools) allSkills.push(...data.tools);
-                    if (allSkills.length > 0) {
-                        setSkillsList(allSkills);
-                    }
-                })
-                .catch(() => { });
-        }
-    }, [id]);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(email);
+        navigator.clipboard.writeText(computedEmail);
         setCopied(true);
         setTimeout(() => {
             setCopied(false);
@@ -149,7 +132,7 @@ export const BentoGridItem = ({
                     {/* Tech stack list */}
                     {id === 3 && (
                         <div className="flex flex-col gap-4 mt-4 h-full w-full relative z-50 overflow-hidden items-center justify-center">
-                            <TechCardSkeleton skillsList={skillsList.length > 0 ? skillsList : undefined} />
+                            <TechCardSkeleton skillsList={computedSkillsList} />
                         </div>
                     )}
 

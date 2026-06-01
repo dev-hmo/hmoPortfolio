@@ -1,26 +1,21 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import servicesData from "../../data/services.json";
+import { useRef, useEffect } from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { Code, Database, LayoutTemplate, Zap } from "lucide-react";
 import type { ServiceItem } from "@/types";
 import { animate, stagger } from "animejs";
 import { useInView } from "framer-motion";
 
+const services = servicesData as unknown as ServiceItem[];
+
 export default function Services() {
-    const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-50px" });
 
     useEffect(() => {
-        fetch("/api/services")
-            .then(res => res.json())
-            .then(setServicesData)
-            .catch(console.error);
-    }, []);
-
-    useEffect(() => {
-        if (isInView && servicesData.length > 0) {
+        if (isInView && services.length > 0) {
             animate(".service-card", {
                 translateY: [100, 0],
                 opacity: [0, 1],
@@ -30,7 +25,7 @@ export default function Services() {
                 duration: 1200,
             });
         }
-    }, [isInView, servicesData]);
+    }, [isInView]);
 
     return (
         <section id="services" className="py-20 w-full" ref={containerRef}>
@@ -39,7 +34,7 @@ export default function Services() {
             </h1>
 
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {servicesData.map((item, i) => (
+                {services.map((item, i) => (
                     <div
                         key={i}
                         className="service-card opacity-0"
