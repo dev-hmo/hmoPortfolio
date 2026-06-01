@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Cosmic Portfolio v2",
+        "description": "A high-performance cinematic developer portfolio built with Next.js 15, Three.js, and Aceternity UI. Features real-time content management via a custom-built Admin Dashboard and dynamic data fetching from MongoDB Atlas.",
+        "image": "/img/oldportfolio.png",
+        "ghLink": "https://github.com/dev-hmo/hmoPortfolio",
+        "demoLink": "https://hmo-portfolio.vercel.app/"
+    },
+    {
+        "id": 2,
+        "title": "Panda Film Engine",
+        "description": "A streamlined movie exploration platform leveraging high-speed image optimization and responsive design. Built to provide a friction-less browsing experience with instant search and dynamic UI cards.",
+        "image": "/img/pandaflim.png",
+        "ghLink": "https://github.com/dev-hmo/pandaflimbydevhmo",
+        "demoLink": "https://pandaflim.vercel.app/"
+    },
+    {
+        "id": 3,
+        "title": "Pi Vape E-Commerce",
+        "description": "A sophisticated e-commerce showcase featuring localized UI patterns, smooth navigation powered by Framer Motion, and a highly responsive layout optimized for conversion and brand identity.",
+        "image": "/img/vapeshop.png",
+        "ghLink": "https://github.com/dev-hmo/vape-shop",
+        "demoLink": "https://vape-shop-delta.vercel.app/"
+    },
+    {
+        "id": 4,
+        "title": "Feedback Cloud",
+        "description": "A real-time customer feedback orchestration tool utilizing Firebase and Firestore. Engineered for speed and scalability, allowing businesses to capture and visualize user sentiment in real-time.",
+        "image": "/img/customerfeedbackapp.png",
+        "ghLink": "https://github.com/dev-hmo/customer-feedback-app.git",
+        "demoLink": "https://customer-feedback-app-gold.vercel.app/"
+    },
+    {
+        "id": 5,
+        "title": "Pixel Forge UI",
+        "description": "An advanced UI component laboratory exploring Material React patterns and interactive frontend states. Focused on crafting reusable, accessible, and high-performance React components.",
+        "image": "/img/pixelforge.png",
+        "ghLink": "https://github.com/dev-hmo/pixel-forge",
+        "demoLink": "https://pixel-forge-tawny.vercel.app/"
+    },
+    {
+        "id": 6,
+        "title": "Todo List App",
+        "description": "A full-stack task management application built with React.js for the frontend, Node.js for the backend, and MongoDB for data storage. Features include task creation, updating, deletion, and real-time list rendering.",
+        "image": "/img/todolist.png",
+        "ghLink": "https://github.com/dev-hmo/todolist",
+        "demoLink": "https://todolist-iota-lac-27.vercel.app/"
+    }
+]

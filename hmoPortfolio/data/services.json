@@ -1,0 +1,6 @@
+[
+    { "title": "Frontend Engineering", "description": "Building cinematic, high-performance web applications using React.js and Next.js.", "icon": "Code" },
+    { "title": "Lifecycle Management", "description": "End-to-end Agile facilitation, timeline tracking, and clear cross-team communication.", "icon": "LayoutTemplate" },
+    { "title": "QA & UAT Leadership", "description": "Defining rigorous test scenarios and executing User Acceptance Testing to guarantee robust software delivery.", "icon": "Zap" },
+    { "title": "Technical Business Analysis", "description": "Translating complex corporate requirements into clear, actionable technical specifications for development and security teams.", "icon": "Database" }
+]

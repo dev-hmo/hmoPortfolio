@@ -1,0 +1,34 @@
+[
+    {
+        "slug": "mastering-mern-2026",
+        "title": "Mastering the MERN Stack in 2026",
+        "excerpt": "A deep dive into architecting scalable, real-time applications using MongoDB, Express, React 19, and Node.js.",
+        "content": "# Getting Started with the MERN Stack\n\nThe MERN stack is one of the most popular full-stack JavaScript frameworks. It consists of:\n\n- **MongoDB** — NoSQL database for flexible data storage\n- **Express.js** — Backend web framework for Node.js\n- **React.js** — Frontend library for building user interfaces\n- **Node.js** — JavaScript runtime for server-side development\n\n## Why MERN?\n\nThe biggest advantage of MERN is that you use JavaScript across the entire stack. This means you can share code, logic, and even types between your frontend and backend.\n\n## Setting Up Your First Project\n\nStart by initializing a new Node.js project and installing the dependencies:\n\n```bash\nmkdir my-mern-app\ncd my-mern-app\nnpm init -y\nnpm install express mongoose cors dotenv\n```\n\nThen create your Express server, connect to MongoDB, and build your React frontend. The MERN stack gives you everything you need to build modern web applications.\n\nStay tuned for more in-depth tutorials!",
+        "tags": [
+            "MERN",
+            "React",
+            "Node.js",
+            "MongoDB",
+            "Tutorial"
+        ],
+        "coverImage": "",
+        "published": true,
+        "createdAt": "2025-12-15T10:00:00Z",
+        "updatedAt": "2025-12-15T10:00:00Z"
+    },
+    {
+        "slug": "my-journey-into-web-development",
+        "title": "My Journey into Web Development",
+        "excerpt": "From computer technician to full-stack developer — here's how I made the transition and what I learned along the way.",
+        "content": "# My Journey into Web Development\n\nMy path into web development wasn't a straight line. I started as a **Computer Technician** back in 2020, working with hardware and systems at Tech Ace Gaming & Computer Company.\n\n## The Spark\n\nWhile fixing computers and managing networks, I found myself increasingly drawn to the software side. I started learning HTML, CSS, and JavaScript in my spare time.\n\n## Building Skills\n\nI progressed through several roles — from network administration to IT support — all while quietly building my coding skills. Each role taught me something valuable:\n\n- **Troubleshooting mindset** from tech support\n- **System thinking** from network administration\n- **User empathy** from working with non-technical users\n\n## The Leap\n\nWhen I started my internship at NK Software House as a React Developer, everything clicked. Building real applications with React.js was exactly what I wanted to do.\n\n## Where I Am Now\n\nToday, I'm a Full-Stack Developer specializing in the MERN stack, and a Project Coordinator at RITZ. The journey was long, but every step was worth it.\n\nIf you're thinking about making a similar transition, my advice is simple: **start building things**. The best way to learn is by doing.",
+        "tags": [
+            "Career",
+            "Web Development",
+            "Personal"
+        ],
+        "coverImage": "",
+        "published": true,
+        "createdAt": "2025-11-20T08:00:00Z",
+        "updatedAt": "2025-11-20T08:00:00Z"
+    }
+]
