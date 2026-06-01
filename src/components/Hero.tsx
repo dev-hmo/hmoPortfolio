@@ -1,4 +1,5 @@
 "use client";
+import settingsData from "../../data/settings.json";
 import { useState, useEffect } from "react";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
@@ -8,9 +9,10 @@ import type { SiteSettings } from "@/types";
 import { FloatingShapes } from "./ui/FloatingShapes";
 import { TypewriterRotation } from "./ui/TypewriterRotation";
 
+const settings = settingsData as unknown as SiteSettings;
+
 export default function Hero() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [settings, setSettings] = useState<SiteSettings | null>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -20,21 +22,12 @@ export default function Hero() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
-    useEffect(() => {
-        fetch("/api/settings")
-            .then(res => res.json())
-            .then(setSettings)
-            .catch(console.error);
-    }, []);
-
-    if (!settings) return <div className="h-screen w-full dark:bg-black-100 bg-white" />; // Loading state
-
     const titles = settings.title
         ? settings.title.split(",").map(t => t.trim())
         : ["Full-Stack Developer", "Project Coordinator"];
 
     return (
-        <div className="pb-20 pt-36 relative min-h-screen w-[100vw] left-[calc(-50vw+50%)] overflow-hidden bg-black-100">
+        <div className="pb-20 pt-20 relative min-h-screen w-[100vw] left-[calc(-50vw+50%)] overflow-hidden bg-black-100">
             {/* Spotlights */}
             <div className="pointer-events-none absolute inset-0 z-10">
                 <Spotlight
@@ -68,7 +61,7 @@ export default function Hero() {
             {/* 3D Floating Shapes Background */}
             <FloatingShapes />
 
-            <div className="flex justify-center relative my-20 z-20">
+            <div className="flex justify-center relative mt-10 mb-20 z-20">
                 <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[70vw] flex flex-col items-center justify-center text-center">
                     <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80 mb-4 bg-white/5 py-2 px-4 rounded-full border border-white/10 backdrop-blur-sm">
                         Available for new projects

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";

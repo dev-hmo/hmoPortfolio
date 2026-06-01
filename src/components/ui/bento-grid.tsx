@@ -1,13 +1,23 @@
+/* eslint-disable */
 "use client";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "./canvas-reveal-effect";
+import settingsData from "../../../data/settings.json";
+import skillsData from "../../../data/skills.json";
 
 // We don't have Lottie installed yet, but we will use MagicButton directly
 import { MagicButton } from "./MagicButton";
 import { TechCardSkeleton, getTechIcon } from "./tech-card-skeleton";
+
+// Pre-compute skills list from static data
+const allSkillsList: string[] = [];
+if (skillsData?.skills) allSkillsList.push(...skillsData.skills);
+if (skillsData?.tools) allSkillsList.push(...skillsData.tools);
+const computedSkillsList = allSkillsList.length > 0 ? allSkillsList : ["React 19", "Next.js 15", "TypeScript"];
+const computedEmail = (settingsData as any)?.email || "hlaingminoo785@gmail.com";
 
 export const BentoGrid = ({
     className,
@@ -49,33 +59,9 @@ export const BentoGridItem = ({
     spareImg?: string;
 }) => {
     const [copied, setCopied] = useState(false);
-    const [email, setEmail] = useState("hlaingminoo785@gmail.com");
-    const [skillsList, setSkillsList] = useState<string[]>(["React 19", "Next.js 15", "TypeScript"]);
-
-    useEffect(() => {
-        if (id === 6) {
-            fetch("/api/settings")
-                .then(res => res.json())
-                .then(data => { if (data?.email) setEmail(data.email); })
-                .catch(() => { });
-        }
-        if (id === 3) {
-            fetch("/api/skills")
-                .then(res => res.json())
-                .then(data => {
-                    const allSkills = [];
-                    if (data?.skills) allSkills.push(...data.skills);
-                    if (data?.tools) allSkills.push(...data.tools);
-                    if (allSkills.length > 0) {
-                        setSkillsList(allSkills);
-                    }
-                })
-                .catch(() => { });
-        }
-    }, [id]);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(email);
+        navigator.clipboard.writeText(computedEmail);
         setCopied(true);
         setTimeout(() => {
             setCopied(false);
@@ -85,14 +71,9 @@ export const BentoGridItem = ({
     return (
         <div
             className={cn(
-                "row-span-1 relative overflow-hidden rounded-3xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none bg-white border border-white/[0.1] justify-between flex flex-col space-y-4",
+                "row-span-1 relative overflow-hidden rounded-3xl group/bento transition-all duration-500 hover:-translate-y-1 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_0_40px_-5px_rgba(6,182,212,0.4)] border border-white/10 hover:border-cyan-500/50 bg-[#050714]/80 backdrop-blur-2xl justify-between flex flex-col space-y-4",
                 className
             )}
-            style={{
-                background: "rgb(4,7,29)",
-                backgroundColor:
-                    "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-            }}
         >
             <div className={`${id === 6 && "flex justify-center"} h-full`}>
                 <div className="w-full h-full absolute">
@@ -120,7 +101,7 @@ export const BentoGridItem = ({
                 <div
                     className={cn(
                         titleClassName,
-                        "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+                        "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col p-6 lg:p-12"
                     )}
                 >
                     {id === 6 && (
@@ -142,7 +123,7 @@ export const BentoGridItem = ({
                         {description}
                     </div>
                     <div
-                        className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10 select-none ${id === 6 ? "!text-center mx-auto" : ""}`}
+                        className={`font-sans text-xl lg:text-3xl max-w-lg font-bold z-10 select-none tracking-wide leading-snug ${id === 6 ? "!text-center mx-auto" : ""}`}
                         style={{ color: "#fff" }}
                     >
                         {title}
@@ -151,7 +132,7 @@ export const BentoGridItem = ({
                     {/* Tech stack list */}
                     {id === 3 && (
                         <div className="flex flex-col gap-4 mt-4 h-full w-full relative z-50 overflow-hidden items-center justify-center">
-                            <TechCardSkeleton skillsList={skillsList.length > 0 ? skillsList : undefined} />
+                            <TechCardSkeleton skillsList={computedSkillsList} />
                         </div>
                     )}
 

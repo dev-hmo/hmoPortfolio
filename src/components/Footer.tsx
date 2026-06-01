@@ -1,22 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import settingsData from "../../data/settings.json";
 import { FaLocationArrow, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MagicButton } from "./ui/MagicButton";
 import type { SiteSettings } from "@/types";
 
+const settings = settingsData as unknown as SiteSettings;
+
 export default function Footer() {
-    const [settings, setSettings] = useState<SiteSettings | null>(null);
-
-    useEffect(() => {
-        fetch("/api/settings")
-            .then((res) => res.json())
-            .then(setSettings)
-            .catch(console.error);
-    }, []);
-
     const emailStr = settings?.email ? `mailto:${settings.email}` : "mailto:contact@example.com";
 
-    // Create social media links dynamically from DB settings
+    // Create social media links dynamically from settings
     const dynamicSocials = [];
     if (settings?.githubUrl) {
         dynamicSocials.push({ id: 1, icon: <FaGithub size={20} />, link: settings.githubUrl });

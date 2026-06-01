@@ -1,20 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import projectsData from "../../data/projects.json";
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
+const showCaseData = projectsData as unknown as Project[];
+
 export default function Projects() {
-    const [showCaseData, setShowCaseData] = useState<Project[]>([]);
-
-    useEffect(() => {
-        fetch("/api/projects")
-            .then(res => res.json())
-            .then(setShowCaseData)
-            .catch(console.error);
-    }, []);
-
     return (
         <div className="py-20" id="projects">
             <motion.h1
@@ -50,12 +43,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     const { title, description, image, ghLink, demoLink } = project;
 
     return (
-        <CardContainer className="inter-var group relative overflow-hidden rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] hover:-translate-y-1">
-            <CardBody className="bg-[#04071d] relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border"
-                style={{
-                    backgroundImage: "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-                }}
-            >
+        <CardContainer className="inter-var group relative overflow-hidden rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1">
+            <CardBody className="bg-[#050714]/80 backdrop-blur-2xl relative group/card dark:hover:shadow-2xl border border-white/10 hover:border-cyan-500/50 w-full h-auto rounded-xl p-6">
                 {/* Image */}
                 <CardItem translateZ="50" className="relative w-full h-[30vh] overflow-hidden rounded-xl mt-4">
                     <div className="absolute inset-0 bg-[#13162d]">

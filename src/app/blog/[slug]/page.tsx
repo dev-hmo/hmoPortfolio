@@ -3,6 +3,7 @@ import { useState, useEffect, use } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import type { BlogPost } from "@/types";
+import blogData from "../../../../data/blog.json";
 
 export default function BlogPostPage({
     params,
@@ -14,14 +15,13 @@ export default function BlogPostPage({
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/blog/${slug}`)
-            .then((res) => {
-                if (!res.ok) throw new Error("Not found");
-                return res.json();
-            })
-            .then(setPost)
-            .catch(() => setPost(null))
-            .finally(() => setLoading(false));
+        const found = blogData.find((p: any) => p.slug === slug);
+        if (found) {
+            setPost(found as any);
+        } else {
+            setPost(null);
+        }
+        setLoading(false);
     }, [slug]);
 
     if (loading) {
