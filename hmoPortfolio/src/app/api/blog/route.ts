@@ -1,18 +1,8 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-export const dynamic = "force-dynamic";
+import items from "../../../../data/blog.json";
 
 export async function GET(request: Request) {
     try {
-        const filePath = path.join(process.cwd(), "data", "blog.json");
-        let items = [];
-        if (fs.existsSync(filePath)) {
-            items = JSON.parse(fs.readFileSync(filePath, "utf8"));
-        }
-        
-        // Simple pagination fallback (if requested by URL search params)
         const { searchParams } = new URL(request.url);
         const page = parseInt(searchParams.get("page") || "1");
         const limit = parseInt(searchParams.get("limit") || "10");
