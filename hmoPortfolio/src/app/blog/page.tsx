@@ -22,7 +22,7 @@ export default function BlogPage() {
 
         const res = await fetch(`/api/blog?${params.toString()}`);
         const data = await res.json();
-        setPosts(data);
+        setPosts(data.posts || []);
         setLoading(false);
     };
 

@@ -9,9 +9,9 @@ export async function GET() {
         const filePath = path.join(process.cwd(), "data", "skills.json");
         const fileData = fs.readFileSync(filePath, "utf8");
         const skills = JSON.parse(fileData);
-        return NextResponse.json([skills]); // Frontend expects an array or object, based on original schema
+        return NextResponse.json(skills); // Frontend expects an object with skills and tools arrays
     } catch (error) {
         console.error("Skills GET error:", error);
-        return NextResponse.json([], { status: 500 });
+        return NextResponse.json({}, { status: 500 });
     }
 }
