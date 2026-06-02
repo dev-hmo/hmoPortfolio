@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
 import CustomCursor from '@/components/CustomCursor'
 import Navbar from '@/components/Navbar'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import { LanguageProvider } from '@/context/LanguageContext'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
@@ -20,9 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <body className={`${inter.variable} ${outfit.variable}`}>
-        <CustomCursor />
-        <Navbar />
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <LanguageProvider>
+            <CustomCursor />
+            <Navbar />
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

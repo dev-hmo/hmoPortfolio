@@ -2,11 +2,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MagneticElement from './MagneticElement';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaSun, FaMoon, FaGlobe } from 'react-icons/fa';
+import { useTheme } from 'next-themes';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const { lang, t, toggleLang } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -17,6 +21,16 @@ export default function Navbar() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+
+  const navItems = [
+    { key: 'about', label: t.nav.about },
+    { key: 'services', label: t.nav.services },
+    { key: 'experience', label: t.nav.experience },
+    { key: 'skills', label: t.nav.skills },
+    { key: 'work', label: t.nav.work },
+    { key: 'contact', label: t.nav.contact }
+  ];
 
   return (
     <>
@@ -29,20 +43,31 @@ export default function Navbar() {
             </a>
           </MagneticElement>
 
-          {!isMobile ? (
-            <div className="glass" style={{ padding: '10px 24px', display: 'flex', gap: '24px', borderRadius: '30px' }}>
-              <a href="#about" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>About</a>
-              <a href="#services" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Services</a>
-              <a href="#experience" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Experience</a>
-              <a href="#skills" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Skills</a>
-              <a href="#work" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Work</a>
-              <a href="#contact" className="nav-link" style={{ color: 'white', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Contact</a>
-            </div>
-          ) : (
-            <button onClick={toggleMenu} style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer', zIndex: 70, padding: '10px' }}>
-              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {/* Theme Toggle */}
+            <button onClick={toggleTheme} className="glass" style={{ width: '40px', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%', border: 'none', cursor: 'pointer', color: 'var(--text-primary)' }}>
+              {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
             </button>
-          )}
+            
+            {/* Language Toggle */}
+            <button onClick={toggleLang} className="glass" style={{ height: '40px', padding: '0 12px', display: 'flex', gap: '6px', justifyContent: 'center', alignItems: 'center', borderRadius: '20px', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>
+              <FaGlobe size={16} /> {lang.toUpperCase()}
+            </button>
+
+            {!isMobile ? (
+              <div className="glass" style={{ padding: '10px 24px', display: 'flex', gap: '24px', borderRadius: '30px' }}>
+                {navItems.map(item => (
+                  <a key={item.key} href={`#${item.key}`} className="nav-link" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <button onClick={toggleMenu} style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', zIndex: 70, padding: '8px' }}>
+                {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            )}
+          </div>
         </div>
       </nav>
 
@@ -60,7 +85,7 @@ export default function Navbar() {
               left: 0,
               width: '100%',
               height: '100vh',
-              background: 'rgba(5, 5, 5, 0.98)',
+              background: 'var(--bg-color)',
               backdropFilter: 'blur(20px)',
               zIndex: 55,
               display: 'flex',
@@ -70,16 +95,16 @@ export default function Navbar() {
               gap: '2.5rem'
             }}
           >
-            {['About', 'Services', 'Experience', 'Skills', 'Work', 'Contact'].map((item, i) => (
+            {navItems.map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.key}
+                href={`#${item.key}`}
                 onClick={closeMenu}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i }}
                 style={{
-                  color: 'white',
+                  color: 'var(--text-primary)',
                   textDecoration: 'none',
                   fontSize: '2.5rem',
                   fontWeight: 700,
@@ -87,7 +112,7 @@ export default function Navbar() {
                   letterSpacing: '2px'
                 }}
               >
-                {item}
+                {item.label}
               </motion.a>
             ))}
           </motion.div>

@@ -1,29 +1,32 @@
 'use client';
 import TiltCard from './TiltCard';
 import { FaLaptopCode, FaProjectDiagram, FaUserShield } from 'react-icons/fa';
-
-const services = [
-  {
-    title: 'Frontend Development',
-    desc: 'Crafting visually stunning, high-performance web applications using React, Next.js, and complex 3D WebGL interactions.',
-    icon: FaLaptopCode,
-    color: 'var(--accent-cyan)'
-  },
-  {
-    title: 'Project Management',
-    desc: 'Leading cross-functional teams, managing timelines, requirements, and delivering enterprise software solutions efficiently.',
-    icon: FaProjectDiagram,
-    color: 'var(--accent-purple)'
-  },
-  {
-    title: 'Security Project Coordination',
-    desc: 'Managing and coordinating complex cyber security assessment projects, ensuring seamless communication between security teams and enterprise clients.',
-    icon: FaUserShield,
-    color: 'var(--accent-pink)'
-  }
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Services() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      title: t.services.s1,
+      desc: t.services.s1Desc,
+      icon: FaLaptopCode,
+      color: 'var(--accent-cyan)'
+    },
+    {
+      title: t.services.s2,
+      desc: t.services.s2Desc,
+      icon: FaProjectDiagram,
+      color: 'var(--accent-purple)'
+    },
+    {
+      title: t.services.s3,
+      desc: t.services.s3Desc,
+      icon: FaUserShield,
+      color: 'var(--accent-pink)'
+    }
+  ];
+
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem' }}>
       {services.map((svc, index) => (

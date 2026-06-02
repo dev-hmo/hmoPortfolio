@@ -1,3 +1,4 @@
+'use client';
 import ThreeBackground from '@/components/ThreeBackground';
 import TiltCard from '@/components/TiltCard';
 import Timeline from '@/components/Timeline';
@@ -10,8 +11,11 @@ import RotatingText from '@/components/RotatingText';
 import StatsCounter from '@/components/StatsCounter';
 import Services from '@/components/Services';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <main>
       <ThreeBackground />
@@ -20,23 +24,23 @@ export default function Home() {
       <section id="hero" style={{ height: '100vh', display: 'flex', alignItems: 'center', position: 'relative' }}>
         <div className="container" style={{ textAlign: 'center', zIndex: 10 }}>
           <TextReveal 
-            text="Hlaing Min Oo" 
-            style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', marginBottom: '0.5rem', textShadow: '0 0 20px rgba(0,240,255,0.3)', letterSpacing: '-0.02em', lineHeight: 1.1, fontWeight: 700 }}
+            text={t.hero.title} 
+            style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', marginBottom: '0.5rem', textShadow: '0 0 20px var(--accent-cyan)', letterSpacing: '-0.02em', lineHeight: 1.1, fontWeight: 700 }}
           />
           <RotatingText />
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 2.5rem auto', lineHeight: 1.6 }}>
-            Detail-oriented and technically grounded Project Coordinator with a strong background in frontend web development and extensive experience in end-to-end software project management.
+            {t.hero.subtitle}
           </p>
           <MagneticElement>
             <a href="#work" style={{ textDecoration: 'none' }}>
-              <button className="btn-primary" style={{ boxShadow: '0 0 30px rgba(138, 43, 226, 0.5)' }}>View My Work</button>
+              <button className="btn-primary" style={{ boxShadow: '0 0 30px var(--accent-purple)' }}>{t.nav.work}</button>
             </a>
           </MagneticElement>
         </div>
       </section>
 
       {/* Impact Stats */}
-      <section style={{ padding: '40px 0', position: 'relative', zIndex: 10, background: 'rgba(0,0,0,0.5)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
+      <section style={{ padding: '40px 0', position: 'relative', zIndex: 10, background: 'var(--glass-bg)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
         <div className="container">
           <StatsCounter />
         </div>
@@ -46,10 +50,10 @@ export default function Home() {
       <section id="services" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1rem' }}>
-            Core <span className="text-gradient">Services</span>
+            {t.services.title1} <span className="text-gradient">{t.services.title2}</span>
           </h2>
           <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: 'clamp(2rem, 5vw, 4rem)', fontSize: 'clamp(1rem, 2vw, 1.1rem)' }}>
-            Multi-disciplinary expertise to drive your digital products forward.
+            {t.services.desc}
           </p>
           <Services />
         </div>
@@ -61,10 +65,10 @@ export default function Home() {
           <div style={{ flex: '1 1 400px' }}>
             <TiltCard style={{ padding: '3rem', height: '100%' }}>
               <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginBottom: '1.5rem' }}>
-                My <span className="text-gradient">Background</span>
+                {t.about.title1} <span className="text-gradient">{t.about.title2}</span>
               </h2>
               <p style={{ fontSize: 'clamp(1rem, 2vw, 1.1rem)', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-                Proven track record of aligning internal cross-functional teams and bridging communication with external high-profile corporate clients. Adept at requirement gathering, timeline tracking, UI/UX wireframing, and rigorous QA/UAT testing to deliver secure, high-quality enterprise solutions.
+                {t.about.desc}
               </p>
             </TiltCard>
           </div>
@@ -82,8 +86,8 @@ export default function Home() {
       {/* Experience Timeline */}
       <section id="experience" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '4rem' }}>
-            My <span className="text-gradient">Journey</span>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '4rem' }}>
+            {t.experience.title1} <span className="text-gradient">{t.experience.title2}</span>
           </h2>
           <Timeline />
         </div>
@@ -93,10 +97,10 @@ export default function Home() {
       <section id="skills" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
           <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: 'clamp(2rem, 5vw, 4rem)' }}>
-            Tech <span className="text-gradient">Arsenal</span>
+            {t.skills.title1} <span className="text-gradient">{t.skills.title2}</span>
           </h2>
           <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '4rem', fontSize: '1.1rem' }}>
-            The tools and technologies I use to bring ideas to life.
+            {t.skills.desc}
           </p>
           <TechShowcase />
         </div>
@@ -105,8 +109,8 @@ export default function Home() {
       {/* Projects Section */}
       <section id="work" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '4rem' }}>
-            Featured <span className="text-gradient">Projects</span>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '4rem' }}>
+            {t.work.title1} <span className="text-gradient">{t.work.title2}</span>
           </h2>
           
           <ProjectShowcase />
@@ -114,10 +118,10 @@ export default function Home() {
       </section>
 
       {/* Footer / Contact */}
-      <section id="contact" style={{ padding: '120px 0 80px 0', position: 'relative', zIndex: 10, background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)' }}>
+      <section id="contact" style={{ padding: '120px 0 80px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '1.5rem' }}>Let's Create Something <span className="text-gradient">Amazing</span></h2>
-          <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '4rem', fontSize: '1.2rem' }}>Ready to take your digital presence to the next dimension?</p>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1.5rem' }}>{t.contact.title1} <span className="text-gradient">{t.contact.title2}</span></h2>
+          <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '4rem', fontSize: '1.2rem' }}>{t.contact.desc}</p>
           
           <ContactForm />
           
@@ -130,7 +134,7 @@ export default function Home() {
             </MagneticElement>
           </div>
           
-          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.9rem', textAlign: 'center' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textAlign: 'center' }}>
             © 2026 Hlaing Min Oo. Designed with passion.
           </p>
         </div>
