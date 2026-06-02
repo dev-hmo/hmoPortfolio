@@ -1,9 +1,10 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, MeshDistortMaterial, Stars } from '@react-three/drei';
+import { Float, MeshDistortMaterial, Stars, Sparkles } from '@react-three/drei';
+import { useTheme } from 'next-themes';
 
-function AnimatedSphere({ mousePosition }: { mousePosition: { x: number, y: number } }) {
+function AnimatedSphere({ mousePosition, theme }: { mousePosition: { x: number, y: number }, theme: string | undefined }) {
   const meshRef = useRef<any>(null);
   
   useFrame((state) => {
@@ -18,12 +19,15 @@ function AnimatedSphere({ mousePosition }: { mousePosition: { x: number, y: numb
     }
   });
 
+  // Light mode gets a bright cyan/blue sphere, dark mode gets deep purple
+  const color = theme === 'light' ? '#0ea5e9' : '#8a2be2'; 
+
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
       <mesh ref={meshRef} scale={1.5}>
         <icosahedronGeometry args={[1, 4]} />
         <MeshDistortMaterial 
-          color="#8a2be2" 
+          color={color} 
           attach="material" 
           distort={0.4} 
           speed={2} 
@@ -37,8 +41,11 @@ function AnimatedSphere({ mousePosition }: { mousePosition: { x: number, y: numb
 
 export default function ThreeBackground() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 2 - 1,
@@ -49,14 +56,39 @@ export default function ThreeBackground() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  if (!mounted) {
+    return <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, background: 'var(--canvas-bg)' }} />;
+  }
+
+  const isLight = resolvedTheme === 'light';
+
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, background: 'var(--canvas-bg)' }}>
       <Canvas camera={{ position: [0, 0, 5] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} color="#00f0ff" />
-        <directionalLight position={[-10, -10, -5]} intensity={1} color="#ff0055" />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        <AnimatedSphere mousePosition={mousePosition} />
+        <ambientLight intensity={isLight ? 0.8 : 0.5} />
+        
+        {isLight ? (
+          <>
+            {/* Daytime Lighting */}
+            <directionalLight position={[10, 10, 5]} intensity={1.5} color="#fbbf24" /> {/* Sun-like golden yellow */}
+            <directionalLight position={[-10, -10, -5]} intensity={1} color="#0ea5e9" /> {/* Sky blue fill */}
+            
+            {/* Daytime Universe Dust (Golden and Purple Sparkles) */}
+            <Sparkles count={1500} scale={20} size={3} speed={0.5} opacity={0.4} color="#7c3aed" />
+            <Sparkles count={1000} scale={15} size={2} speed={0.8} opacity={0.3} color="#f59e0b" />
+          </>
+        ) : (
+          <>
+            {/* Nighttime Lighting */}
+            <directionalLight position={[10, 10, 5]} intensity={1} color="#00f0ff" />
+            <directionalLight position={[-10, -10, -5]} intensity={1} color="#ff0055" />
+            
+            {/* Nighttime Stars */}
+            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+          </>
+        )}
+        
+        <AnimatedSphere mousePosition={mousePosition} theme={resolvedTheme} />
       </Canvas>
     </div>
   );
