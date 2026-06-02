@@ -267,3 +267,25 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-cyan);
 }
 .form-submit { width: 100%; padding: 16px; font-size: 1.2rem; }
+
+/* Mobile Responsiveness Enhancements */
+@media screen and (max-width: 768px) {
+  /* Typography */
+  h1 { font-size: 3rem !important; }
+  h2 { font-size: 2rem !important; }
+  p { font-size: 1rem !important; }
+
+  /* Layout */
+  .container { padding: 0 16px; }
+  section { padding: 60px 0 !important; }
+  
+  /* Hero Section specifically */
+  #hero { height: auto !important; min-height: 100vh; padding-top: 100px !important; }
+  #hero h1 { font-size: 3.2rem !important; line-height: 1.2 !important; }
+  
+  /* Projects Tabs */
+  .projects-wrapper button { padding: 8px 16px !important; font-size: 0.9rem !important; }
+  
+  /* Contact Form */
+  .contact-form-wrapper { padding: 24px; }
+}

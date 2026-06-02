@@ -117,7 +117,7 @@ export default function ProjectShowcase() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}
             >
               {managementProjects.map((item, index) => (
                 <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(138,43,226,0.05), rgba(0,0,0,0.6))', borderTop: '2px solid var(--accent-purple)' }}>
@@ -143,7 +143,7 @@ export default function ProjectShowcase() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}
             >
               {securityProjects.map((item, index) => (
                 <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(255,0,85,0.05), rgba(0,0,0,0.6))', borderTop: '2px solid var(--accent-pink)' }}>
