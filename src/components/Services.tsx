@@ -30,7 +30,7 @@ export default function Services() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem' }}>
       {services.map((svc, index) => (
-        <TiltCard key={index} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', background: `linear-gradient(135deg, ${svc.color}15, rgba(0,0,0,0.6))` }}>
+        <TiltCard key={index} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', background: `linear-gradient(135deg, ${svc.color}15, var(--card-bg-solid))` }}>
           <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: `${svc.color}20`, color: svc.color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', boxShadow: `0 0 20px ${svc.color}40` }}>
             <svc.icon size={30} />
           </div>

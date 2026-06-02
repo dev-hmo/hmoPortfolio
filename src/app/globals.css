@@ -11,6 +11,10 @@
   --glass-border: rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   
+  --canvas-bg: radial-gradient(circle at center, #e0e7ff 0%, #f5f7fa 100%);
+  --card-bg-solid: rgba(255, 255, 255, 0.75);
+  --input-bg: rgba(255, 255, 255, 0.8);
+  
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
 }
@@ -27,6 +31,10 @@
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --canvas-bg: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+  --card-bg-solid: rgba(0, 0, 0, 0.6);
+  --input-bg: rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -254,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-group input, .form-group textarea {
   width: 100%;
   padding: 16px;
-  background: rgba(0,0,0,0.3);
+  background: var(--input-bg);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   color: var(--text-primary);

@@ -87,7 +87,7 @@ export default function ProjectShowcase() {
               style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}
             >
               {frontendProjects.map((item, index) => (
-                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(0,240,255,0.05), rgba(0,0,0,0.6))', borderTop: '2px solid var(--accent-cyan)' }}>
+                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(0,240,255,0.05), var(--card-bg-solid))', borderTop: '2px solid var(--accent-cyan)' }}>
                   <div>
                     <div style={{ marginBottom: '1.5rem', width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(0,240,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-cyan)' }}>
                       <FaCode size={24} />
@@ -95,7 +95,7 @@ export default function ProjectShowcase() {
                     <h4 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{item.name}</h4>
                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
                       {item.tags.map(tag => (
-                        <span key={tag} style={{ fontSize: '0.75rem', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', color: 'var(--accent-cyan)' }}>{tag}</span>
+                        <span key={tag} style={{ fontSize: '0.75rem', padding: '6px 12px', background: 'var(--glass-bg)', borderRadius: '20px', color: 'var(--accent-cyan)' }}>{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -120,12 +120,12 @@ export default function ProjectShowcase() {
               style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}
             >
               {managementProjects.map((item, index) => (
-                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(138,43,226,0.05), rgba(0,0,0,0.6))', borderTop: '2px solid var(--accent-purple)' }}>
+                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(138,43,226,0.05), var(--card-bg-solid))', borderTop: '2px solid var(--accent-purple)' }}>
                   <div style={{ marginBottom: '1.5rem', width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(138,43,226,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-purple)' }}>
                     <FaTasks size={24} />
                   </div>
                   <h4 style={{ fontSize: '1.4rem', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{item.name}</h4>
-                  <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', marginBottom: '1rem', borderLeft: '3px solid var(--accent-purple)' }}>
+                  <div style={{ padding: '1rem', background: 'var(--glass-bg)', borderRadius: '8px', marginBottom: '1rem', borderLeft: '3px solid var(--accent-purple)' }}>
                     <p style={{ color: 'var(--accent-purple)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Client</p>
                     <p style={{ color: 'var(--text-primary)', fontSize: '1rem' }}>{item.client}</p>
                   </div>
@@ -146,17 +146,17 @@ export default function ProjectShowcase() {
               style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}
             >
               {securityProjects.map((item, index) => (
-                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(255,0,85,0.05), rgba(0,0,0,0.6))', borderTop: '2px solid var(--accent-pink)' }}>
+                <TiltCard key={index} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%', minHeight: '260px', background: 'linear-gradient(135deg, rgba(255,0,85,0.05), var(--card-bg-solid))', borderTop: '2px solid var(--accent-pink)' }}>
                   <div style={{ marginBottom: '1.5rem', width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(255,0,85,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-pink)', boxShadow: '0 0 20px rgba(255,0,85,0.2)' }}>
                     <FaShieldAlt size={24} />
                   </div>
                   <h4 style={{ fontSize: '1.3rem', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{item.name}</h4>
                   
-                  <div style={{ padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', display: 'inline-block', marginBottom: '1.5rem', alignSelf: 'flex-start', border: '1px solid rgba(255,0,85,0.3)' }}>
+                  <div style={{ padding: '0.5rem 1rem', background: 'var(--glass-bg)', borderRadius: '20px', display: 'inline-block', marginBottom: '1.5rem', alignSelf: 'flex-start', border: '1px solid rgba(255,0,85,0.3)' }}>
                     <span style={{ color: 'var(--accent-pink)', fontSize: '0.8rem', fontWeight: 600 }}>Role:</span> <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Project Coordinator</span>
                   </div>
 
-                  <div style={{ marginTop: 'auto', padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid var(--accent-pink)' }}>
+                  <div style={{ marginTop: 'auto', padding: '1rem', background: 'var(--glass-bg)', borderRadius: '8px', borderLeft: '3px solid var(--accent-pink)' }}>
                     <p style={{ color: 'var(--accent-pink)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.25rem' }}>Client</p>
                     <p style={{ color: 'var(--text-primary)', fontSize: '0.95rem' }}>{item.client}</p>
                   </div>
