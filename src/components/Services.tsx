@@ -1,70 +1,40 @@
-"use client";
+'use client';
+import TiltCard from './TiltCard';
+import { FaLaptopCode, FaProjectDiagram, FaUserShield } from 'react-icons/fa';
 
-import servicesData from "../../data/services.json";
-import { useRef, useEffect } from "react";
-import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import { Code, Database, LayoutTemplate, Zap } from "lucide-react";
-import type { ServiceItem } from "@/types";
-import { animate, stagger } from "animejs";
-import { useInView } from "framer-motion";
-
-const services = servicesData as unknown as ServiceItem[];
+const services = [
+  {
+    title: 'Frontend Development',
+    desc: 'Crafting visually stunning, high-performance web applications using React, Next.js, and complex 3D WebGL interactions.',
+    icon: FaLaptopCode,
+    color: 'var(--accent-cyan)'
+  },
+  {
+    title: 'Project Management',
+    desc: 'Leading cross-functional teams, managing timelines, requirements, and delivering enterprise software solutions efficiently.',
+    icon: FaProjectDiagram,
+    color: 'var(--accent-purple)'
+  },
+  {
+    title: 'Security Project Coordination',
+    desc: 'Managing and coordinating complex cyber security assessment projects, ensuring seamless communication between security teams and enterprise clients.',
+    icon: FaUserShield,
+    color: 'var(--accent-pink)'
+  }
+];
 
 export default function Services() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-50px" });
-
-    useEffect(() => {
-        if (isInView && services.length > 0) {
-            animate(".service-card", {
-                translateY: [100, 0],
-                opacity: [0, 1],
-                scale: [0.9, 1],
-                delay: stagger(150),
-                ease: "outElastic(1, .8)",
-                duration: 1200,
-            });
-        }
-    }, [isInView]);
-
-    return (
-        <section id="services" className="py-20 w-full" ref={containerRef}>
-            <h1 className="heading text-center text-3xl md:text-5xl font-bold mb-16 text-neutral-200">
-                My <span className="text-cyan-500">Expertise</span>
-            </h1>
-
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {services.map((item, i) => (
-                    <div
-                        key={i}
-                        className="service-card opacity-0"
-                    >
-                        <CardContainer className="inter-var group relative w-full h-full">
-                            <CardBody
-                                className="flex flex-col h-full w-full p-6 rounded-2xl transition-all duration-500 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] hover:shadow-[0_0_40px_-5px_rgba(6,182,212,0.4)] border border-white/10 hover:border-cyan-500/50 bg-[#050714]/80 backdrop-blur-2xl"
-                            >
-                                <CardItem translateZ="50" className="w-full h-full flex flex-col">
-                                    <div className="mb-4">
-                                        {item.icon === "Code" ? (
-                                            <Code className="h-8 w-8 text-cyan-500" />
-                                        ) : item.icon === "Database" ? (
-                                            <Database className="h-8 w-8 text-cyan-500" />
-                                        ) : item.icon === "LayoutTemplate" ? (
-                                            <LayoutTemplate className="h-8 w-8 text-cyan-500" />
-                                        ) : (
-                                            <Zap className="h-8 w-8 text-cyan-500" />
-                                        )}
-                                    </div>
-                                    <h3 className="mb-2 text-xl font-bold text-white">{item.title}</h3>
-                                    <p className="text-sm text-neutral-400 leading-relaxed font-light">
-                                        {item.description}
-                                    </p>
-                                </CardItem>
-                            </CardBody>
-                        </CardContainer>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
+      {services.map((svc, index) => (
+        <TiltCard key={index} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', background: `linear-gradient(135deg, ${svc.color}15, rgba(0,0,0,0.6))` }}>
+          <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: `${svc.color}20`, color: svc.color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', boxShadow: `0 0 20px ${svc.color}40` }}>
+            <svc.icon size={30} />
+          </div>
+          <h3 style={{ fontSize: '1.6rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>{svc.title}</h3>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '1rem' }}>{svc.desc}</p>
+        </TiltCard>
+      ))}
+    </div>
+  );
 }
