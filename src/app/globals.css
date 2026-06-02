@@ -268,24 +268,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-submit { width: 100%; padding: 16px; font-size: 1.2rem; }
 
-/* Mobile Responsiveness Enhancements */
+/* Universal Fluid Adjustments */
 @media screen and (max-width: 768px) {
-  /* Typography */
-  h1 { font-size: 3rem !important; }
-  h2 { font-size: 2rem !important; }
-  p { font-size: 1rem !important; }
+  /* Timeline fixes for mobile */
+  .timeline-container::after { left: 31px; }
+  .timeline-item { width: 100%; padding-left: 70px; padding-right: 20px; text-align: left !important; }
+  .timeline-item.left, .timeline-item.right { left: 0; }
+  .timeline-item.left .timeline-dot, .timeline-item.right .timeline-dot { left: 21px; }
 
-  /* Layout */
-  .container { padding: 0 16px; }
-  section { padding: 60px 0 !important; }
+  /* Layout tweaks */
+  .container { padding: 0 5vw; }
+  section { padding: clamp(40px, 10vw, 80px) 0 !important; }
   
   /* Hero Section specifically */
-  #hero { height: auto !important; min-height: 100vh; padding-top: 100px !important; }
-  #hero h1 { font-size: 3.2rem !important; line-height: 1.2 !important; }
+  #hero { height: auto !important; min-height: 100vh; padding-top: clamp(80px, 15vw, 120px) !important; }
   
   /* Projects Tabs */
-  .projects-wrapper button { padding: 8px 16px !important; font-size: 0.9rem !important; }
+  .projects-wrapper button { padding: 8px clamp(10px, 2vw, 16px) !important; font-size: clamp(0.8rem, 1.5vw, 0.9rem) !important; }
   
   /* Contact Form */
-  .contact-form-wrapper { padding: 24px; }
+  .contact-form-wrapper { padding: 5vw; }
 }

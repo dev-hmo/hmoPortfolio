@@ -21,7 +21,7 @@ export default function Home() {
         <div className="container" style={{ textAlign: 'center', zIndex: 10 }}>
           <TextReveal 
             text="Hlaing Min Oo" 
-            style={{ fontSize: '4.5rem', marginBottom: '0.5rem', textShadow: '0 0 20px rgba(0,240,255,0.3)', letterSpacing: '-0.02em', lineHeight: 1.1, fontWeight: 700 }}
+            style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', marginBottom: '0.5rem', textShadow: '0 0 20px rgba(0,240,255,0.3)', letterSpacing: '-0.02em', lineHeight: 1.1, fontWeight: 700 }}
           />
           <RotatingText />
           <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 2.5rem auto', lineHeight: 1.6 }}>
@@ -45,10 +45,10 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1rem' }}>
             Core <span className="text-gradient">Services</span>
           </h2>
-          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '4rem', fontSize: '1.1rem' }}>
+          <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: 'clamp(2rem, 5vw, 4rem)', fontSize: 'clamp(1rem, 2vw, 1.1rem)' }}>
             Multi-disciplinary expertise to drive your digital products forward.
           </p>
           <Services />
@@ -60,8 +60,10 @@ export default function Home() {
         <div className="container" style={{ display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
           <div style={{ flex: '1 1 400px' }}>
             <TiltCard style={{ padding: '3rem', height: '100%' }}>
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Driving Project <span className="text-gradient">Success</span></h2>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginBottom: '1.5rem' }}>
+                My <span className="text-gradient">Background</span>
+              </h2>
+              <p style={{ fontSize: 'clamp(1rem, 2vw, 1.1rem)', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1.5rem' }}>
                 Proven track record of aligning internal cross-functional teams and bridging communication with external high-profile corporate clients. Adept at requirement gathering, timeline tracking, UI/UX wireframing, and rigorous QA/UAT testing to deliver secure, high-quality enterprise solutions.
               </p>
             </TiltCard>
@@ -90,7 +92,7 @@ export default function Home() {
       {/* Skills / Tech Showcase */}
       <section id="skills" style={{ padding: '100px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: '3.5rem', textAlign: 'center', marginBottom: '2rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: 'clamp(2rem, 5vw, 4rem)' }}>
             Tech <span className="text-gradient">Arsenal</span>
           </h2>
           <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '4rem', fontSize: '1.1rem' }}>
