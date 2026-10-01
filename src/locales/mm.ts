@@ -1,20 +1,27 @@
 export const mm = {
   nav: { about: 'အကြောင်း', services: 'ဝန်ဆောင်မှု', experience: 'အတွေ့အကြုံ', skills: 'ကျွမ်းကျင်မှု', work: 'ပရောဂျက်', contact: 'ဆက်သွယ်ရန်' },
-  hero: { title: 'လှိုင်မင်းဦး', subtitle: 'Frontend Web Development နောက်ခံကောင်းမွန်ပြီး ဆော့ဖ်ဝဲလ် ပရောဂျက် စီမံခန့်ခွဲမှု အစမှအဆုံး (End-to-end) ကျွမ်းကျင်စွာ လုပ်ဆောင်နိုင်သော အသေးစိတ်ကို ဂရုစိုက်သည့် ပရောဂျက် ညှိနှိုင်းရေးမှူး (Project Coordinator) ဖြစ်ပါသည်။' },
+  hero: { 
+    title: 'လှိုင်မင်းဦး', 
+    subtitle: 'React နှင့် Next.js အတွေ့အကြုံရှိသော Junior Software Tester တစ်ဦးဖြစ်ပါသည်။ Web Application များကို စမ်းသပ်ခြင်း၊ Postman ဖြင့် API Response များ စစ်ဆေးခြင်းနှင့် Jira/ClickUp ဖြင့် Bug Report များ ရေးသားခြေရာခံခြင်းတို့ကို အဓိက လုပ်ဆောင်ပါသည်။' 
+  },
   stats: { years: 'နှစ် အတွေ့အကြုံ', projects: 'ပြီးစီးခဲ့သော ပရောဂျက်များ', clients: 'လက်တွဲခဲ့သော ကုမ္ပဏီများ', certs: 'ရရှိထားသော အောင်လက်မှတ်များ' },
   services: {
     title1: 'အဓိက ', title2: 'ဝန်ဆောင်မှုများ',
-    desc: 'သင့်ရဲ့ ဒစ်ဂျစ်တယ် ထုတ်ကုန်တွေကို ရှေ့ဆက်တွန်းတင်ဖို့ ဘက်စုံ ကျွမ်းကျင်မှုများ။',
-    s1: 'Frontend Development', s1Desc: 'React နဲ့ Next.js လို ခေတ်မီ Framework တွေ သုံးပြီး မြန်ဆန်သွက်လက်၊ Animation အပြည့်နဲ့ Scalable ဖြစ်တဲ့ Web UI တွေ တည်ဆောက်ခြင်း။',
-    s2: 'Project Management', s2Desc: 'အချိန်မီ ပြီးစီးရေး၊ ဘတ်ဂျက် ကိုက်ညီရေးနဲ့ Stakeholder တွေ စိတ်ကျေနပ်မှု ရရှိရေးအတွက် ဆော့ဖ်ဝဲလ် ပရောဂျက် Lifecycle တစ်ခုလုံးကို စီမံခန့်ခွဲခြင်း။',
-    s3: 'Security Project Coordination', s3Desc: 'Security Team တွေနဲ့ Enterprise Client တွေကြား ချောမွေ့စွာ ဆက်သွယ်နိုင်အောင် ကြီးကြပ်ပြီး ရှုပ်ထွေးတဲ့ Cyber Security Assessment ပရောဂျက်တွေကို စီမံခန့်ခွဲခြင်း။'
+    desc: 'Web နှင့် Mobile Application များအတွက် Manual QA Testing၊ Frontend Debugging နှင့် API စစ်ဆေးခြင်း ဝန်ဆောင်မှုများ။',
+    s1: 'Quality Assurance & UAT', 
+    s1Desc: 'Manual Test Case များ စမ်းသပ်စစ်ဆေးခြင်း၊ ပြဿနာဖြစ်ပေါ်သည့် အဆင့်များ (Steps to Reproduce) တိကျစွာဖော်ပြပြီး Jira နှင့် ClickUp တွင် Bug Report ရေးသားခြင်း။',
+    s2: 'Frontend Development & Debugging', 
+    s2Desc: 'React/Next.js Interface များကို ပြင်ဆင် Debug လုပ်ခြင်း၊ Device အားလုံးတွင် UI ချောမွေ့စွာ ပြသနိုင်ရန် Cross-browser Testing ပြုလုပ်ခြင်း။',
+    s3: 'Technical Support & API Testing', 
+    s3Desc: 'Postman ဖြင့် REST API Endpoint များကို စစ်ဆေးခြင်း၊ System Error Log များကို ဖတ်ရှုစစ်ဆေးခြင်းနှင့် Technical Support ပေးခြင်း။'
   },
   about: {
     title1: 'ကျွန်တော့်ရဲ့ ', title2: 'နောက်ခံသမိုင်း',
-    desc: 'ကုမ္ပဏီတွင်း Team တွေကို ချိတ်ဆက်ညှိနှိုင်းပေးခြင်းနဲ့ အပြင်က High-profile Client တွေနဲ့ ဆက်သွယ်ဆောင်ရွက်ပေးခြင်းတို့မှာ အောင်မြင်တဲ့ မှတ်တမ်းကောင်းတွေ ရှိပါတယ်။ လုံခြုံပြီး အရည်အသွေးမြင့်တဲ့ Enterprise Solution တွေ ထုတ်လုပ်နိုင်ဖို့ Requirement ယူခြင်း၊ အချိန်ဇယား ဆွဲခြင်း၊ UI/UX Wireframe ဆွဲခြင်းနဲ့ တိကျတဲ့ QA/UAT Testing တွေမှာ ကျွမ်းကျင်ပါတယ်။'
+    desc: 'Frontend Web Development နှင့် QA Testing အတွေ့အကြုံများ ရှိပါသည်။ React နှင့် JavaScript ရေးသားတတ်သောကြောင့် UI Component၊ State နှင့် API ချိတ်ဆက်မှုများတွင် ဖြစ်ပေါ်တတ်သော အမှားများကို လျင်မြန်စွာ ရှာဖွေနိုင်ပြီး Developer များနှင့် ထိရောက်စွာ ပူးပေါင်းဖြေရှင်းနိုင်ပါသည်။'
   },
-  experience: { title1: 'လုပ်ငန်းခွင် ', title2: 'ဖြတ်သန်းမှု', desc: 'နည်းပညာ နယ်ပယ်အသီးသီးမှာ ဖြတ်သန်းခဲ့တဲ့ ကျွန်တော့်ရဲ့ လုပ်ငန်းအတွေ့အကြုံများ။' },
-  skills: { title1: 'ကျွမ်းကျင်သော ', title2: 'နည်းပညာများ', desc: 'စိတ်ကူးတွေကို လက်တွေ့ဖြစ်လာအောင် ဖန်တီးပေးတဲ့ Tool နဲ့ နည်းပညာများ။' },
-  work: { title1: 'ထင်ရှားသော ', title2: 'လက်ရာများ', desc: 'နယ်ပယ်အသီးသီးက ကျွန်တော် ဖန်တီးခဲ့တဲ့ အကောင်းဆုံး ပရောဂျက်များ။' },
-  contact: { title1: 'ဆက်သွယ် ', title2: 'ဆွေးနွေးရန်', desc: 'ပရောဂျက် အသစ်တွေ စတင်ဖို့ အဆင်သင့်ဖြစ်ပြီလား? အခုပဲ ဆက်သွယ်လိုက်ပါ။' }
+  experience: { title1: 'လုပ်ငန်းခွင် ', title2: 'ဖြတ်သန်းမှု', desc: 'Software Testing၊ Project Coordination နှင့် Frontend Development လုပ်ငန်းခွင် ဖြတ်သန်းမှုများ။' },
+  skills: { title1: 'ကျွမ်းကျင်သော ', title2: 'နည်းပညာများ', desc: 'စမ်းသပ်စစ်ဆေးခြင်းနှင့် ရေးသားတည်ဆောက်ရာတွင် အသုံးပြုသော Tool များနှင့် နည်းပညာများ။' },
+  work: { title1: 'ထင်ရှားသော ', title2: 'လက်ရာများ', desc: 'Manual QA Testing၊ Web Development နှင့် Cyber Security Coordination ပရောဂျက်များ။' },
+  contact: { title1: 'ဆက်သွယ် ', title2: 'ဆွေးနွေးရန်', desc: 'Junior Software Tester နှင့် Frontend Support အလုပ်အခွင့်အလမ်းများအတွက် တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်။' }
 };
+

@@ -3,34 +3,34 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    year: "DEC 2025 - PRESENT",
-    title: "Project Coordinator",
+    year: "AUG 2026 - PRESENT",
+    title: "Freelance QA Tester & Frontend Developer",
+    company: "Self-Employed / Freelance",
+    description: "Currently taking on freelance web projects focusing on end-to-end UAT, identifying UI/UX defects, and providing React/Next.js debugging support while pursuing my BSc in IT."
+  },
+  {
+    year: "DEC 2025 - JUL 2026",
+    title: "Project Coordinator (QA & Delivery)",
     company: "RITZ Cyber Intelligence Co., Ltd",
-    description: "Cross-functional Team Coordination, External Client & Stakeholder Management, Requirement Gathering & Scope Management, Product UI/UX & QA Testing, Project Tracking & Documentation."
+    description: "Coordinated QA workflows across security assessment projects, executing functional and regression testing while tracking defects in ClickUp to ensure on-time, zero-critical-bug releases."
+  },
+  {
+    year: "MAY 2025 - JUL 2025",
+    title: "Intern React Developer",
+    company: "NK Software House",
+    description: "Built and debugged responsive React.js components, performed cross-browser testing, and collaborated with senior developers to resolve UI rendering issues before production deployment."
   },
   {
     year: "NOV 2024 - OCT 2025",
-    title: "IT Support Specialist / System Analyst",
+    title: "IT Support Specialist & QA Support",
     company: "Infinity Success Co., Ltd",
-    description: "Provided daily IT support, managed software installations and backups, assisted development teams with system testing and drafting technical documentation."
+    description: "Conducted end-to-end system testing for fintech platforms, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
   },
   {
     year: "MAY 2024 - SEP 2024",
-    title: "Software UAT Test Team Lead / IT Support",
+    title: "Software UAT Test Team Lead",
     company: "App.com.mm Co., Ltd",
-    description: "Led User Acceptance Testing (UAT) phase for multiple web and mobile applications. Identified, tracked, and reported UI/UX bugs and performance issues."
-  },
-  {
-    year: "APRIL 2023 - MAY 2024",
-    title: "Junior Network Administrator",
-    company: "CGM Goldenland Co., Ltd",
-    description: "Monitored and maintained internal office network systems, active servers, and hardware inventory."
-  },
-  {
-    year: "NOV 2020 - MAY 2022",
-    title: "Computer Service Technician",
-    company: "Tech Ace Computer & Gaming",
-    description: "Diagnosed hardware issues, assembled custom PCs, and handled OS/essential software installations."
+    description: "Led a UAT team testing web and mobile applications, authored detailed bug reports with reproduction steps, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
   }
 ];
 

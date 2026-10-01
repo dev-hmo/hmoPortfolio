@@ -1,38 +1,32 @@
 [
     {
-        "title": "Project Coordinator",
-        "company": "RITZ",
-        "date": "Dec 2025 - Present",
-        "description": "Orchestrating technical project timelines and steering cross-functional teams to deliver high-impact digital solutions on schedule."
+        "title": "Freelance QA Tester & Frontend Developer",
+        "company": "Self-Employed / Freelance",
+        "date": "Aug 2026 - Present",
+        "description": "Currently taking on freelance web projects focusing on end-to-end UAT, identifying UI/UX defects, and providing React/Next.js debugging support while pursuing my BSc in IT."
+    },
+    {
+        "title": "Project Coordinator (QA & Delivery)",
+        "company": "RITZ Cyber Intelligence Co., Ltd",
+        "date": "Dec 2025 - Jul 2026",
+        "description": "Coordinated QA workflows across security assessment projects, executing functional and regression testing while tracking defects in ClickUp to ensure on-time, zero-critical-bug releases."
     },
     {
         "title": "Intern React Developer",
         "company": "NK Software House",
         "date": "May 2025 - Jul 2025",
-        "description": "Developed and optimized high-performance UI components using React.js 18. Architected responsive frontend layouts for production-level applications."
+        "description": "Built and debugged responsive React.js components, performed cross-browser testing, and collaborated with senior developers to resolve UI rendering issues before production deployment."
     },
     {
-        "title": "IT Support Specialist",
+        "title": "IT Support Specialist & QA Support",
         "company": "Infinity Success Co., Ltd",
         "date": "Nov 2024 - Oct 2025",
-        "description": "Managed full-lifecycle platform testing and deployment. Engineered data entry automation workflows and supported complex digital payment infrastructures."
+        "description": "Conducted end-to-end system testing for fintech platforms, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
     },
     {
-        "title": "IT Technical Support Team Lead",
+        "title": "Software UAT Test Team Lead",
         "company": "App.com.mm",
         "date": "May 2024 - Sep 2024",
-        "description": "Commanded the technical support department, reducing escalation times by optimizing support workflows and knowledge base systems."
-    },
-    {
-        "title": "Junior Network Administrator",
-        "company": "CGM Golden Land Co Ltd",
-        "date": "Apr 2023 - May 2024",
-        "description": "Managed network infrastructure, maintained server uptime, and ensured network security across the organization."
-    },
-    {
-        "title": "Computer Technician",
-        "company": "Tech Ace Gaming & Computer Company Ltd.",
-        "date": "Nov 2020 - May 2022",
-        "description": "Hardware troubleshooting, system maintenance, and technical support for gaming and computer systems."
+        "description": "Led a UAT team testing web and mobile applications, authored detailed bug reports with reproduction steps, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
     }
 ]

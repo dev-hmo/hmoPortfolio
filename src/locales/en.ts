@@ -1,20 +1,27 @@
 export const en = {
   nav: { about: 'About', services: 'Services', experience: 'Experience', skills: 'Skills', work: 'Work', contact: 'Contact' },
-  hero: { title: 'Hlaing Min Oo', subtitle: 'Detail-oriented and technically grounded Project Coordinator with a strong background in frontend web development and extensive experience in end-to-end software project management.' },
+  hero: { 
+    title: 'Hlaing Min Oo', 
+    subtitle: 'Junior software tester with hands-on experience in React and Next.js. I test web applications, write reproducible bug reports in Jira and ClickUp, validate API responses with Postman, and debug frontend UI defects.' 
+  },
   stats: { years: 'Years Experience', projects: 'Projects Delivered', clients: 'Corporate Clients', certs: 'Certifications Earned' },
   services: {
     title1: 'Core ', title2: 'Services',
-    desc: 'Multi-disciplinary expertise to drive your digital products forward.',
-    s1: 'Frontend Development', s1Desc: 'Building highly responsive, animated, and scalable web interfaces using modern frameworks like React and Next.js.',
-    s2: 'Project Management', s2Desc: 'End-to-end software project lifecycle management, ensuring timely delivery, budget alignment, and stakeholder satisfaction.',
-    s3: 'Security Project Coordination', s3Desc: 'Managing and coordinating complex cyber security assessment projects, ensuring seamless communication between security teams and enterprise clients.'
+    desc: 'Manual QA testing, frontend debugging, and API validation for web and mobile applications.',
+    s1: 'Quality Assurance & UAT', 
+    s1Desc: 'Running manual test scenarios, executing test cases, and filing bug reports with clear reproduction steps in Jira and ClickUp.',
+    s2: 'Frontend Development & Debugging', 
+    s2Desc: 'Developing and debugging React/Next.js interfaces, fixing responsive layout issues, and verifying cross-browser behavior.',
+    s3: 'Technical Support & API Testing', 
+    s3Desc: 'Inspecting network payloads and testing REST API endpoints in Postman, reviewing server logs, and troubleshooting client issues.'
   },
   about: {
     title1: 'My ', title2: 'Background',
-    desc: 'Proven track record of aligning internal cross-functional teams and bridging communication with external high-profile corporate clients. Adept at requirement gathering, timeline tracking, UI/UX wireframing, and rigorous QA/UAT testing to deliver secure, high-quality enterprise solutions.'
+    desc: 'I bring a mix of frontend development and software testing experience. Because I build with React and Next.js, I understand where web applications typically break—from responsive layout bugs and state sync errors to broken API responses. I focus on clear defect reporting, thorough regression passes, and fast developer communication.'
   },
-  experience: { title1: 'Professional ', title2: 'Journey', desc: 'My career path across multiple tech domains.' },
-  skills: { title1: 'Tech ', title2: 'Arsenal', desc: 'The tools and technologies I use to bring ideas to life.' },
-  work: { title1: 'Featured ', title2: 'Work', desc: 'A selection of my best projects across different domains.' },
-  contact: { title1: "Let's ", title2: 'Connect', desc: 'Ready to start a project? Reach out and let\'s talk.' }
+  experience: { title1: 'Work ', title2: 'History', desc: 'My work history across software testing, project coordination, and frontend development.' },
+  skills: { title1: 'Tech ', title2: 'Arsenal', desc: 'The tools and technologies I use to test, build, and debug.' },
+  work: { title1: 'Featured ', title2: 'Work', desc: 'Projects spanning manual QA testing, web applications, and cyber security coordination.' },
+  contact: { title1: "Let's ", title2: 'Connect', desc: 'Open to junior software tester, QA technician, and frontend support roles. Reach out directly via email or LinkedIn.' }
 };
+

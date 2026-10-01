@@ -32,7 +32,7 @@ export default function StatsCounter() {
   const { t } = useLanguage();
 
   const stats = [
-    { num: 5, label: t.stats.years },
+    { num: 2, label: t.stats.years },
     { num: 16, label: t.stats.projects },
     { num: 7, label: t.stats.clients },
     { num: 6, label: t.stats.certs },

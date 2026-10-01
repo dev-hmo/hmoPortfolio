@@ -8,29 +8,34 @@ export default function TextReveal({ text, className = '', style = {} }: { text:
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.08, delayChildren: 0.2 },
     },
   };
 
   const child: any = {
-    visible: {
+    visible: (i: number) => ({
       opacity: 1,
       y: 0,
+      rotateX: 0,
+      filter: 'blur(0px)',
       transition: {
         type: 'spring',
-        damping: 12,
+        damping: 14,
         stiffness: 100,
+        delay: i * 0.04,
       },
-    },
+    }),
     hidden: {
       opacity: 0,
-      y: 40,
+      y: 60,
+      rotateX: -45,
+      filter: 'blur(8px)',
     },
   };
 
   return (
     <motion.div
-      style={{ overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', ...style }}
+      style={{ overflow: 'hidden', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', perspective: '600px', ...style }}
       variants={container}
       initial="hidden"
       whileInView="visible"
@@ -38,7 +43,16 @@ export default function TextReveal({ text, className = '', style = {} }: { text:
       className={className}
     >
       {words.map((word, index) => (
-        <motion.span variants={child} style={{ marginRight: '0.3em', display: 'inline-block' }} key={index}>
+        <motion.span
+          custom={index}
+          variants={child}
+          style={{
+            marginRight: '0.3em',
+            display: 'inline-block',
+            transformOrigin: 'center bottom',
+          }}
+          key={index}
+        >
           {word === '<br/>' ? <br /> : word}
         </motion.span>
       ))}

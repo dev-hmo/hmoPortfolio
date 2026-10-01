@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-display' })
 
 export const metadata: Metadata = {
-  title: 'Hlaing Min Oo | Project Coordinator & Frontend Developer',
-  description: 'Portfolio of Hlaing Min Oo, a technically grounded Project Coordinator with a strong background in frontend web development.',
+  title: 'Hlaing Min Oo | Junior Software Tester & Frontend Enthusiast',
+  description: 'Portfolio of Hlaing Min Oo, Junior Software Tester & Frontend Developer specializing in manual QA testing, UAT execution, bug tracking in Jira, and React/Next.js web debugging.',
 }
 
 export default function RootLayout({

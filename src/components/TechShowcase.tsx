@@ -1,25 +1,26 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FaReact, FaFigma, FaGitAlt, FaMicrosoft, FaFileExcel } from 'react-icons/fa';
-import { SiNextdotjs, SiTailwindcss, SiPython, SiPostman, SiHtml5, SiCss3, SiNotion, SiClickup } from 'react-icons/si';
+import { FaReact, FaFigma, FaGitAlt, FaMicrosoft, FaFileExcel, FaBug } from 'react-icons/fa';
+import { SiNextdotjs, SiTailwindcss, SiPython, SiPostman, SiHtml5, SiCss3, SiNotion, SiClickup, SiJira } from 'react-icons/si';
 
 const technologies = [
+  // Testing & QA Tools
+  { name: 'Jira', icon: SiJira, color: '#0052CC' },
+  { name: 'ClickUp', icon: SiClickup, color: '#7B68EE' },
+  { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
+
   // Frontend
   { name: 'React.js', icon: FaReact, color: '#61DAFB' },
   { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF' },
   { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
   { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
   { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
-  
+
   // Backend / Scripting
   { name: 'Python', icon: SiPython, color: '#3776AB' },
-  
-  // UI/UX & QA
+
+  // Design & PM
   { name: 'Figma', icon: FaFigma, color: '#F24E1E' },
-  { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
-  
-  // PM & Version Control
-  { name: 'ClickUp', icon: SiClickup, color: '#7B68EE' },
   { name: 'Notion', icon: SiNotion, color: '#FFFFFF' },
   { name: 'MS Office', icon: FaMicrosoft, color: '#00A4EF' },
   { name: 'Excel', icon: FaFileExcel, color: '#217346' },
