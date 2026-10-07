@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MagneticElement from './MagneticElement';
-import { FaBars, FaTimes, FaSun, FaMoon, FaGlobe } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGlobe, FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -11,10 +11,12 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const { lang, t, toggleLang } = useLanguage();
 
   useEffect(() => {
+    setMounted(true);
     const handleResize = () => setIsMobile(window.innerWidth <= 900);
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -67,7 +69,7 @@ export default function Navbar() {
           display: 'flex',
           justifyContent: 'center',
           pointerEvents: 'none',
-          transition: 'padding 0.4s ease',
+          transition: 'padding 0.3s ease',
         }}
       >
         <div
@@ -81,19 +83,15 @@ export default function Navbar() {
             gap: '16px',
             padding: '8px 18px',
             borderRadius: '9999px',
-            background: scrolled
-              ? 'rgba(7, 3, 20, 0.75)'
-              : 'rgba(10, 5, 28, 0.55)',
-            backdropFilter: 'blur(24px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-            border: '1px solid rgba(0, 240, 255, 0.15)',
-            boxShadow: scrolled
-              ? '0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-              : '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(20px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(140%)',
+            border: '1px solid var(--glass-border)',
+            boxShadow: 'var(--glass-shadow)',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
-          {/* Brand Logo */}
+          {/* Brand Monogram */}
           <MagneticElement>
             <a
               href="#hero"
@@ -107,36 +105,38 @@ export default function Navbar() {
             >
               <div
                 style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, rgba(0,240,255,0.2), rgba(138,43,226,0.2))',
-                  border: '1px solid rgba(0,240,255,0.3)',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '8px',
+                  background: 'var(--accent-teal-subtle)',
+                  border: '1px solid rgba(20, 184, 166, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '0.95rem',
-                  boxShadow: '0 0 15px rgba(0,240,255,0.2)',
+                  color: 'var(--accent-teal)',
+                  fontFamily: 'var(--font-mono)',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
                 }}
               >
-                💎
+                H
               </div>
-              <h2
-                className="text-gradient"
+              <span
                 style={{
-                  fontSize: '1.25rem',
+                  fontSize: '1.05rem',
                   margin: 0,
-                  fontWeight: 800,
-                  fontFamily: 'var(--font-display)',
-                  letterSpacing: '1px',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-mono)',
                 }}
               >
-                &lt;HMO /&gt;
-              </h2>
+                hlaingminoo<span style={{ color: 'var(--accent-teal)' }}>.dev</span>
+              </span>
             </a>
           </MagneticElement>
 
-          {/* Desktop Nav Items with Glowing Active Indicator */}
+          {/* Desktop Nav Items */}
           {!isMobile && (
             <nav
               style={{
@@ -145,9 +145,9 @@ export default function Navbar() {
                 alignItems: 'center',
                 gap: '4px',
                 padding: '4px',
-                background: 'rgba(255, 255, 255, 0.03)',
+                background: 'rgba(128, 128, 128, 0.04)',
                 borderRadius: '9999px',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
+                border: '1px solid var(--glass-border)',
               }}
             >
               {navItems.map((item) => {
@@ -159,14 +159,14 @@ export default function Navbar() {
                     className="nav-link"
                     style={{
                       position: 'relative',
-                      color: isActive ? '#ffffff' : 'var(--text-secondary)',
+                      color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                       textDecoration: 'none',
-                      fontWeight: 500,
+                      fontWeight: isActive ? 600 : 500,
                       fontSize: '0.88rem',
-                      padding: '8px 16px',
+                      padding: '7px 16px',
                       borderRadius: '9999px',
                       zIndex: 2,
-                      transition: 'color 0.25s ease',
+                      transition: 'color 0.2s ease',
                     }}
                   >
                     {isActive && (
@@ -174,16 +174,15 @@ export default function Navbar() {
                         layoutId="activeNavIndicator"
                         transition={{
                           type: 'spring',
-                          stiffness: 380,
-                          damping: 30,
+                          stiffness: 400,
+                          damping: 32,
                         }}
                         style={{
                           position: 'absolute',
                           inset: 0,
                           borderRadius: '9999px',
-                          background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(138, 43, 226, 0.3) 100%)',
-                          border: '1px solid rgba(0, 240, 255, 0.45)',
-                          boxShadow: '0 0 20px rgba(0, 240, 255, 0.35)',
+                          background: 'var(--accent-teal-subtle)',
+                          border: '1px solid rgba(20, 184, 166, 0.25)',
                           zIndex: -1,
                         }}
                       />
@@ -195,67 +194,69 @@ export default function Navbar() {
             </nav>
           )}
 
-          {/* Action Controls: Theme + Language + Mobile Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
-              style={{
-                width: '38px',
-                height: '38px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(0, 240, 255, 0.15)',
-                color: 'var(--text-primary)',
-                cursor: 'pointer',
-                transition: 'all 0.25s ease',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.4)';
-                e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.15)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              {theme === 'dark' ? <FaSun size={15} color="#00f0ff" /> : <FaMoon size={15} color="#8a2be2" />}
-            </button>
+          {/* Action Controls: Theme Switcher + Language Switcher + Mobile Hamburger */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {/* Theme Toggle Button */}
+            {mounted && (
+              <button
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                style={{
+                  width: '36px',
+                  height: '36px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  background: 'transparent',
+                  border: '1px solid var(--glass-border)',
+                  color: 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.color = 'var(--accent-teal)';
+                  e.currentTarget.style.borderColor = 'var(--accent-teal)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                  e.currentTarget.style.borderColor = 'var(--glass-border)';
+                }}
+              >
+                {theme === 'dark' ? <FaSun size={14} /> : <FaMoon size={14} />}
+              </button>
+            )}
 
-            {/* Language Toggle */}
+            {/* Language Switcher */}
             <button
               onClick={toggleLang}
               aria-label="Toggle Language"
               style={{
-                height: '38px',
-                padding: '0 14px',
+                height: '36px',
+                padding: '0 12px',
                 display: 'flex',
-                gap: '6px',
-                justifyContent: 'center',
                 alignItems: 'center',
+                gap: '6px',
                 borderRadius: '9999px',
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(0, 240, 255, 0.15)',
+                background: 'transparent',
+                border: '1px solid var(--glass-border)',
                 color: 'var(--text-primary)',
                 fontWeight: 600,
-                fontSize: '0.85rem',
+                fontSize: '0.78rem',
+                fontFamily: 'var(--font-mono)',
                 cursor: 'pointer',
-                transition: 'all 0.25s ease',
+                transition: 'all 0.2s ease',
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.4)';
-                e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.2)';
+                e.currentTarget.style.borderColor = 'var(--accent-teal)';
+                e.currentTarget.style.color = 'var(--accent-teal)';
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.15)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = 'var(--glass-border)';
+                e.currentTarget.style.color = 'var(--text-primary)';
               }}
             >
-              <FaGlobe size={14} color="#00f0ff" /> {lang.toUpperCase()}
+              <FaGlobe size={12} color="var(--accent-teal)" /> {lang.toUpperCase()}
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -264,37 +265,38 @@ export default function Navbar() {
                 onClick={toggleMenu}
                 aria-label="Open Navigation Menu"
                 style={{
-                  width: '38px',
-                  height: '38px',
+                  width: '36px',
+                  height: '36px',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(0, 240, 255, 0.2)',
+                  background: 'transparent',
+                  border: '1px solid var(--glass-border)',
                   color: 'var(--text-primary)',
                   cursor: 'pointer',
                 }}
               >
-                {isOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+                {isOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
               </button>
             )}
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer with Liquid Crystal Glass Effect */}
+      {/* Mobile Drawer with Clean Frosted Glass */}
       <AnimatePresence>
         {isMobile && isOpen && (
           <motion.div
             initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(28px)' }}
+            animate={{ opacity: 1, backdropFilter: 'blur(24px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             style={{
               position: 'fixed',
               inset: 0,
-              background: 'rgba(3, 1, 15, 0.88)',
+              background: 'var(--bg-color)',
+              opacity: 0.96,
               zIndex: 55,
               display: 'flex',
               flexDirection: 'column',
@@ -309,18 +311,16 @@ export default function Navbar() {
                 key={item.key}
                 href={`#${item.key}`}
                 onClick={closeMenu}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ delay: 0.06 * i }}
+                exit={{ opacity: 0, y: 15 }}
+                transition={{ delay: 0.05 * i }}
                 style={{
-                  color: activeSection === item.key ? '#00f0ff' : 'var(--text-primary)',
+                  color: activeSection === item.key ? 'var(--accent-teal)' : 'var(--text-primary)',
                   textDecoration: 'none',
-                  fontSize: '2rem',
-                  fontWeight: 700,
-                  fontFamily: 'var(--font-display)',
-                  letterSpacing: '1px',
-                  textShadow: activeSection === item.key ? '0 0 20px rgba(0, 240, 255, 0.6)' : 'none',
+                  fontSize: '1.75rem',
+                  fontWeight: 600,
+                  letterSpacing: '-0.02em',
                 }}
               >
                 {item.label}

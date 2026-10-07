@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const titles = [
-  "Junior Software Tester & Frontend Enthusiast",
-  "Frontend Developer & Web Tester",
-  "Manual QA & UAT Tester",
-  "Web Application Debugger"
+  "Junior Frontend Developer",
+  "React & Next.js Developer",
+  "UI/UX Implementation Specialist",
+  "Component Architecture & Web Performance"
 ];
 
 interface RotatingTextProps {
@@ -29,28 +29,28 @@ export default function RotatingText({ align = 'left', className = '' }: Rotatin
 
   return (
     <div
-      className={`w-full relative min-h-[4.2rem] sm:min-h-[4.6rem] flex items-center overflow-hidden mb-4 ${
+      className={`w-full relative min-h-[3.6rem] sm:min-h-[4rem] flex items-center overflow-hidden mb-3 ${
         isLeft ? 'justify-start' : 'justify-center'
       } ${className}`}
     >
       <AnimatePresence mode="wait">
         <motion.h2
           key={index}
-          initial={{ y: 25, opacity: 0, filter: 'blur(8px)' }}
-          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-          exit={{ y: -25, opacity: 0, filter: 'blur(8px)' }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ y: 15, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -15, opacity: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="text-gradient"
           style={{
-            fontSize: 'clamp(1.75rem, 3.2vw, 2.5rem)',
-            fontWeight: 800,
-            lineHeight: 1.18,
-            letterSpacing: '-0.02em',
+            fontSize: 'clamp(1.5rem, 2.8vw, 2.25rem)',
+            fontWeight: 700,
+            lineHeight: 1.15,
+            letterSpacing: '-0.025em',
             margin: 0,
             textAlign: isLeft ? 'left' : 'center',
             width: '100%',
             maxWidth: '560px',
-            fontFamily: 'var(--font-display)',
+            fontFamily: 'var(--font-sans)',
           }}
         >
           {titles[index]}

@@ -1,32 +1,26 @@
 [
     {
-        "title": "Freelance QA Tester & Frontend Developer",
-        "company": "Self-Employed / Freelance",
-        "date": "Aug 2026 - Present",
-        "description": "Currently taking on freelance web projects focusing on end-to-end UAT, identifying UI/UX defects, and providing React/Next.js debugging support while pursuing my BSc in IT."
-    },
-    {
-        "title": "Project Coordinator (QA & Delivery)",
-        "company": "RITZ Cyber Intelligence Co., Ltd",
-        "date": "Dec 2025 - Jul 2026",
-        "description": "Coordinated QA workflows across security assessment projects, executing functional and regression testing while tracking defects in ClickUp to ensure on-time, zero-critical-bug releases."
-    },
-    {
         "title": "Intern React Developer",
         "company": "NK Software House",
         "date": "May 2025 - Jul 2025",
-        "description": "Built and debugged responsive React.js components, performed cross-browser testing, and collaborated with senior developers to resolve UI rendering issues before production deployment."
+        "description": "Built responsive web interfaces using React.js and Tailwind CSS, participated in code reviews with senior developers, debugged UI rendering issues, and collaborated on component architecture for production-ready applications."
     },
     {
-        "title": "IT Support Specialist & QA Support",
+        "title": "Software Delivery & Technical Coordinator",
+        "company": "RITZ Cyber Intelligence Co., Ltd",
+        "date": "Dec 2025 - Jul 2026",
+        "description": "Coordinated software delivery workflows across multiple projects, managed technical milestones, facilitated communication between development teams and stakeholders, and ensured on-time delivery of software products."
+    },
+    {
+        "title": "IT Support Specialist & Technical QA",
         "company": "Infinity Success Co., Ltd",
         "date": "Nov 2024 - Oct 2025",
-        "description": "Conducted end-to-end system testing for fintech platforms, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
+        "description": "Provided technical support for fintech platforms, conducted end-to-end system validation, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
     },
     {
-        "title": "Software UAT Test Team Lead",
+        "title": "Technical Support & Software UAT Lead",
         "company": "App.com.mm",
         "date": "May 2024 - Sep 2024",
-        "description": "Led a UAT team testing web and mobile applications, authored detailed bug reports with reproduction steps, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
+        "description": "Led a UAT team validating web and mobile applications, authored detailed bug reports with reproduction steps, provided technical problem-solving support, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
     }
 ]

@@ -1,30 +1,28 @@
 {
     "skills": [
-        "Manual Testing",
-        "UAT",
-        "Regression Testing",
-        "Cross-Browser Testing",
-        "Bug Reporting & Tracking",
         "React.js",
         "Next.js",
+        "JavaScript (ES6+)",
+        "TypeScript",
         "Tailwind CSS",
         "HTML5",
         "CSS3",
-        "JavaScript (ES6+)",
-        "TypeScript",
-        "Python",
-        "Responsive Web Design"
+        "Responsive Web Design",
+        "REST API Integration",
+        "Component Architecture",
+        "Cross-Browser Compatibility",
+        "Frontend Debugging & Optimization",
+        "Python"
     ],
     "tools": [
+        "Git & GitHub",
+        "VS Code",
+        "Figma",
+        "Postman",
+        "npm / npx",
+        "Vercel",
         "Jira",
         "ClickUp",
-        "Postman",
-        "Git & GitHub",
-        "Notion",
-        "Figma",
-        "VS Code",
-        "MS Office",
-        "Excel",
-        "npm / npx"
+        "Notion"
     ]
 }

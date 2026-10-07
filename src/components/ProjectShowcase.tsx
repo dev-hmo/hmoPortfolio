@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CrystalCard from './CrystalCard';
-import { FaExternalLinkAlt, FaCode, FaCheckCircle, FaShieldAlt, FaMobileAlt, FaServer, FaBug } from 'react-icons/fa';
-import Image from 'next/image';
+import { FaExternalLinkAlt, FaCode, FaShieldAlt } from 'react-icons/fa';
 
 interface QAProject {
   id: string;
@@ -26,58 +25,58 @@ const qaProjects: QAProject[] = [
     id: 'fintech',
     name: 'Fintech Platform & Payment Gateway UAT',
     client: 'Infinity Success Co., Ltd',
-    desc: 'Performed manual QA testing on core fintech workflows, provided direct technical support and troubleshooting for clients, and managed accurate data entry to ensure system reliability.',
-    tags: ['QA Testing', 'Tech Support', 'Data Entry', 'Manual Testing'],
-    badge: 'QA & Tech Support',
+    desc: 'Performed end-to-end QA validation on payment workflows, managed API regression suites, and verified transactional data integrity across distributed payment services.',
+    tags: ['QA Testing', 'REST API', 'Data Validation', 'Manual Testing'],
+    badge: 'QA & Support',
     thumbnailType: 'fintech',
     urlEndpoint: 'uat.payment-gateway.io/checkout',
     suiteMetrics: {
       status: 'WORKFLOWS VERIFIED',
-      testsRun: 'Core Fintech QA',
-      keyMetric: 'Data Entry & Support'
+      testsRun: 'Payment API Suites',
+      keyMetric: 'Zero Critical Leaks'
     }
   },
   {
     id: 'school',
     name: 'Multi-Tenant School Management Platform',
-    client: 'Well Known Private High School in Yangon',
-    desc: 'Acted as a Project Coordinator and Software Tester. Streamlined communication between developers and the school administration while executing test cases to validate gradebooks and role-based permissions.',
-    tags: ['Project Coordination', 'Testing', 'Test Case Design', 'Cross-Browser'],
-    badge: 'Coordinator & Tester',
+    client: 'Private High School in Yangon',
+    desc: 'Served as Technical Coordinator and Tester. Coordinated feature delivery between school leadership and development teams, designing test cases for role-based RBAC permissions.',
+    tags: ['Project Coordination', 'Test Strategy', 'RBAC Testing', 'Cross-Browser'],
+    badge: 'Coordinator & QA',
     thumbnailType: 'school',
     urlEndpoint: 'school-portal.edu.mm/admin/uat',
     suiteMetrics: {
       status: 'TEST CASES VALIDATED',
-      testsRun: 'Gradebooks & Roles',
-      keyMetric: 'Cross-Browser Testing'
+      testsRun: 'Gradebooks & Permissions',
+      keyMetric: 'Cross-Browser Verified'
     }
   },
   {
     id: 'evbus',
     name: 'EV Bus Fleet & Loyalty Mini App Testing',
-    client: 'Leading EV Bus Company in Thailand',
-    desc: 'Supported the project as a Coordinator and Tester. Managed testing timelines and executed usability tests on mobile web and wrappers, documenting bugs clearly for the development team.',
-    tags: ['Project Coordination', 'Usability Testing', 'Bug Tracking', 'Mobile QA'],
-    badge: 'Coordinator & Tester',
+    client: 'EV Transit Operator in Thailand',
+    desc: 'Managed release verification timelines and performed usability testing across responsive mobile web views and native wrappers, cataloging defect reproduction scripts in Jira.',
+    tags: ['Coordination', 'Mobile Web QA', 'Defect Tracking', 'Jira'],
+    badge: 'Coordinator & QA',
     thumbnailType: 'evbus',
     urlEndpoint: 'miniapp.ev-transit.th/uat',
     suiteMetrics: {
-      status: 'TIMELINES & QA SYNCED',
+      status: 'RELEASE SYNCHRONIZED',
       testsRun: 'Mobile Web & Wrappers',
-      keyMetric: 'Detailed Bug Reports'
+      keyMetric: 'Clear Defect Reports'
     }
   },
   {
     id: 'pos',
-    name: 'F&B POS + Inventory Mobile App QA',
-    client: 'Popular Coffee Chain',
-    desc: 'Served as Project Coordinator and Tester for a popular coffee chain\'s POS system. Coordinated testing phases and validated offline sync capabilities and hardware integration.',
-    tags: ['Project Coordination', 'Integration Testing', 'Hardware Testing', 'Jira'],
-    badge: 'Coordinator & Tester',
+    name: 'F&B POS + Inventory App Verification',
+    client: 'Regional Coffee Chain',
+    desc: 'Coordinated technical sprint testing for touch terminal POS software. Validated offline data sync, thermal printer hardware peripherals, and real-time inventory updates.',
+    tags: ['Integration Testing', 'Offline Sync', 'Hardware Integration', 'Jira'],
+    badge: 'Coordinator & QA',
     thumbnailType: 'pos',
     urlEndpoint: 'pos-cloud.system/terminal-qa',
     suiteMetrics: {
-      status: 'PHASES COORDINATED',
+      status: 'HARDWARE VALIDATED',
       testsRun: 'Offline Sync & HW',
       keyMetric: 'Hardware Integration OK'
     }
@@ -85,118 +84,107 @@ const qaProjects: QAProject[] = [
 ];
 
 const frontendProjects = [
-  { name: 'Pixel Forge Studio', url: 'https://pixel-forge-tawny.vercel.app/', img: '/img/pixelforge.png', tags: ['UI/UX', 'Framer Motion', 'Design'] },
-  { name: 'Vape Shop E-Commerce', url: 'https://vape-shop-delta.vercel.app/', img: '/img/vapeshop.png', tags: ['E-commerce', 'Frontend', 'Debugging'] },
-  { name: 'Customer Feedback Portal', url: 'https://customer-feedback-app-gold.vercel.app/', img: '/img/customerfeedbackapp.png', tags: ['React', 'Form Validation', 'State Management'] },
-  { name: 'PandaFlim Streaming UI', url: 'https://pandaflim.vercel.app/', img: '/img/pandaflim.png', tags: ['Entertainment', 'Frontend', 'Media Queries'] },
-  { name: 'Task & Bug Tracker App', url: 'https://todolist-iota-lac-27.vercel.app/', img: '/img/todolist.png', tags: ['React', 'State Management', 'CRUD QA'] },
-  { name: 'Oryx Training Center', url: 'https://oryx-training-center.vercel.app/', img: null, tags: ['React', 'Next.js', 'Responsive'] },
-  { name: 'Booking MM', url: 'https://bookingmm.vercel.app/', img: null, tags: ['React', 'Next.js', 'UI Testing'] },
-  { name: 'HMO Portfolio', url: 'https://hmo-porfolio.vercel.app/', img: '/img/oldportfolio.png', tags: ['Next.js 16', 'Liquid Crystal', 'Framer Motion'] }
+  { name: 'Oryx Training Center', url: 'https://oryx-training-center.vercel.app/', img: null, tags: ['React', 'Next.js', 'Tailwind CSS', 'Responsive UI'], desc: 'Modern educational training platform built with Next.js and Tailwind CSS. Features dynamic course routing, mobile-first layouts, and accessible component architecture.' },
+  { name: 'Booking MM', url: 'https://bookingmm.vercel.app/', img: null, tags: ['React', 'Next.js', 'REST APIs', 'Tailwind CSS'], desc: 'Full-featured booking platform with React-powered client interfaces, real-time availability querying via REST APIs, and a streamlined checkout flow.' },
+  { name: 'HMO Portfolio', url: 'https://hmo-porfolio.vercel.app/', img: '/img/oldportfolio.png', tags: ['Next.js 15', 'Tailwind CSS', 'Framer Motion', 'TypeScript'], desc: 'High-performance engineering portfolio built with Next.js, featuring responsive glassmorphism, Framer Motion micro-interactions, and light/dark theme adaptation.' },
+  { name: 'Panda Film Engine', url: 'https://pandaflim.vercel.app/', img: '/img/pandaflim.png', tags: ['React', 'API Integration', 'Responsive UI', 'Next.js'], desc: 'High-speed movie exploration interface utilizing Next.js image optimization, instant search with debounced API queries, and responsive grid layouts.' },
+  { name: 'Pi Vape E-Commerce', url: 'https://vape-shop-delta.vercel.app/', img: '/img/vapeshop.png', tags: ['React', 'E-Commerce', 'Framer Motion', 'Tailwind CSS'], desc: 'Refined e-commerce showcase featuring responsive product catalog components, smooth cart state management, and conversion-focused UI patterns.' },
+  { name: 'Feedback Cloud', url: 'https://customer-feedback-app-gold.vercel.app/', img: '/img/customerfeedbackapp.png', tags: ['React', 'Firebase', 'State Management', 'Real-time'], desc: 'Real-time client sentiment dashboard built with React and Firestore. Features reactive state updates, instant form validation, and live survey data aggregation.' },
+  { name: 'Pixel Forge Studio', url: 'https://pixel-forge-tawny.vercel.app/', img: '/img/pixelforge.png', tags: ['React', 'Component Library', 'Framer Motion', 'TypeScript'], desc: 'Interactive frontend component laboratory exploring reusable UI patterns, accessible keyboard navigation, and modular component design systems.' },
+  { name: 'Task Manager App', url: 'https://todolist-iota-lac-27.vercel.app/', img: '/img/todolist.png', tags: ['React', 'Node.js', 'MongoDB', 'Full-Stack'], desc: 'Full-stack task management application with React frontend, Node.js backend, and MongoDB storage. Implements complete CRUD workflows and live state updates.' },
 ];
 
 const securityProjects = [
   { 
     name: 'Web/Mobile App & AI Agent API Security Assessment', 
     client: 'HR Software Service Company in Myanmar',
-    desc: 'Coordinated security assessment projects for an HR software service company. Managed project timelines, scheduled meetings, tracked deliverables, and facilitated communication between clients and security engineers.',
+    desc: 'Coordinated technical security assessment milestones for enterprise HR systems. Managed vulnerability remediation tracking, client meetings, and technical documentation.',
     badge: 'Project Coordinator',
-    tags: ['Project Coordination', 'Timeline Management', 'Client Communication', 'Task Tracking']
+    tags: ['Milestone Delivery', 'Technical Coordination', 'Deliverable Tracking']
   },
   { 
     name: 'Mobile Banking Wallet Security Assessment', 
-    client: 'Tier-1 Commercial Bank in Myanmar',
-    desc: 'Served as Project Coordinator for a commercial bank security audit project. Tracked remediation schedules, managed project milestones, and organized administrative documentation.',
+    client: 'Commercial Banking Institution',
+    desc: 'Coordinated security audit deliverables for mobile wallet systems. Monitored remediation sprint schedules and maintained compliance documentation.',
     badge: 'Project Coordinator',
-    tags: ['Project Management', 'Schedule Tracking', 'Milestone Delivery', 'Documentation']
+    tags: ['Audit Coordination', 'Schedule Tracking', 'Remediation Review']
   },
   { 
     name: 'Enterprise Web Applications Security Assessment', 
-    client: 'Major Banking Institution',
-    desc: 'Coordinated enterprise-level web security assessments for banking institutions. Managed project tracking boards, scheduled review meetings, and ensured smooth workflow execution between teams.',
+    client: 'Financial Institution',
+    desc: 'Managed enterprise web application security assessments. Coordinated remediation verification sprints between security engineers and application teams.',
     badge: 'Project Coordinator',
-    tags: ['Project Coordination', 'Workflow Management', 'Meeting Scheduling', 'Progress Reporting']
+    tags: ['Sprint Management', 'Issue Tracking', 'Progress Reporting']
   },
   { 
     name: 'Internal Infrastructure Security Assessment', 
-    client: 'Leading Industrial Manufacturing Corporation',
-    desc: 'Coordinated internal infrastructure audit projects for an industrial corporation. Managed project documentation, tracked compliance checklists, and organized administrative workflows.',
+    client: 'Industrial Corporation',
+    desc: 'Coordinated infrastructure audit projects, compliance milestone reviews, and executive reporting across corporate engineering teams.',
     badge: 'Project Coordinator',
-    tags: ['Project Coordination', 'Documentation', 'Compliance Tracking', 'Administration']
+    tags: ['Compliance Tracking', 'Infrastructure Audit', 'Technical Reporting']
   }
 ];
 
-const categories = ['QA & Testing', 'Frontend Development', 'Cyber Security Coordination'];
+const categories = ['Frontend Development', 'QA & Testing', 'Cyber Security Coordination'];
 
-/* ═══════════════════════════════════════════════════════════
-   QA THUMBNAIL COMPONENT
-   Interactive high-fidelity preview simulating test suites,
-   dashboards, and telemetry for QA projects.
-   ═══════════════════════════════════════════════════════════ */
 function QAThumbnail({ project }: { project: QAProject }) {
   return (
     <div
       style={{
         width: '100%',
-        height: '175px',
-        borderRadius: '14px',
+        height: '165px',
+        borderRadius: '12px',
         overflow: 'hidden',
         position: 'relative',
         marginBottom: '1.25rem',
-        border: '1px solid rgba(0, 240, 255, 0.2)',
-        background: 'rgba(5, 2, 18, 0.9)',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+        border: '1px solid var(--glass-border)',
+        background: 'var(--bg-surface)',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
-      {/* Browser / Test Suite Chrome Header */}
+      {/* Test Suite Chrome Header */}
       <div
         style={{
           height: '28px',
-          background: 'rgba(255, 255, 255, 0.04)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(128, 128, 128, 0.05)',
+          borderBottom: '1px solid var(--glass-border)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 10px',
-          zIndex: 3,
         }}
       >
-        {/* macOS Dots */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ff5f56' }} />
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#ffbd2e' }} />
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#27c93f' }} />
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+          <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#10b981' }} />
         </div>
 
-        {/* Mock Endpoint / URL Bar */}
         <div
           style={{
-            fontSize: '0.68rem',
-            fontFamily: 'monospace',
-            color: 'rgba(255, 255, 255, 0.65)',
-            background: 'rgba(0, 0, 0, 0.4)',
-            padding: '2px 10px',
-            borderRadius: '9999px',
-            border: '1px solid rgba(0, 240, 255, 0.15)',
+            fontSize: '0.65rem',
+            fontFamily: 'var(--font-mono)',
+            color: 'var(--text-secondary)',
+            background: 'var(--glass-bg)',
+            padding: '2px 8px',
+            borderRadius: '4px',
+            border: '1px solid var(--glass-border)',
             maxWidth: '220px',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
           }}
         >
-          🔒 https://{project.urlEndpoint}
+          https://{project.urlEndpoint}
         </div>
 
-        {/* QA Pass Status Indicator */}
         <span
           style={{
             width: '6px',
             height: '6px',
             borderRadius: '50%',
-            backgroundColor: '#00f0ff',
-            boxShadow: '0 0 8px #00f0ff',
+            backgroundColor: 'var(--accent-teal)',
           }}
         />
       </div>
@@ -205,207 +193,37 @@ function QAThumbnail({ project }: { project: QAProject }) {
       <div
         style={{
           flex: 1,
-          position: 'relative',
-          padding: '12px 14px',
-          overflow: 'hidden',
+          padding: '12px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          background: 'var(--accent-teal-subtle)',
         }}
       >
-        {/* Dynamic Background Mesh Gradients based on QA Project Type */}
-        {project.thumbnailType === 'fintech' && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.22) 0%, rgba(138, 43, 226, 0.15) 50%, rgba(5, 2, 20, 0.95) 100%)',
-            }}
-          />
-        )}
-        {project.thumbnailType === 'school' && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.25) 0%, rgba(0, 240, 255, 0.12) 50%, rgba(5, 2, 20, 0.95) 100%)',
-            }}
-          />
-        )}
-        {project.thumbnailType === 'evbus' && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.22) 0%, rgba(0, 240, 255, 0.15) 50%, rgba(5, 2, 20, 0.95) 100%)',
-            }}
-          />
-        )}
-        {project.thumbnailType === 'pos' && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'radial-gradient(circle at 30% 80%, rgba(245, 158, 11, 0.2) 0%, rgba(138, 43, 226, 0.15) 50%, rgba(5, 2, 20, 0.95) 100%)',
-            }}
-          />
-        )}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: '0.68rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: 'rgba(20, 184, 166, 0.15)', color: 'var(--accent-teal)', fontFamily: 'var(--font-mono)' }}>
+            STATUS: 200 OK
+          </span>
+          <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+            {project.suiteMetrics.testsRun}
+          </span>
+        </div>
 
-        {/* Ambient Subtle Grid Overlay */}
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '16px 16px',
-            pointerEvents: 'none',
-          }}
-        />
-
-        {/* Specific Visual Mockup Content */}
-        {project.thumbnailType === 'fintech' && (
-          <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '0.65rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', background: 'rgba(34, 197, 94, 0.2)', border: '1px solid rgba(34, 197, 94, 0.4)', color: '#4ade80', fontFamily: 'monospace' }}>
-                  POST /v1/charge
-                </span>
-                <span style={{ fontSize: '0.65rem', color: '#00f0ff', fontFamily: 'monospace' }}>200 OK (42ms)</span>
-              </div>
-              <span style={{ fontSize: '0.68rem', color: '#ffffff', fontWeight: 600 }}>💳 API Gateway UAT</span>
-            </div>
-
-            {/* Simulated Payment Card Mockup */}
-            <div
-              style={{
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(0, 240, 255, 0.05) 100%)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '8px',
-                padding: '6px 10px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ width: '18px', height: '14px', borderRadius: '3px', background: 'linear-gradient(135deg, #fbbf24, #d97706)', display: 'inline-block' }} />
-                <span style={{ fontSize: '0.72rem', color: '#e2e8f0', fontFamily: 'monospace' }}>•••• 4821</span>
-              </div>
-              <span style={{ fontSize: '0.68rem', color: '#34d399', fontWeight: 600 }}>✓ Signature Valid</span>
-            </div>
-          </div>
-        )}
-
-        {project.thumbnailType === 'school' && (
-          <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.68rem', color: '#c084fc', fontWeight: 600 }}>🎓 Portal Role Matrix</span>
-              <span style={{ fontSize: '0.62rem', padding: '2px 6px', borderRadius: '9999px', background: 'rgba(138, 43, 226, 0.25)', border: '1px solid rgba(138, 43, 226, 0.4)', color: '#e9d5ff' }}>
-                48 Scenarios
-              </span>
-            </div>
-
-            {/* Role Validation Pills */}
-            <div style={{ display: 'flex', gap: '5px', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.65rem', padding: '3px 8px', borderRadius: '6px', background: 'rgba(0, 240, 255, 0.1)', border: '1px solid rgba(0, 240, 255, 0.3)', color: '#00f0ff' }}>
-                ✓ Admin Panel
-              </span>
-              <span style={{ fontSize: '0.65rem', padding: '3px 8px', borderRadius: '6px', background: 'rgba(138, 43, 226, 0.1)', border: '1px solid rgba(138, 43, 226, 0.3)', color: '#c084fc' }}>
-                ✓ Teacher Portal
-              </span>
-              <span style={{ fontSize: '0.65rem', padding: '3px 8px', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', color: '#e2e8f0' }}>
-                ✓ Student View
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.65rem', color: 'var(--text-secondary)' }}>
-              <span>Browsers:</span>
-              <span style={{ color: '#ffffff', fontWeight: 500 }}>Chrome • Safari • Edge • Firefox</span>
-            </div>
-          </div>
-        )}
-
-        {project.thumbnailType === 'evbus' && (
-          <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.68rem', color: '#34d399', fontWeight: 600 }}>🚌 Fleet Mobile QA</span>
-              <span style={{ fontSize: '0.62rem', padding: '2px 6px', borderRadius: '9999px', background: 'rgba(16, 185, 129, 0.2)', border: '1px solid rgba(16, 185, 129, 0.4)', color: '#6ee7b7' }}>
-                ClickUp #142 Fixed
-              </span>
-            </div>
-
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '6px',
-                background: 'rgba(0, 0, 0, 0.35)',
-                borderRadius: '8px',
-                padding: '6px 8px',
-                border: '1px solid rgba(255,255,255,0.06)',
-              }}
-            >
-              <div>
-                <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>QR Ticket Scanner:</span>
-                <p style={{ margin: 0, fontSize: '0.68rem', color: '#00f0ff', fontWeight: 600 }}>✓ Sub-second Pass</p>
-              </div>
-              <div>
-                <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>Offline Sync:</span>
-                <p style={{ margin: 0, fontSize: '0.68rem', color: '#34d399', fontWeight: 600 }}>✓ Zero Packet Loss</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {project.thumbnailType === 'pos' && (
-          <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.68rem', color: '#fbbf24', fontWeight: 600 }}>☕ F&amp;B POS Stress Testing</span>
-              <span style={{ fontSize: '0.62rem', padding: '2px 6px', borderRadius: '9999px', background: 'rgba(245, 158, 11, 0.2)', border: '1px solid rgba(245, 158, 11, 0.4)', color: '#fde68a' }}>
-                Jira Sprint Closed
-              </span>
-            </div>
-
-            <div
-              style={{
-                background: 'rgba(0,0,0,0.35)',
-                borderRadius: '8px',
-                padding: '6px 10px',
-                border: '1px solid rgba(255,255,255,0.08)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div>
-                <span style={{ fontSize: '0.62rem', color: 'var(--text-secondary)' }}>Barcode Scan &amp; Cache:</span>
-                <p style={{ margin: 0, fontSize: '0.68rem', color: '#ffffff', fontWeight: 600 }}>Hardware Sync Validated</p>
-              </div>
-              <span style={{ fontSize: '0.72rem', color: '#10b981', fontWeight: 700 }}>100% OK</span>
-            </div>
-          </div>
-        )}
-
-        {/* Bottom Test Summary Bar */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 2,
+            padding: '8px 10px',
+            borderRadius: '8px',
+            background: 'var(--glass-bg)',
+            border: '1px solid var(--glass-border)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            paddingTop: '6px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <FaCheckCircle size={10} color="#00f0ff" />
-            <span style={{ fontSize: '0.66rem', color: '#00f0ff', fontWeight: 600, fontFamily: 'monospace' }}>
-              {project.suiteMetrics.status}
-            </span>
-          </div>
-          <span style={{ fontSize: '0.64rem', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+            {project.suiteMetrics.status}
+          </span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--accent-teal)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
             {project.suiteMetrics.keyMetric}
           </span>
         </div>
@@ -419,8 +237,8 @@ export default function ProjectShowcase() {
 
   return (
     <div className="projects-wrapper">
-      {/* Interactive Crystal Filter Tabs */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
+      {/* Precision Filter Tabs */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.65rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
         {categories.map((category) => {
           const isSelected = activeTab === category;
           return (
@@ -429,22 +247,17 @@ export default function ProjectShowcase() {
               onClick={() => setActiveTab(category)}
               style={{
                 position: 'relative',
-                padding: '12px 28px',
+                padding: '9px 20px',
                 borderRadius: '9999px',
-                border: isSelected ? '1px solid rgba(0, 240, 255, 0.4)' : '1px solid rgba(255, 255, 255, 0.08)',
-                background: isSelected 
-                  ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.25) 0%, rgba(138, 43, 226, 0.3) 100%)' 
-                  : 'rgba(10, 5, 28, 0.5)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                color: isSelected ? '#ffffff' : 'var(--text-secondary)',
-                fontSize: '0.95rem',
+                border: isSelected ? '1px solid var(--accent-teal)' : '1px solid var(--glass-border)',
+                background: isSelected ? 'var(--accent-teal)' : 'var(--glass-bg)',
+                color: isSelected ? '#FFFFFF' : 'var(--text-secondary)',
+                fontSize: '0.88rem',
                 fontWeight: 600,
+                letterSpacing: '-0.01em',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: isSelected 
-                  ? '0 0 25px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)' 
-                  : 'none'
+                transition: 'all 0.2s ease',
+                boxShadow: isSelected ? '0 4px 14px rgba(20, 184, 166, 0.25)' : 'none',
               }}
             >
               {category}
@@ -456,60 +269,18 @@ export default function ProjectShowcase() {
       {/* Animated Content Grid */}
       <div style={{ minHeight: '520px' }}>
         <AnimatePresence mode="wait">
-          {/* QA & Testing Category with Rich Visual Thumbnails */}
-          {activeTab === 'QA & Testing' && (
-            <motion.div
-              key="qa"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35 }}
-              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}
-            >
-              {qaProjects.map((item) => (
-                <CrystalCard key={item.id} style={{ padding: '1.75rem', minHeight: '380px', display: 'flex', flexDirection: 'column' }}>
-                  {/* Visual Image / Workspace Thumbnail */}
-                  <QAThumbnail project={item} />
-
-                  {/* Header & Role Badge */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                    <span style={{ fontSize: '0.75rem', padding: '4px 10px', borderRadius: '9999px', background: 'rgba(0,240,255,0.1)', border: '1px solid rgba(0,240,255,0.3)', color: '#00f0ff', fontWeight: 600 }}>
-                      {item.badge}
-                    </span>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>
-                      {item.suiteMetrics.testsRun}
-                    </span>
-                  </div>
-                  
-                  <h4 style={{ fontSize: '1.2rem', marginBottom: '0.35rem', color: '#ffffff', lineHeight: 1.35, fontWeight: 700 }}>{item.name}</h4>
-                  <p style={{ fontSize: '0.85rem', color: '#00f0ff', marginBottom: '0.85rem', fontWeight: 500 }}>Client: {item.client}</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.25rem', flexGrow: 1 }}>{item.desc}</p>
-                  
-                  {/* QA Skill Tags */}
-                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: 'auto' }}>
-                    {item.tags.map(tag => (
-                      <span key={tag} style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '9999px', color: 'var(--text-secondary)' }}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CrystalCard>
-              ))}
-            </motion.div>
-          )}
-
-          {/* Frontend Category with Image Thumbnails */}
+          {/* Frontend Development Category */}
           {activeTab === 'Frontend Development' && (
             <motion.div
               key="frontend"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
               style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: '2rem' }}
             >
               {frontendProjects.map((item, index) => (
-                <CrystalCard key={index} style={{ padding: '1.75rem', minHeight: '380px', display: 'flex', flexDirection: 'column' }}>
+                <CrystalCard key={index} style={{ padding: '1.75rem', minHeight: '410px', display: 'flex', flexDirection: 'column' }}>
                   {/* Thumbnail Image Header */}
                   <div
                     style={{
@@ -519,8 +290,8 @@ export default function ProjectShowcase() {
                       overflow: 'hidden',
                       position: 'relative',
                       marginBottom: '1.25rem',
-                      background: 'rgba(5, 2, 18, 0.8)',
-                      border: '1px solid rgba(138, 43, 226, 0.25)',
+                      background: 'rgba(128, 128, 128, 0.05)',
+                      border: '1px solid var(--glass-border)',
                     }}
                   >
                     {item.img ? (
@@ -532,9 +303,9 @@ export default function ProjectShowcase() {
                           height: '100%',
                           objectFit: 'cover',
                           objectPosition: 'top center',
-                          transition: 'transform 0.4s ease',
+                          transition: 'transform 0.3s ease',
                         }}
-                        onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                        onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.03)'; }}
                         onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
                       />
                     ) : (
@@ -546,20 +317,26 @@ export default function ProjectShowcase() {
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(138, 43, 226, 0.15) 100%)',
+                          background: 'var(--accent-teal-subtle)',
                         }}
                       >
-                        <FaCode size={32} color="#00f0ff" style={{ marginBottom: '8px' }} />
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'monospace' }}>React / Next.js Web App</span>
+                        <FaCode size={28} color="var(--accent-teal)" style={{ marginBottom: '6px' }} />
+                        <span style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>Next.js / React Application</span>
                       </div>
                     )}
                   </div>
 
-                  <h4 style={{ fontSize: '1.2rem', marginBottom: '0.75rem', color: '#ffffff', lineHeight: 1.35, fontWeight: 700 }}>{item.name}</h4>
+                  <h4 style={{ fontSize: '1.2rem', marginBottom: '0.45rem', color: 'var(--text-primary)', lineHeight: 1.35, fontWeight: 700, letterSpacing: '-0.02em' }}>
+                    {item.name}
+                  </h4>
+                  
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.25rem', flexGrow: 0 }}>
+                    {item.desc}
+                  </p>
 
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1.5rem', flexGrow: 1 }}>
                     {item.tags.map(tag => (
-                      <span key={tag} style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '9999px', color: '#00f0ff' }}>
+                      <span key={tag} style={{ fontSize: '0.72rem', padding: '3px 9px', background: 'var(--accent-teal-subtle)', border: '1px solid rgba(20, 184, 166, 0.2)', borderRadius: '6px', color: 'var(--accent-teal)', fontFamily: 'var(--font-mono)' }}>
                         {tag}
                       </span>
                     ))}
@@ -575,26 +352,71 @@ export default function ProjectShowcase() {
                       alignItems: 'center', 
                       justifyContent: 'center',
                       gap: '8px', 
-                      padding: '10px 18px', 
-                      borderRadius: '9999px',
-                      background: 'rgba(0, 240, 255, 0.08)',
-                      border: '1px solid rgba(0, 240, 255, 0.3)',
-                      color: '#00f0ff',
-                      fontWeight: 600,
-                      fontSize: '0.88rem',
-                      transition: 'all 0.25s ease'
+                      padding: '9px 16px', 
+                      borderRadius: '9999px', 
+                      background: 'var(--accent-teal-subtle)', 
+                      border: '1px solid rgba(20, 184, 166, 0.3)', 
+                      color: 'var(--accent-teal)', 
+                      fontWeight: 600, 
+                      fontSize: '0.86rem', 
+                      transition: 'all 0.2s ease' 
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = 'rgba(0, 240, 255, 0.25)';
-                      e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 240, 255, 0.3)';
+                      e.currentTarget.style.background = 'var(--accent-teal)';
+                      e.currentTarget.style.color = '#FFFFFF';
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = 'rgba(0, 240, 255, 0.08)';
-                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.background = 'var(--accent-teal-subtle)';
+                      e.currentTarget.style.color = 'var(--accent-teal)';
                     }}
                   >
-                    View Project <FaExternalLinkAlt size={12} />
+                    View Project <FaExternalLinkAlt size={10} />
                   </a>
+                </CrystalCard>
+              ))}
+            </motion.div>
+          )}
+
+          {/* QA & Testing Category */}
+          {activeTab === 'QA & Testing' && (
+            <motion.div
+              key="qa"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}
+            >
+              {qaProjects.map((item) => (
+                <CrystalCard key={item.id} style={{ padding: '1.75rem', minHeight: '380px', display: 'flex', flexDirection: 'column' }}>
+                  <QAThumbnail project={item} />
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '0.74rem', padding: '3px 8px', borderRadius: '6px', background: 'var(--accent-teal-subtle)', border: '1px solid rgba(20, 184, 166, 0.25)', color: 'var(--accent-teal)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
+                      {item.badge}
+                    </span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                      {item.suiteMetrics.testsRun}
+                    </span>
+                  </div>
+                  
+                  <h4 style={{ fontSize: '1.18rem', marginBottom: '0.35rem', color: 'var(--text-primary)', lineHeight: 1.35, fontWeight: 700, letterSpacing: '-0.02em' }}>
+                    {item.name}
+                  </h4>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--accent-teal)', marginBottom: '0.75rem', fontWeight: 500 }}>
+                    Client: {item.client}
+                  </p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.25rem', flexGrow: 1 }}>
+                    {item.desc}
+                  </p>
+                  
+                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: 'auto' }}>
+                    {item.tags.map(tag => (
+                      <span key={tag} style={{ fontSize: '0.72rem', padding: '3px 8px', background: 'rgba(128, 128, 128, 0.06)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </CrystalCard>
               ))}
             </motion.div>
@@ -604,31 +426,36 @@ export default function ProjectShowcase() {
           {activeTab === 'Cyber Security Coordination' && (
             <motion.div
               key="security"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
               style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: '2rem' }}
             >
               {securityProjects.map((item, index) => (
-                <CrystalCard key={index} style={{ padding: '2rem', minHeight: '280px' }}>
+                <CrystalCard key={index} style={{ padding: '1.75rem', minHeight: '270px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
-                    <div style={{ width: '46px', height: '46px', borderRadius: '12px', background: 'rgba(255,0,85,0.1)', border: '1px solid rgba(255,0,85,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ff0055', boxShadow: '0 0 15px rgba(255,0,85,0.2)' }}>
-                      <FaShieldAlt size={22} />
+                    <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: 'var(--accent-teal-subtle)', border: '1px solid rgba(20, 184, 166, 0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-teal)' }}>
+                      <FaShieldAlt size={18} />
                     </div>
-                    <span style={{ fontSize: '0.72rem', padding: '4px 10px', borderRadius: '9999px', background: 'rgba(255,0,85,0.1)', border: '1px solid rgba(255,0,85,0.3)', color: '#ff0055', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.74rem', padding: '3px 8px', borderRadius: '6px', background: 'var(--accent-teal-subtle)', border: '1px solid rgba(20, 184, 166, 0.25)', color: 'var(--accent-teal)', fontWeight: 600, fontFamily: 'var(--font-mono)' }}>
                       {item.badge}
                     </span>
                   </div>
 
-                  <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#ffffff', lineHeight: 1.35, fontWeight: 700 }}>{item.name}</h4>
-                  <p style={{ fontSize: '0.85rem', color: '#ff0055', marginBottom: '1rem', fontWeight: 500 }}>Client: {item.client}</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, flexGrow: 1 }}>{item.desc}</p>
+                  <h4 style={{ fontSize: '1.18rem', marginBottom: '0.4rem', color: 'var(--text-primary)', lineHeight: 1.35, fontWeight: 700, letterSpacing: '-0.02em' }}>
+                    {item.name}
+                  </h4>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--accent-teal)', marginBottom: '0.85rem', fontWeight: 500 }}>
+                    Client: {item.client}
+                  </p>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, flexGrow: 1 }}>
+                    {item.desc}
+                  </p>
                   
-                  {/* Cyber Security Coordination Tags */}
                   <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
                     {item.tags.map((tag: string) => (
-                      <span key={tag} style={{ fontSize: '0.72rem', padding: '4px 10px', background: 'rgba(255,0,85,0.06)', border: '1px solid rgba(255,0,85,0.2)', borderRadius: '9999px', color: 'var(--text-secondary)' }}>
+                      <span key={tag} style={{ fontSize: '0.72rem', padding: '3px 8px', background: 'rgba(128, 128, 128, 0.06)', border: '1px solid var(--glass-border)', borderRadius: '6px', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
                         {tag}
                       </span>
                     ))}

@@ -1,17 +1,26 @@
 import type { Metadata } from 'next'
-import { Inter, Outfit } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import CustomCursor from '@/components/CustomCursor'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { LanguageProvider } from '@/context/LanguageContext'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-display' })
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({ 
+  subsets: ['latin'], 
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: 'Hlaing Min Oo | Junior Software Tester & Frontend Enthusiast',
-  description: 'Portfolio of Hlaing Min Oo, Junior Software Tester & Frontend Developer specializing in manual QA testing, UAT execution, bug tracking in Jira, and React/Next.js web debugging.',
+  title: 'Hlaing Min Oo | Frontend Developer & React/Next.js Engineer',
+  description: 'Portfolio of Hlaing Min Oo — Frontend Developer specializing in React, Next.js, TypeScript, and modern component systems.',
 }
 
 export default function RootLayout({
@@ -20,9 +29,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body className={`${inter.variable} ${outfit.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+    <html lang="en" suppressHydrationWarning style={{ scrollBehavior: 'smooth' }}>
+      <body className={`${inter.variable} ${jetbrains.variable} font-sans`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
           <LanguageProvider>
             <CustomCursor />
             <Navbar />

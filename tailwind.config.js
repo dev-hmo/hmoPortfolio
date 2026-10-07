@@ -9,89 +9,74 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        crystal: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+        // Deep Obsidian Slate (Dark Mode) to Crisp Paper Slate (Light Mode)
+        slateDark: {
+          950: '#070A11',
+          900: '#0B0F19', // Primary Dark Background
+          850: '#0F172A', // Elevated Dark Surface
+          800: '#1E293B', // Card Surface
+          700: '#334155', // Subtle Border
+          600: '#475569',
+          500: '#64748B', // Secondary Text
+          400: '#94A3B8', // Muted Text
+          300: '#CBD5E1',
+          200: '#E2E8F0', // Light Mode Border
+          100: '#F1F5F9', // Light Mode Elevated
+          50: '#F8FAFC',  // Primary Light Background
         },
-        void: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-          950: '#1a0533',
+
+        // Cyber Teal Accent (Precise, Modern Developer Tone)
+        tealAccent: {
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6', // Primary Accent
+          600: '#0D9488', // Light mode accessible teal
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
         },
-        neon: {
-          cyan: '#00f0ff',
-          purple: '#8a2be2',
-          pink: '#ff0055',
-          blue: '#2563eb',
+
+        // Subdued Indigo (Secondary Tech Accent)
+        indigoAccent: {
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+        },
+
+        // Clean Glass Tokens (Dynamic via CSS variables)
+        glass: {
+          surface: 'var(--glass-bg)',
+          border: 'var(--glass-border)',
+          highlight: 'var(--glass-highlight)',
         }
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'var(--font-sans)', 'Inter', 'sans-serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'monospace'],
       },
-      backdropBlur: {
-        xs: '2px',
-        '2xl': '40px',
-        '3xl': '64px',
+      boxShadow: {
+        'glass-dark': '0 20px 45px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+        'glass-light': '0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+        'teal-glow': '0 0 25px -4px rgba(20, 184, 166, 0.3)',
       },
       animation: {
-        'liquid-slow': 'liquidShift 20s ease-in-out infinite',
-        'liquid-medium': 'liquidShift 15s ease-in-out infinite reverse',
-        'liquid-fast': 'liquidShift 10s ease-in-out infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 6s ease-in-out 3s infinite',
-        'shimmer': 'shimmer 3s linear infinite',
-        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
-        'iridescent': 'iridescent 6s ease-in-out infinite',
-        'mesh-rotate': 'meshRotate 30s linear infinite',
+        'subtle-drift': 'subtleDrift 20s ease-in-out infinite alternate',
+        'pulse-slow': 'pulseSlow 6s ease-in-out infinite',
       },
       keyframes: {
-        liquidShift: {
-          '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%', transform: 'rotate(0deg) scale(1)' },
-          '25%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%', transform: 'rotate(90deg) scale(1.05)' },
-          '50%': { borderRadius: '50% 60% 30% 60% / 30% 60% 70% 40%', transform: 'rotate(180deg) scale(1)' },
-          '75%': { borderRadius: '60% 40% 60% 30% / 70% 30% 50% 60%', transform: 'rotate(270deg) scale(1.05)' },
+        subtleDrift: {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '50%': { transform: 'translate(12px, -8px) scale(1.02)' },
+          '100%': { transform: 'translate(-8px, 10px) scale(0.99)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+        pulseSlow: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.75' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
-        pulseGlow: {
-          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-          '50%': { opacity: '0.8', transform: 'scale(1.05)' },
-        },
-        iridescent: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-        meshRotate: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
-      },
-      backgroundSize: {
-        '300': '300% 300%',
-        '400': '400% 400%',
       },
     },
   },

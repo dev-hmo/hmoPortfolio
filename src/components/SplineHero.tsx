@@ -9,18 +9,18 @@ interface SplineHeroProps {
   className?: string;
 }
 
-// 10 Core Tech Skills to Orbit around the 3D Crystal
+// 10 Core Developer Skills to Orbit around the 3D Element
 const techSkills = [
-  { name: 'Jira', icon: SiJira, color: '#2684FF', glow: 'rgba(38, 132, 255, 0.5)', category: 'QA Tool' },
-  { name: 'ClickUp', icon: SiClickup, color: '#7B68EE', glow: 'rgba(123, 104, 238, 0.5)', category: 'Bug Tracking' },
-  { name: 'Postman', icon: SiPostman, color: '#FF6C37', glow: 'rgba(255, 108, 55, 0.5)', category: 'API Testing' },
-  { name: 'React.js', icon: FaReact, color: '#61DAFB', glow: 'rgba(97, 218, 251, 0.5)', category: 'Frontend' },
-  { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', glow: 'rgba(255, 255, 255, 0.4)', category: 'Framework' },
-  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8', glow: 'rgba(56, 189, 248, 0.5)', category: 'Styling' },
-  { name: 'HTML5', icon: SiHtml5, color: '#E34F26', glow: 'rgba(227, 79, 38, 0.5)', category: 'Structure' },
-  { name: 'CSS3', icon: SiCss3, color: '#1572B6', glow: 'rgba(21, 114, 182, 0.5)', category: 'Responsive' },
-  { name: 'Figma', icon: FaFigma, color: '#F24E1E', glow: 'rgba(242, 78, 30, 0.5)', category: 'UI/UX' },
-  { name: 'Git', icon: FaGitAlt, color: '#F05032', glow: 'rgba(240, 80, 50, 0.5)', category: 'Version Control' },
+  { name: 'React.js', icon: FaReact, color: '#0EA5E9', category: 'Frontend' },
+  { name: 'Next.js', icon: SiNextdotjs, color: 'currentColor', category: 'Framework' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#14B8A6', category: 'Styling' },
+  { name: 'HTML5', icon: SiHtml5, color: '#F97316', category: 'Structure' },
+  { name: 'CSS3', icon: SiCss3, color: '#3B82F6', category: 'Responsive' },
+  { name: 'Figma', icon: FaFigma, color: '#A855F7', category: 'UI/UX' },
+  { name: 'Git', icon: FaGitAlt, color: '#EF4444', category: 'Version Control' },
+  { name: 'Postman', icon: SiPostman, color: '#F97316', category: 'API Testing' },
+  { name: 'Jira', icon: SiJira, color: '#2563EB', category: 'Project Tracking' },
+  { name: 'ClickUp', icon: SiClickup, color: '#6366F1', category: 'Task Management' },
 ];
 
 export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps) {
@@ -36,8 +36,8 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [16, -16]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-16, 16]);
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [12, -12]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-12, 12]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,42 +60,29 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
-    setHoveredTech(null);
   };
 
-  // Orbit radius: fits comfortably inside container without screen overflow
-  const orbitRadius = 195;
+  const orbitRadius = 168;
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative w-full max-w-[580px] flex flex-col items-center justify-center select-none ${className}`}
-      style={{
-        perspective: '1200px',
-        minHeight: isMobile ? '480px' : '540px',
-      }}
+      className={`relative w-full min-h-[420px] sm:min-h-[460px] flex flex-col items-center justify-center select-none ${className}`}
+      style={{ perspective: 1200 }}
     >
-      {/* Ambient background volumetric glow */}
+      {/* Subtle Ambient Refraction */}
       <div
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.16) 0%, rgba(138, 43, 226, 0.14) 45%, transparent 70%)',
-          filter: 'blur(60px)',
-          animation: 'pulseGlow 6s ease-in-out infinite',
+          background: 'radial-gradient(circle at 50% 50%, var(--accent-teal-subtle) 0%, transparent 65%)',
+          filter: 'blur(50px)',
+          opacity: 0.7,
         }}
       />
 
-      {/* 
-        SPLINE 3D SCENE INTEGRATION:
-        To swap with a live Spline scene in future:
-        1. npm install @splinetool/react-spline @splinetool/runtime
-        2. import Spline from '@splinetool/react-spline'
-        3. <Spline scene={sceneUrl || "https://prod.spline.design/YOUR_SCENE/scene.splinecode"} />
-      */}
-
-      {/* Floating 3D Liquid Crystal Core */}
+      {/* Floating 3D Frosted Core Element */}
       <motion.div
         style={{
           rotateX,
@@ -103,11 +90,11 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
           transformStyle: 'preserve-3d',
         }}
         animate={{
-          y: [-10, 10, -10],
+          y: [-6, 6, -6],
         }}
         transition={{
           repeat: Infinity,
-          duration: 6,
+          duration: 7,
           ease: 'easeInOut',
         }}
         className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] flex items-center justify-center cursor-grab active:cursor-grabbing"
@@ -119,160 +106,124 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
             style={{
               width: `${orbitRadius * 2}px`,
               height: `${orbitRadius * 2}px`,
-              border: '1px dashed rgba(0, 240, 255, 0.2)',
+              border: '1px dashed var(--glass-border)',
               borderRadius: '50%',
-              boxShadow: '0 0 30px rgba(0, 240, 255, 0.08), inset 0 0 30px rgba(138, 43, 226, 0.06)',
+              opacity: 0.8,
             }}
           />
         )}
 
-        {/* Outer Iridescent Gyro Ring */}
+        {/* Outer Precision Ring */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-[-15px] sm:inset-[-25px] rounded-full pointer-events-none"
           style={{
-            border: '1.5px solid rgba(0, 240, 255, 0.25)',
-            boxShadow: '0 0 25px rgba(0, 240, 255, 0.12), inset 0 0 20px rgba(0, 240, 255, 0.08)',
-            transform: 'rotateX(65deg) translateZ(30px)',
+            border: '1px solid var(--glass-border)',
+            transform: 'rotateX(65deg) translateZ(25px)',
           }}
         />
 
-        {/* Counter Gyro Ring */}
+        {/* Counter Precision Ring */}
         <motion.div
           animate={{ rotate: -360 }}
-          transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-[-35px] sm:inset-[-45px] rounded-full pointer-events-none"
           style={{
-            border: '1.5px dashed rgba(138, 43, 226, 0.22)',
-            boxShadow: '0 0 30px rgba(138, 43, 226, 0.15)',
+            border: '1px dashed var(--glass-border)',
             transform: 'rotateY(60deg) rotateX(30deg) translateZ(-15px)',
+            opacity: 0.7,
           }}
         />
 
-        {/* Main Liquid Crystal Sphere */}
+        {/* Main Frosted Glass Sphere */}
         <div
           className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden flex items-center justify-center"
           style={{
-            background: 'radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22) 0%, rgba(0, 240, 255, 0.18) 28%, rgba(138, 43, 226, 0.25) 60%, rgba(5, 2, 25, 0.9) 100%)',
-            backdropFilter: 'blur(30px) saturate(220%)',
-            WebkitBackdropFilter: 'blur(30px) saturate(220%)',
-            border: '1.5px solid rgba(0, 240, 255, 0.45)',
-            boxShadow: `
-              0 0 50px rgba(0, 240, 255, 0.35),
-              0 0 100px rgba(138, 43, 226, 0.25),
-              inset 0 0 45px rgba(0, 240, 255, 0.3),
-              inset -20px -20px 60px rgba(138, 43, 226, 0.4)
-            `,
-            transform: 'translateZ(50px)',
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(28px) saturate(140%)',
+            WebkitBackdropFilter: 'blur(28px) saturate(140%)',
+            border: '1px solid var(--glass-border)',
+            boxShadow: 'var(--glass-shadow)',
+            transform: 'translateZ(45px)',
           }}
         >
-          {/* Inner holographic swirling liquid simulation */}
-          <motion.div
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.12, 1],
-            }}
-            transition={{
-              rotate: { repeat: Infinity, duration: 16, ease: 'linear' },
-              scale: { repeat: Infinity, duration: 8, ease: 'easeInOut' },
-            }}
-            className="absolute inset-0 opacity-70 pointer-events-none"
-            style={{
-              background: 'conic-gradient(from 180deg at 50% 50%, rgba(0,240,255,0.4) 0deg, rgba(138,43,226,0.5) 120deg, rgba(255,0,85,0.4) 240deg, rgba(0,240,255,0.4) 360deg)',
-              filter: 'blur(20px)',
-              mixBlendMode: 'screen',
-            }}
-          />
-
-          {/* Chromatic light flare specular reflection */}
+          {/* Subtle clean inner highlight */}
           <div
-            className="absolute top-3 left-6 w-24 h-12 rounded-full pointer-events-none"
+            className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(0, 240, 255, 0.4) 60%, transparent 100%)',
-              transform: 'rotate(-35deg)',
-              filter: 'blur(4px)',
+              background: 'radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
             }}
           />
 
-          {/* ═══════════════════════════════════════════════════════════
-              EMBEDDED CRYSTAL TYPOGRAPHY:
-              "QUALITY ASSURANCE" & "Bug Tracking & UAT"
-              ═══════════════════════════════════════════════════════════ */}
+          {/* Clean Technical Centerpiece */}
           <div
             className="relative z-10 text-center flex flex-col items-center justify-center px-4 py-3 pointer-events-none select-none"
-            style={{
-              transform: 'translateZ(40px)',
-              filter: 'drop-shadow(0 0 16px rgba(0, 240, 255, 0.5))',
-            }}
+            style={{ transform: 'translateZ(30px)' }}
           >
-            {/* Luminous Core Badge Icon / Shield */}
-            <motion.div
-              animate={{
-                scale: [1, 1.08, 1],
-                opacity: [0.85, 1, 0.85],
-              }}
-              transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-              className="w-10 h-10 rounded-xl bg-cyan-400/10 border border-cyan-400/35 flex items-center justify-center mb-2.5 backdrop-blur-md shadow-[0_0_20px_rgba(0,240,255,0.4)]"
-            >
-              <span className="text-xl">🛡️</span>
-            </motion.div>
-
-            {/* Line 1: QUALITY ASSURANCE */}
-            <motion.h3
-              animate={{
-                textShadow: [
-                  '0 0 12px rgba(0, 240, 255, 0.75), 0 0 25px rgba(138, 43, 226, 0.5)',
-                  '0 0 22px rgba(0, 240, 255, 0.95), 0 0 35px rgba(138, 43, 226, 0.85)',
-                  '0 0 12px rgba(0, 240, 255, 0.75), 0 0 25px rgba(138, 43, 226, 0.5)'
-                ]
-              }}
-              transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-              style={{
-                fontSize: 'clamp(0.95rem, 2.4vw, 1.15rem)',
-                fontWeight: 800,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: '#ffffff',
-                margin: 0,
-                lineHeight: 1.2,
-                fontFamily: 'var(--font-display)',
-              }}
-            >
-              QUALITY ASSURANCE
-            </motion.h3>
-
-            {/* Luminous crystal accent divider */}
+            {/* Tech Monogram Badge */}
             <div
               style={{
-                width: '64px',
-                height: '1.5px',
-                margin: '6px 0',
-                background: 'linear-gradient(90deg, transparent, #00f0ff, #8a2be2, transparent)',
-                boxShadow: '0 0 10px #00f0ff',
+                width: '38px',
+                height: '38px',
+                borderRadius: '10px',
+                background: 'var(--accent-teal-subtle)',
+                border: '1px solid rgba(20, 184, 166, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '10px',
+                color: 'var(--accent-teal)',
+                fontFamily: 'var(--font-mono)',
+                fontWeight: 700,
+                fontSize: '0.95rem',
+              }}
+            >
+              TS
+            </div>
+
+            {/* Role Header */}
+            <h3
+              style={{
+                fontSize: 'clamp(0.85rem, 2vw, 0.98rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.01em',
+                color: 'var(--text-primary)',
+                margin: 0,
+                lineHeight: 1.25,
+              }}
+            >
+              FRONTEND DEVELOPER
+            </h3>
+
+            {/* Clean hairline separator */}
+            <div
+              style={{
+                width: '40px',
+                height: '1px',
+                margin: '8px 0',
+                background: 'var(--glass-border)',
               }}
             />
 
-            {/* Line 2: Bug Tracking & UAT */}
+            {/* Stack Details */}
             <p
               style={{
-                fontSize: 'clamp(0.72rem, 1.8vw, 0.82rem)',
-                fontWeight: 600,
-                letterSpacing: '0.06em',
-                color: '#00f0ff',
+                fontSize: 'clamp(0.72rem, 1.8vw, 0.8rem)',
+                fontWeight: 500,
+                color: 'var(--accent-teal)',
                 margin: 0,
-                fontFamily: 'var(--font-mono, monospace)',
-                textShadow: '0 0 12px rgba(0, 240, 255, 0.7)',
+                fontFamily: 'var(--font-mono)',
+                letterSpacing: '-0.01em',
               }}
             >
-              Bug Tracking &amp; UAT
+              React.js &amp; Next.js
             </p>
           </div>
         </div>
 
         {/* ═══════════════════════════════════════════════════════════
             DESKTOP CONTINUOUS CIRCULAR ORBIT (10 TECH ICONS)
-            Smooth orbital rotation with counter-rotating upright icons
             ═══════════════════════════════════════════════════════════ */}
         {!isMobile && (
           <motion.div
@@ -282,8 +233,8 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
               duration: 38,
               ease: 'linear',
             }}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            style={{ transform: 'translateZ(65px)' }}
+            className="absolute inset-0 pointer-events-none flex items-center justify-center"
+            style={{ transform: 'translateZ(55px)' }}
           >
             {techSkills.map((tech, index) => {
               const total = techSkills.length;
@@ -303,7 +254,6 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
                   }}
                   className="pointer-events-auto"
                 >
-                  {/* Counter-rotate icon container so icon stays perfectly upright */}
                   <motion.div
                     animate={{ rotate: -360 }}
                     transition={{
@@ -313,36 +263,35 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
                     }}
                     onMouseEnter={() => setHoveredTech(tech.name)}
                     onMouseLeave={() => setHoveredTech(null)}
-                    whileHover={{ scale: 1.28, zIndex: 60 }}
+                    whileHover={{ scale: 1.2, zIndex: 60 }}
                     className="relative cursor-pointer"
                   >
-                    {/* Glassmorphic Orbital Tech Badge */}
+                    {/* Clean Frosted Badge */}
                     <div
                       style={{
-                        width: '44px',
-                        height: '44px',
-                        borderRadius: '14px',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '12px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(9, 4, 26, 0.82)',
+                        background: 'var(--glass-bg)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
                         border: isHovered
-                          ? `1.5px solid ${tech.color}`
-                          : '1px solid rgba(0, 240, 255, 0.22)',
+                          ? '1px solid var(--accent-teal)'
+                          : '1px solid var(--glass-border)',
                         boxShadow: isHovered
-                          ? `0 0 25px ${tech.glow}, 0 8px 20px rgba(0, 0, 0, 0.5)`
-                          : '0 6px 18px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                        transition: 'border 0.25s ease, box-shadow 0.25s ease',
+                          ? '0 6px 20px rgba(0, 0, 0, 0.15)'
+                          : 'var(--glass-shadow)',
+                        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
                       }}
                     >
                       <tech.icon
-                        size={22}
-                        color={tech.color}
+                        size={20}
+                        color={isHovered ? 'var(--accent-teal)' : tech.color}
                         style={{
-                          filter: isHovered ? `drop-shadow(0 0 8px ${tech.color})` : 'none',
-                          transition: 'filter 0.25s ease',
+                          transition: 'color 0.2s ease',
                         }}
                       />
                     </div>
@@ -351,31 +300,31 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
                     <AnimatePresence>
                       {isHovered && (
                         <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.85 }}
+                          initial={{ opacity: 0, y: 6, scale: 0.9 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 6, scale: 0.85 }}
-                          transition={{ duration: 0.18 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.9 }}
+                          transition={{ duration: 0.15 }}
                           style={{
                             position: 'absolute',
-                            bottom: '52px',
+                            bottom: '50px',
                             left: '50%',
                             transform: 'translateX(-50%)',
                             whiteSpace: 'nowrap',
                             padding: '4px 10px',
-                            borderRadius: '8px',
-                            background: 'rgba(5, 2, 20, 0.94)',
-                            backdropFilter: 'blur(14px)',
-                            border: `1px solid ${tech.color}`,
-                            boxShadow: `0 0 15px ${tech.glow}`,
-                            color: '#ffffff',
-                            fontSize: '0.75rem',
+                            borderRadius: '6px',
+                            background: 'var(--bg-surface)',
+                            border: '1px solid var(--glass-border)',
+                            boxShadow: 'var(--glass-shadow)',
+                            color: 'var(--text-primary)',
+                            fontSize: '0.74rem',
                             fontWeight: 600,
                             pointerEvents: 'none',
                             zIndex: 100,
+                            fontFamily: 'var(--font-mono)',
                           }}
                         >
                           <span>{tech.name}</span>
-                          <span style={{ color: 'var(--text-secondary)', marginLeft: '4px', fontSize: '0.68rem' }}>
+                          <span style={{ color: 'var(--text-muted)', marginLeft: '4px', fontSize: '0.68rem' }}>
                             ({tech.category})
                           </span>
                         </motion.div>
@@ -390,78 +339,55 @@ export default function SplineHero({ sceneUrl, className = '' }: SplineHeroProps
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════
-          MOBILE RESPONSIVE TECH ARSENAL DOCK
-          Floats gently beneath the sphere without overflowing screen
+          MOBILE RESPONSIVE TECH DOCK
           ═══════════════════════════════════════════════════════════ */}
       {isMobile && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
           className="w-full max-w-[340px] mt-4 flex flex-col items-center"
         >
-          {/* Subtle Mobile Heading */}
-          <div className="flex items-center gap-2 mb-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-[11px] font-mono tracking-widest text-cyan-300 uppercase">
-              Core Tech &amp; QA Stack
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+            <span className="text-[11px] font-mono tracking-wider text-slate-400 uppercase">
+              Core Tech Stack
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
           </div>
 
-          {/* Gentle Floating Tech Cluster (2 rows of 5) */}
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(5, 1fr)',
               gap: '8px',
-              padding: '12px 14px',
-              borderRadius: '20px',
-              background: 'rgba(10, 5, 28, 0.65)',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-              border: '1px solid rgba(0, 240, 255, 0.18)',
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+              padding: '10px 12px',
+              borderRadius: '16px',
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid var(--glass-border)',
+              boxShadow: 'var(--glass-shadow)',
             }}
           >
-            {techSkills.map((tech, i) => (
-              <motion.div
+            {techSkills.map((tech) => (
+              <div
                 key={tech.name}
-                animate={{
-                  y: [-3, 3, -3],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 2.8 + (i % 3) * 0.4,
-                  delay: i * 0.12,
-                  ease: 'easeInOut',
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl cursor-pointer"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '8px',
+                  borderRadius: '10px',
+                  background: 'rgba(128, 128, 128, 0.05)',
+                  border: '1px solid var(--glass-border)',
                 }}
               >
-                <tech.icon size={20} color={tech.color} />
-                <span className="text-[9px] text-gray-300 mt-1 font-mono font-medium truncate max-w-[48px] text-center">
-                  {tech.name}
-                </span>
-              </motion.div>
+                <tech.icon size={18} color={tech.color} />
+              </div>
             ))}
           </div>
         </motion.div>
       )}
-
-      {/* Bottom Floating Pedestal Shadow */}
-      <div
-        className="w-48 sm:w-64 h-6 rounded-[100%] pointer-events-none mt-2"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(0, 240, 255, 0.28) 0%, rgba(138, 43, 226, 0.15) 40%, transparent 70%)',
-          filter: 'blur(16px)',
-          transform: 'scaleY(0.4)',
-        }}
-      />
     </div>
   );
 }

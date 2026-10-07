@@ -2,26 +2,27 @@ export const mm = {
   nav: { about: 'အကြောင်း', services: 'ဝန်ဆောင်မှု', experience: 'အတွေ့အကြုံ', skills: 'ကျွမ်းကျင်မှု', work: 'ပရောဂျက်', contact: 'ဆက်သွယ်ရန်' },
   hero: { 
     title: 'လှိုင်မင်းဦး', 
-    subtitle: 'React နှင့် Next.js အတွေ့အကြုံရှိသော Junior Software Tester တစ်ဦးဖြစ်ပါသည်။ Web Application များကို စမ်းသပ်ခြင်း၊ Postman ဖြင့် API Response များ စစ်ဆေးခြင်းနှင့် Jira/ClickUp ဖြင့် Bug Report များ ရေးသားခြေရာခံခြင်းတို့ကို အဓိက လုပ်ဆောင်ပါသည်။' 
+    subtitle: 'React.js, Next.js နှင့် ခေတ်မီ CSS Framework များကို အသုံးပြု၍ Responsive Web Application များ တည်ဆောက်ရာတွင် လက်တွေ့ အတွေ့အကြုံရှိသော Junior Frontend Developer တစ်ဦးဖြစ်ပါသည်။ ကျွမ်းကျင်မှုများနှင့် အဆက်မပြတ် သင်ယူလိုစိတ်ဖြင့် Development Team တစ်ခုတွင် ပါဝင်ကူညီလိုပါသည်။' 
   },
   stats: { years: 'နှစ် အတွေ့အကြုံ', projects: 'ပြီးစီးခဲ့သော ပရောဂျက်များ', clients: 'လက်တွဲခဲ့သော ကုမ္ပဏီများ', certs: 'ရရှိထားသော အောင်လက်မှတ်များ' },
   services: {
     title1: 'အဓိက ', title2: 'ဝန်ဆောင်မှုများ',
-    desc: 'Web နှင့် Mobile Application များအတွက် Manual QA Testing၊ Frontend Debugging နှင့် API စစ်ဆေးခြင်း ဝန်ဆောင်မှုများ။',
-    s1: 'Quality Assurance & UAT', 
-    s1Desc: 'Manual Test Case များ စမ်းသပ်စစ်ဆေးခြင်း၊ ပြဿနာဖြစ်ပေါ်သည့် အဆင့်များ (Steps to Reproduce) တိကျစွာဖော်ပြပြီး Jira နှင့် ClickUp တွင် Bug Report ရေးသားခြင်း။',
-    s2: 'Frontend Development & Debugging', 
-    s2Desc: 'React/Next.js Interface များကို ပြင်ဆင် Debug လုပ်ခြင်း၊ Device အားလုံးတွင် UI ချောမွေ့စွာ ပြသနိုင်ရန် Cross-browser Testing ပြုလုပ်ခြင်း။',
-    s3: 'Technical Support & API Testing', 
-    s3Desc: 'Postman ဖြင့် REST API Endpoint များကို စစ်ဆေးခြင်း၊ System Error Log များကို ဖတ်ရှုစစ်ဆေးခြင်းနှင့် Technical Support ပေးခြင်း။'
+    desc: 'ခေတ်မီ Web Application များအတွက် Frontend Development၊ UI/UX Implementation နှင့် Code Optimization ဝန်ဆောင်မှုများ။',
+    s1: 'Frontend Development', 
+    s1Desc: 'React နှင့် Next.js ကို အသုံးပြု၍ Responsive Web Application များ တည်ဆောက်ခြင်း၊ သန့်ရှင်းပြီး ထိန်းသိမ်းလွယ်သော UI Implementation ပြုလုပ်ခြင်း။',
+    s2: 'UI/UX Implementation & Styling', 
+    s2Desc: 'Figma မှ Design System များကို Responsive, Pixel-perfect Tailwind CSS Component များအဖြစ် အသွင်ပြောင်းခြင်း။',
+    s3: 'Code Optimization & Debugging', 
+    s3Desc: 'Frontend ပြဿနာများ ဖြေရှင်းခြင်း၊ Component Rendering ပိုမိုကောင်းမွန်စေခြင်းနှင့် Cross-browser Compatibility စစ်ဆေးခြင်း။'
   },
   about: {
     title1: 'ကျွန်တော့်ရဲ့ ', title2: 'နောက်ခံသမိုင်း',
-    desc: 'Frontend Web Development နှင့် QA Testing အတွေ့အကြုံများ ရှိပါသည်။ React နှင့် JavaScript ရေးသားတတ်သောကြောင့် UI Component၊ State နှင့် API ချိတ်ဆက်မှုများတွင် ဖြစ်ပေါ်တတ်သော အမှားများကို လျင်မြန်စွာ ရှာဖွေနိုင်ပြီး Developer များနှင့် ထိရောက်စွာ ပူးပေါင်းဖြေရှင်းနိုင်ပါသည်။'
+    desc: 'Frontend Web Development ကျွမ်းကျင်မှုများနှင့် လက်တွေ့ ပရောဂျက် အတွေ့အကြုံများ ရှိပါသည်။ React.js နှင့် Next.js ဖြင့် Responsive Web Application များ တည်ဆောက်ခြင်း၊ Figma မှ Design များကို Tailwind CSS ဖြင့် Pixel-perfect အဖြစ် ပြောင်းလဲခြင်းနှင့် Component Performance ပိုမိုကောင်းမွန်အောင် ပြုလုပ်ခြင်းတို့ကို အဓိက လုပ်ဆောင်ပါသည်။'
   },
-  experience: { title1: 'လုပ်ငန်းခွင် ', title2: 'ဖြတ်သန်းမှု', desc: 'Software Testing၊ Project Coordination နှင့် Frontend Development လုပ်ငန်းခွင် ဖြတ်သန်းမှုများ။' },
-  skills: { title1: 'ကျွမ်းကျင်သော ', title2: 'နည်းပညာများ', desc: 'စမ်းသပ်စစ်ဆေးခြင်းနှင့် ရေးသားတည်ဆောက်ရာတွင် အသုံးပြုသော Tool များနှင့် နည်းပညာများ။' },
-  work: { title1: 'ထင်ရှားသော ', title2: 'လက်ရာများ', desc: 'Manual QA Testing၊ Web Development နှင့် Cyber Security Coordination ပရောဂျက်များ။' },
-  contact: { title1: 'ဆက်သွယ် ', title2: 'ဆွေးနွေးရန်', desc: 'Junior Software Tester နှင့် Frontend Support အလုပ်အခွင့်အလမ်းများအတွက် တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်။' }
+  experience: { title1: 'လုပ်ငန်းခွင် ', title2: 'ဖြတ်သန်းမှု', desc: 'Frontend Development၊ Project Coordination နှင့် IT Support လုပ်ငန်းခွင် ဖြတ်သန်းမှုများ။' },
+  skills: { title1: 'ကျွမ်းကျင်သော ', title2: 'နည်းပညာများ', desc: 'Web Application များ တည်ဆောက်ခြင်း၊ Style ပြင်ဆင်ခြင်းနှင့် Optimize လုပ်ရာတွင် အသုံးပြုသော Tool များနှင့် နည်းပညာများ။' },
+  work: { title1: 'ထင်ရှားသော ', title2: 'လက်ရာများ', desc: 'React, Next.js, Tailwind CSS နှင့် ခေတ်မီ Web နည်းပညာများဖြင့် ရေးသားခဲ့သော Frontend Development ပရောဂျက်များ။' },
+  contact: { title1: 'ဆက်သွယ် ', title2: 'ဆွေးနွေးရန်', desc: 'Junior Frontend Developer နှင့် React Developer အလုပ်အခွင့်အလမ်းများအတွက် တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်။' }
 };
+
 

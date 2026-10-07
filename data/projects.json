@@ -1,48 +1,64 @@
 [
     {
         "id": 1,
-        "title": "Cosmic Portfolio v2",
-        "description": "A high-performance cinematic developer portfolio built with Next.js 15, Three.js, and Aceternity UI. Features real-time content management via a custom-built Admin Dashboard and dynamic data fetching from MongoDB Atlas.",
-        "image": "/img/oldportfolio.png",
-        "ghLink": "https://github.com/dev-hmo/hmoPortfolio",
-        "demoLink": "https://hmo-portfolio.vercel.app/"
+        "title": "Oryx Training Center",
+        "description": "A modern training center web application built with Next.js and Tailwind CSS. Features fully responsive UI layouts, dynamic course catalog rendering, and modular component architecture.",
+        "image": null,
+        "ghLink": "https://github.com/dev-hmo",
+        "demoLink": "https://oryx-training-center.vercel.app/"
     },
     {
         "id": 2,
+        "title": "Booking MM",
+        "description": "A full-featured booking and reservation platform built with React and Next.js. Integrates dynamic REST APIs for real-time availability checking and responsive Tailwind CSS UI components.",
+        "image": null,
+        "ghLink": "https://github.com/dev-hmo",
+        "demoLink": "https://bookingmm.vercel.app/"
+    },
+    {
+        "id": 3,
+        "title": "HMO Portfolio",
+        "description": "A high-performance cinematic developer portfolio built with Next.js 16, Tailwind CSS, and Framer Motion. Features interactive 3D liquid crystal animations and bilingual localization.",
+        "image": "/img/oldportfolio.png",
+        "ghLink": "https://github.com/dev-hmo/hmoPortfolio",
+        "demoLink": "https://hmo-porfolio.vercel.app/"
+    },
+    {
+        "id": 4,
         "title": "Panda Film Engine",
-        "description": "A streamlined movie exploration platform leveraging high-speed image optimization and responsive design. Built to provide a friction-less browsing experience with instant search and dynamic UI cards.",
+        "description": "A streamlined movie exploration platform leveraging high-speed image optimization and responsive UI cards. Features real-time movie API search and dynamic client-side filtering.",
         "image": "/img/pandaflim.png",
         "ghLink": "https://github.com/dev-hmo/pandaflimbydevhmo",
         "demoLink": "https://pandaflim.vercel.app/"
     },
     {
-        "id": 3,
+        "id": 5,
         "title": "Pi Vape E-Commerce",
-        "description": "A sophisticated e-commerce showcase featuring localized UI patterns, smooth navigation powered by Framer Motion, and a highly responsive layout optimized for conversion and brand identity.",
+        "description": "A modern e-commerce showcase featuring localized UI patterns, smooth page navigation powered by Framer Motion, and a highly responsive layout optimized for user conversion.",
         "image": "/img/vapeshop.png",
         "ghLink": "https://github.com/dev-hmo/vape-shop",
         "demoLink": "https://vape-shop-delta.vercel.app/"
     },
     {
-        "id": 4,
+        "id": 6,
         "title": "Feedback Cloud",
-        "description": "A real-time customer feedback orchestration tool utilizing Firebase and Firestore. Engineered for speed and scalability, allowing businesses to capture and visualize user sentiment in real-time.",
+        "description": "A real-time customer feedback orchestration tool built with React and Firebase Firestore. Features instant form validation, live sentiment data visualization, and reactive state management.",
         "image": "/img/customerfeedbackapp.png",
         "ghLink": "https://github.com/dev-hmo/customer-feedback-app.git",
         "demoLink": "https://customer-feedback-app-gold.vercel.app/"
     },
     {
-        "id": 5,
-        "title": "Pixel Forge UI",
-        "description": "An advanced UI component laboratory exploring Material React patterns and interactive frontend states. Focused on crafting reusable, accessible, and high-performance React components.",
+        "id": 7,
+        "title": "Pixel Forge Studio",
+        "description": "An interactive UI component laboratory exploring modern React patterns, design system tokens, and accessible, reusable component architectures with Framer Motion.",
         "image": "/img/pixelforge.png",
         "ghLink": "https://github.com/dev-hmo/pixel-forge",
         "demoLink": "https://pixel-forge-tawny.vercel.app/"
     },
     {
-        "id": 6,
-        "title": "Todo List App",
-        "description": "A full-stack task management application built with React.js for the frontend, Node.js for the backend, and MongoDB for data storage. Features include task creation, updating, deletion, and real-time list rendering.",
+        "id": 8,
+        "title": "Task Manager App",
+        "description": "A full-stack task management application with React.js frontend, Node.js backend, and MongoDB storage. Implements full CRUD operations, live state updates, and clean UI workflow.",
         "image": "/img/todolist.png",
         "ghLink": "https://github.com/dev-hmo/todolist",
         "demoLink": "https://todolist-iota-lac-27.vercel.app/"

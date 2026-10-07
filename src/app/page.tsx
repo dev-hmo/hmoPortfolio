@@ -11,7 +11,7 @@ import RotatingText from '@/components/RotatingText';
 import StatsCounter from '@/components/StatsCounter';
 import Services from '@/components/Services';
 import MagneticElement from '@/components/MagneticElement';
-import { FaGithub, FaLinkedin, FaArrowRight, FaShieldAlt, FaCheckCircle, FaLaptopCode } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaArrowRight, FaCode, FaRocket, FaLaptopCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -20,11 +20,11 @@ export default function Home() {
 
   return (
     <main style={{ position: 'relative', overflowX: 'hidden' }}>
-      {/* Liquid Crystal Animated Mesh Background */}
+      {/* Subtle Technical Mesh Background */}
       <LiquidBackground />
 
       {/* ═══════════════════════════════════════════════════════════
-          HERO SECTION — 3D Liquid Crystal & Spline Layout
+          HERO SECTION — Clean Precision Layout
           ═══════════════════════════════════════════════════════════ */}
       <section
         id="hero"
@@ -40,78 +40,76 @@ export default function Home() {
       >
         <div className="w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
-            {/* Left Column: Fluid Typography & Interactive CTAs */}
+            {/* Left Column: Direct, Technical Developer Heading & CTAs */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -25 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 xl:col-span-7 flex flex-col items-start lg:pl-6 xl:pl-10 max-w-[620px]"
             >
-              {/* Status Badge */}
+              {/* Technical Status Badge */}
               <motion.div
-                initial={{ opacity: 0, y: -15 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '6px 16px',
+                  padding: '5px 14px',
                   borderRadius: '9999px',
-                  background: 'rgba(0, 240, 255, 0.08)',
-                  border: '1px solid rgba(0, 240, 255, 0.25)',
-                  boxShadow: '0 0 20px rgba(0, 240, 255, 0.15)',
+                  background: 'var(--accent-teal-subtle)',
+                  border: '1px solid rgba(20, 184, 166, 0.25)',
                   marginBottom: '1.25rem',
                 }}
               >
                 <span
                   style={{
-                    width: '8px',
-                    height: '8px',
+                    width: '7px',
+                    height: '7px',
                     borderRadius: '50%',
-                    backgroundColor: '#00f0ff',
-                    boxShadow: '0 0 10px #00f0ff',
+                    backgroundColor: 'var(--accent-teal)',
                     display: 'inline-block',
-                    animation: 'pulseGlow 2s infinite',
                   }}
                 />
                 <span
                   style={{
-                    color: '#00f0ff',
-                    fontSize: '0.82rem',
+                    color: 'var(--accent-teal)',
+                    fontSize: '0.78rem',
+                    fontFamily: 'var(--font-mono)',
                     fontWeight: 600,
                     letterSpacing: '0.04em',
                     textTransform: 'uppercase',
                   }}
                 >
-                  Available for Junior QA / Testing Roles
+                  Available for Frontend &amp; Full-Stack Roles
                 </span>
               </motion.div>
 
-              {/* Fluid Wavy Title Entrance */}
-              <div style={{ width: '100%', marginBottom: '0.5rem' }}>
+              {/* Clean Wavy Title Entrance */}
+              <div style={{ width: '100%', marginBottom: '0.35rem' }}>
                 <TextReveal
                   text={t.hero.title}
                   style={{
-                    fontSize: 'clamp(2.75rem, 5.5vw, 4.5rem)',
+                    fontSize: 'clamp(2.75rem, 5.5vw, 4.25rem)',
                     fontWeight: 800,
-                    lineHeight: 1.08,
-                    letterSpacing: '-0.02em',
+                    lineHeight: 1.05,
+                    letterSpacing: '-0.035em',
                     justifyContent: 'flex-start',
-                    textShadow: '0 0 35px rgba(0, 240, 255, 0.28)',
+                    color: 'var(--text-primary)',
                   }}
                 />
               </div>
 
-              {/* QA / Frontend Rotating Roles (Left aligned, natural line-breaking) */}
-              <div style={{ width: '100%', marginBottom: '1rem' }}>
+              {/* Developer Roles Showcase */}
+              <div style={{ width: '100%', marginBottom: '1.2rem' }}>
                 <RotatingText align="left" />
               </div>
 
-              {/* Punchy Hero Description */}
+              {/* Technical, Direct Bio */}
               <p
                 style={{
-                  fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
+                  fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
                   color: 'var(--text-secondary)',
                   lineHeight: 1.7,
                   marginBottom: '2rem',
@@ -121,12 +119,12 @@ export default function Home() {
                 {t.hero.subtitle}
               </p>
 
-              {/* Action Buttons: Liquid CTA + Secondary Crystal Button */}
+              {/* Clean Action CTAs */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1.25rem',
+                  gap: '1rem',
                   flexWrap: 'wrap',
                   marginBottom: '2.25rem',
                 }}
@@ -143,26 +141,23 @@ export default function Home() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '8px',
-                      padding: '14px 28px',
+                      padding: '12px 26px',
                       borderRadius: '9999px',
-                      background: 'rgba(255, 255, 255, 0.04)',
-                      backdropFilter: 'blur(16px)',
-                      WebkitBackdropFilter: 'blur(16px)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
                       color: 'var(--text-primary)',
-                      fontWeight: 600,
-                      fontSize: '0.96rem',
-                      transition: 'all 0.3s ease',
+                      fontWeight: 500,
+                      fontSize: '0.92rem',
+                      letterSpacing: '-0.01em',
+                      transition: 'all 0.2s ease',
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = 'rgba(0, 240, 255, 0.1)';
-                      e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.4)';
-                      e.currentTarget.style.boxShadow = '0 0 25px rgba(0, 240, 255, 0.2)';
+                      e.currentTarget.style.borderColor = 'var(--accent-teal)';
+                      e.currentTarget.style.color = 'var(--accent-teal)';
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.borderColor = 'var(--glass-border)';
+                      e.currentTarget.style.color = 'var(--text-primary)';
                     }}
                   >
                     {t.nav.contact}
@@ -170,7 +165,7 @@ export default function Home() {
                 </MagneticElement>
               </div>
 
-              {/* Quick Trust Highlights */}
+              {/* Technical Highlights */}
               <div
                 style={{
                   display: 'flex',
@@ -178,30 +173,30 @@ export default function Home() {
                   gap: '1.5rem',
                   flexWrap: 'wrap',
                   paddingTop: '1.25rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderTop: '1px solid var(--glass-border)',
                   width: '100%',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                  <FaCheckCircle color="#00f0ff" size={13} />
-                  <span>Manual Testing &amp; UAT</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                  <FaLaptopCode color="var(--accent-teal)" size={14} />
+                  <span>React &amp; Next.js 15</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                  <FaLaptopCode color="#8a2be2" size={13} />
-                  <span>React / Next.js Debugging</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                  <FaCode color="var(--accent-teal)" size={14} />
+                  <span>TypeScript &amp; Tailwind</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                  <FaShieldAlt color="#ff0055" size={13} />
-                  <span>API &amp; Postman Testing</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>
+                  <FaRocket color="var(--accent-teal)" size={14} />
+                  <span>REST APIs &amp; CI/CD</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Column: 3D Spline Scene Floating Container */}
+            {/* Right Column: 3D Element Container */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 30 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5 xl:col-span-5 flex justify-center items-center relative"
             >
               <SplineHero />
@@ -211,19 +206,18 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          IMPACT STATS — Liquid Frosted Glass Strip
+          IMPACT STATS — Precision Metrics Bar
           ═══════════════════════════════════════════════════════════ */}
       <section
         style={{
-          padding: '50px 0',
+          padding: '45px 0',
           position: 'relative',
           zIndex: 10,
-          background: 'rgba(10, 5, 28, 0.45)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          borderTop: '1px solid rgba(0, 240, 255, 0.1)',
-          borderBottom: '1px solid rgba(138, 43, 226, 0.1)',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderTop: '1px solid var(--glass-border)',
+          borderBottom: '1px solid var(--glass-border)',
         }}
       >
         <div className="container">
@@ -232,21 +226,21 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SERVICES SECTION — Crystal Glass Cards
+          SERVICES SECTION — Engineering Solutions
           ═══════════════════════════════════════════════════════════ */}
-      <section id="services" style={{ padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', zIndex: 10 }}>
+      <section id="services" style={{ padding: 'clamp(80px, 10vw, 110px) 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', textAlign: 'center', marginBottom: '0.85rem' }}>
             {t.services.title1} <span className="text-gradient">{t.services.title2}</span>
           </h2>
           <p
             style={{
               textAlign: 'center',
               color: 'var(--text-secondary)',
-              marginBottom: 'clamp(2.5rem, 5vw, 4.5rem)',
-              fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-              maxWidth: '680px',
-              margin: '0 auto clamp(2.5rem, 5vw, 4.5rem) auto',
+              marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
+              maxWidth: '640px',
+              margin: '0 auto clamp(2.5rem, 4vw, 3.5rem) auto',
             }}
           >
             {t.services.desc}
@@ -256,12 +250,12 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          ABOUT SECTION — Crystal Profile & 3D Orb
+          ABOUT SECTION — Architecture & Engineering Focus
           ═══════════════════════════════════════════════════════════ */}
-      <section id="about" style={{ padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', zIndex: 10 }}>
+      <section id="about" style={{ padding: 'clamp(80px, 10vw, 110px) 0', position: 'relative', zIndex: 10 }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(2rem, 5vw, 4rem)', flexWrap: 'wrap' }}>
           <div style={{ flex: '1 1 450px' }}>
-            <CrystalCard style={{ padding: 'clamp(2rem, 4vw, 3.5rem)', height: '100%' }}>
+            <CrystalCard style={{ padding: 'clamp(2rem, 4vw, 3rem)', height: '100%' }}>
               <div
                 style={{
                   display: 'inline-flex',
@@ -269,82 +263,83 @@ export default function Home() {
                   gap: '6px',
                   padding: '4px 12px',
                   borderRadius: '9999px',
-                  background: 'rgba(0, 240, 255, 0.08)',
-                  border: '1px solid rgba(0, 240, 255, 0.25)',
-                  color: '#00f0ff',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
+                  background: 'var(--accent-teal-subtle)',
+                  border: '1px solid rgba(20, 184, 166, 0.25)',
+                  color: 'var(--accent-teal)',
+                  fontSize: '0.78rem',
+                  fontFamily: 'var(--font-mono)',
                   marginBottom: '1.25rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
                 }}
               >
-                Junior QA Tester & Frontend Developer
+                Frontend Developer
               </div>
-              <h2 style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.25rem)', marginBottom: '1.5rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', marginBottom: '1.25rem' }}>
                 {t.about.title1} <span className="text-gradient">{t.about.title2}</span>
               </h2>
-              <p style={{ fontSize: 'clamp(1.02rem, 1.8vw, 1.15rem)', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+              <p style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)', color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: '2rem' }}>
                 {t.about.desc}
               </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <div style={{ padding: '10px 16px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <span style={{ color: '#00f0ff', fontWeight: 700, fontSize: '1.1rem' }}>Zero</span>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', margin: 0 }}>Critical Release Bugs</p>
+              <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
+                <div style={{ padding: '12px 18px', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <span style={{ color: 'var(--accent-teal)', fontWeight: 700, fontSize: '1.2rem', fontFamily: 'var(--font-mono)' }}>100%</span>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', margin: 0 }}>Responsive &amp; Mobile-First</p>
                 </div>
-                <div style={{ padding: '10px 16px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <span style={{ color: '#8a2be2', fontWeight: 700, fontSize: '1.1rem' }}>40%</span>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', margin: 0 }}>Post-Launch Defect Drop</p>
+                <div style={{ padding: '12px 18px', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <span style={{ color: 'var(--accent-teal)', fontWeight: 700, fontSize: '1.2rem', fontFamily: 'var(--font-mono)' }}>Figma</span>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', margin: 0 }}>Design System Fidelity</p>
                 </div>
-                <div style={{ padding: '10px 16px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                  <span style={{ color: '#ff0055', fontWeight: 700, fontSize: '1.1rem' }}>100%</span>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', margin: 0 }}>Test Case Coverage</p>
+                <div style={{ padding: '12px 18px', background: 'var(--glass-bg)', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+                  <span style={{ color: 'var(--accent-teal)', fontWeight: 700, fontSize: '1.2rem', fontFamily: 'var(--font-mono)' }}>Next.js</span>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', margin: 0 }}>Modern Component Architecture</p>
                 </div>
               </div>
             </CrystalCard>
           </div>
 
           <div style={{ flex: '1 1 360px', display: 'flex', justifyContent: 'center' }}>
-            <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-              style={{ position: 'relative', width: '320px', height: '320px' }}
+            <div
+              className="glass"
+              style={{
+                width: '320px',
+                height: '320px',
+                borderRadius: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '24px',
+                textAlign: 'center',
+                border: '1px solid var(--glass-border)',
+              }}
             >
               <div
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, rgba(138, 43, 226, 0.25) 50%, transparent 70%)',
-                  borderRadius: '50%',
-                  filter: 'blur(45px)',
-                  animation: 'pulseGlow 5s infinite',
-                }}
-              />
-              <div
-                className="glass"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '50%',
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '16px',
+                  background: 'var(--accent-teal-subtle)',
+                  border: '1px solid rgba(20, 184, 166, 0.3)',
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  position: 'relative',
-                  zIndex: 2,
-                  border: '1.5px solid rgba(0, 240, 255, 0.35)',
-                  boxShadow: '0 0 50px rgba(0, 240, 255, 0.2), inset 0 0 30px rgba(138, 43, 226, 0.25)',
+                  color: 'var(--accent-teal)',
+                  marginBottom: '1rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontWeight: 700,
+                  fontSize: '1.2rem',
                 }}
               >
-                <span style={{ fontSize: '4.5rem', marginBottom: '8px' }}>🔬</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 700, color: '#00f0ff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  Manual &amp; UAT
-                </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  Defect Tracking &amp; QA
-                </span>
+                &lt;/&gt;
               </div>
-            </motion.div>
+              <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+                Engineering Focus
+              </h4>
+              <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0, maxWidth: '240px' }}>
+                Component modularity, type safety with TypeScript, and sub-second load times.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -352,32 +347,31 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           EXPERIENCE TIMELINE
           ═══════════════════════════════════════════════════════════ */}
-      <section id="experience" style={{ padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', zIndex: 10 }}>
+      <section id="experience" style={{ padding: 'clamp(80px, 10vw, 110px) 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3.5rem)' }}>
             {t.experience.title1} <span className="text-gradient">{t.experience.title2}</span>
           </h2>
           <Timeline />
         </div>
       </section>
 
-
       {/* ═══════════════════════════════════════════════════════════
-          PROJECT SHOWCASE — Liquid Crystal Cards
+          PROJECT SHOWCASE
           ═══════════════════════════════════════════════════════════ */}
-      <section id="work" style={{ padding: 'clamp(80px, 12vw, 120px) 0', position: 'relative', zIndex: 10 }}>
+      <section id="work" style={{ padding: 'clamp(80px, 10vw, 110px) 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', textAlign: 'center', marginBottom: '0.85rem' }}>
             {t.work.title1} <span className="text-gradient">{t.work.title2}</span>
           </h2>
           <p
             style={{
               textAlign: 'center',
               color: 'var(--text-secondary)',
-              marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
-              fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-              maxWidth: '680px',
-              margin: '0 auto clamp(2.5rem, 5vw, 4rem) auto',
+              marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
+              maxWidth: '640px',
+              margin: '0 auto clamp(2.5rem, 4vw, 3.5rem) auto',
             }}
           >
             {t.work.desc}
@@ -387,21 +381,21 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          CONTACT / FOOTER SECTION
+          CONTACT SECTION
           ═══════════════════════════════════════════════════════════ */}
-      <section id="contact" style={{ padding: 'clamp(100px, 14vw, 140px) 0 60px 0', position: 'relative', zIndex: 10 }}>
+      <section id="contact" style={{ padding: 'clamp(90px, 12vw, 120px) 0 60px 0', position: 'relative', zIndex: 10 }}>
         <div className="container">
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', textAlign: 'center', marginBottom: '0.85rem' }}>
             {t.contact.title1} <span className="text-gradient">{t.contact.title2}</span>
           </h2>
           <p
             style={{
               color: 'var(--text-secondary)',
               textAlign: 'center',
-              marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-              maxWidth: '600px',
-              margin: '0 auto clamp(2.5rem, 5vw, 4rem) auto',
+              marginBottom: 'clamp(2rem, 4vw, 3.5rem)',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)',
+              maxWidth: '560px',
+              margin: '0 auto clamp(2rem, 4vw, 3.5rem) auto',
             }}
           >
             {t.contact.desc}
@@ -409,28 +403,27 @@ export default function Home() {
 
           <ContactForm />
 
-          {/* Liquid Crystal Social Icons */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '5rem', marginBottom: '2.5rem' }}>
+          {/* Clean Social Links */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '4rem', marginBottom: '2rem' }}>
             <MagneticElement>
               <a
                 href="https://github.com/dev-hmo"
                 target="_blank"
                 rel="noreferrer"
-                className="social-link github"
+                className="social-link"
                 aria-label="GitHub Profile"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(0, 240, 255, 0.2)',
-                  boxShadow: '0 0 20px rgba(0, 240, 255, 0.1)',
+                  width: '46px',
+                  height: '46px',
+                  borderRadius: '12px',
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
                 }}
               >
-                <FaGithub size={22} />
+                <FaGithub size={18} />
               </a>
             </MagneticElement>
 
@@ -439,27 +432,26 @@ export default function Home() {
                 href="https://www.linkedin.com/in/hlaing-min-oo-656369240"
                 target="_blank"
                 rel="noreferrer"
-                className="social-link linkedin"
+                className="social-link"
                 aria-label="LinkedIn Profile"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '54px',
-                  height: '54px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(138, 43, 226, 0.2)',
-                  boxShadow: '0 0 20px rgba(138, 43, 226, 0.1)',
+                  width: '46px',
+                  height: '46px',
+                  borderRadius: '12px',
+                  background: 'var(--glass-bg)',
+                  border: '1px solid var(--glass-border)',
                 }}
               >
-                <FaLinkedin size={22} />
+                <FaLinkedin size={18} />
               </a>
             </MagneticElement>
           </div>
 
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', textAlign: 'center' }}>
-            © 2026 Hlaing Min Oo. Liquid Crystal Edition.
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
+            © 2026 Hlaing Min Oo • Built with Next.js &amp; TypeScript
           </p>
         </div>
       </section>

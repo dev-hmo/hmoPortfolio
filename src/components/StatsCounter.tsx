@@ -12,7 +12,7 @@ const AnimatedNumber = ({ value }: { value: number }) => {
     if (isInView) {
       let start = 0;
       const end = value;
-      const duration = 2000;
+      const duration = 1800;
       const incrementTime = Math.abs(Math.floor(duration / end));
 
       const timer = setInterval(() => {
@@ -43,16 +43,16 @@ export default function StatsCounter() {
       {stats.map((stat, index) => (
         <motion.div 
           key={index}
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
+          transition={{ duration: 0.4, delay: index * 0.08 }}
           style={{ textAlign: 'center' }}
         >
-          <div style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem', fontFamily: 'var(--font-display)' }}>
+          <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem', fontFamily: 'var(--font-sans)', letterSpacing: '-0.03em' }}>
             <AnimatedNumber value={stat.num} />+
           </div>
-          <div style={{ color: 'var(--accent-cyan)', fontSize: '1.1rem', fontWeight: 500, letterSpacing: '1px', textTransform: 'uppercase' }}>
+          <div style={{ color: 'var(--accent-teal)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
             {stat.label}
           </div>
         </motion.div>

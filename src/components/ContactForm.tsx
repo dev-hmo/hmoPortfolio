@@ -45,7 +45,7 @@ export default function ContactForm() {
         >
           {status === 'idle' && 'Send Message'}
           {status === 'sending' && 'Sending...'}
-          {status === 'sent' && 'Message Sent! ✨'}
+          {status === 'sent' && 'Message Sent Successfully'}
         </button>
       </form>
     </motion.div>

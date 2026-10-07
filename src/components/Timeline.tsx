@@ -3,34 +3,28 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    year: "AUG 2026 - PRESENT",
-    title: "Freelance QA Tester & Frontend Developer",
-    company: "Self-Employed / Freelance",
-    description: "Currently taking on freelance web projects focusing on end-to-end UAT, identifying UI/UX defects, and providing React/Next.js debugging support while pursuing my BSc in IT."
-  },
-  {
-    year: "DEC 2025 - JUL 2026",
-    title: "Project Coordinator (QA & Delivery)",
-    company: "RITZ Cyber Intelligence Co., Ltd",
-    description: "Coordinated QA workflows across security assessment projects, executing functional and regression testing while tracking defects in ClickUp to ensure on-time, zero-critical-bug releases."
-  },
-  {
     year: "MAY 2025 - JUL 2025",
     title: "Intern React Developer",
     company: "NK Software House",
-    description: "Built and debugged responsive React.js components, performed cross-browser testing, and collaborated with senior developers to resolve UI rendering issues before production deployment."
+    description: "Built responsive web interfaces using React.js and Tailwind CSS, participated in code reviews with senior developers, debugged UI rendering issues, and collaborated on component architecture for production-ready applications."
+  },
+  {
+    year: "DEC 2025 - JUL 2026",
+    title: "Software Delivery & Technical Coordinator",
+    company: "RITZ Cyber Intelligence Co., Ltd",
+    description: "Coordinated software delivery workflows across multiple projects, managed technical milestones, facilitated communication between development teams and stakeholders, and ensured on-time delivery of software products."
   },
   {
     year: "NOV 2024 - OCT 2025",
-    title: "IT Support Specialist & QA Support",
+    title: "IT Support Specialist & Technical QA",
     company: "Infinity Success Co., Ltd",
-    description: "Conducted end-to-end system testing for fintech platforms, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
+    description: "Provided technical support for fintech platforms, conducted end-to-end system validation, documented and tracked bugs via Jira, and validated API responses using Postman to ensure data integrity across services."
   },
   {
     year: "MAY 2024 - SEP 2024",
-    title: "Software UAT Test Team Lead",
-    company: "App.com.mm Co., Ltd",
-    description: "Led a UAT team testing web and mobile applications, authored detailed bug reports with reproduction steps, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
+    title: "Technical Support & Software UAT Lead",
+    company: "App.com.mm",
+    description: "Led a UAT team validating web and mobile applications, authored detailed bug reports with reproduction steps, provided technical problem-solving support, and drove a 40% reduction in post-release defects through rigorous pre-launch testing cycles."
   }
 ];
 
@@ -47,7 +41,7 @@ export default function Timeline() {
           className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
         >
           <div className="timeline-content glass">
-            <h4 className="timeline-year text-gradient">{exp.year}</h4>
+            <h4 className="timeline-year">{exp.year}</h4>
             <h3 className="timeline-title">{exp.title}</h3>
             <h5 className="timeline-company">{exp.company}</h5>
             <p className="timeline-desc">{exp.description}</p>

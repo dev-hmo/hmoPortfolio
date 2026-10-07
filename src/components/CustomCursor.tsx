@@ -13,7 +13,6 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Only show on desktop/fine pointers
     if (window.matchMedia('(pointer: fine)').matches) {
       setIsVisible(true);
       
@@ -41,11 +40,10 @@ export default function CustomCursor() {
           width: '32px',
           height: '32px',
           borderRadius: '50%',
-          border: '2px solid rgba(0, 240, 255, 0.8)',
+          border: '1.5px solid var(--accent-teal)',
           pointerEvents: 'none',
           zIndex: 9999,
-          mixBlendMode: 'difference',
-          boxShadow: '0 0 10px rgba(0,240,255,0.3)'
+          opacity: 0.7,
         }}
       />
       <motion.div
@@ -53,15 +51,14 @@ export default function CustomCursor() {
           x: cursorX,
           y: cursorY,
           position: 'fixed',
-          top: '12px',
-          left: '12px',
-          width: '8px',
-          height: '8px',
+          top: '13px',
+          left: '13px',
+          width: '6px',
+          height: '6px',
           borderRadius: '50%',
-          backgroundColor: 'white',
+          backgroundColor: 'var(--accent-teal)',
           pointerEvents: 'none',
           zIndex: 10000,
-          mixBlendMode: 'difference',
         }}
       />
     </>
